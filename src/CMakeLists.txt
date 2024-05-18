@@ -13,8 +13,8 @@ set (CMAKE_INSTALL_PREFIX ${CMAKE_INSTALL_PREFIX} CACHE INTERNAL "")
 # include cmake scripts
 include(${CMAKE_CURRENT_SOURCE_DIR}/../cmake/utils.cmake)
 
-# require C++11
-set (CMAKE_CXX_STANDARD 11)
+# require C++17
+set (CMAKE_CXX_STANDARD 17)
 
 # set up library and binary directories
 if(NOT LIBRARY_OUTPUT_PATH)
