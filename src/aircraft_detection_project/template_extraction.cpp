@@ -45,16 +45,42 @@ void ExtractTemplates()
 	std::sort(yolo_paths.begin(), yolo_paths.end());
 
 	/*
-	for (const auto& names : img_paths)
+    for (const auto& names : img_paths)
+    {
+	std::cout << names << "\n";
+    }
+  
+    for(const auto& names: yolo_paths)
+    {
+	std::cout << names << "\n";
+     }
+     */
+
+	// Ottieni il percorso della directory padre
+	std::filesystem::path dataset_path(DATASET_PATH);
+	std::filesystem::path parent_path = dataset_path.parent_path();
+
+
+
+	// Crea un nuovo percorso per la nuova directory
+	std::filesystem::path new_dir_path = parent_path / "extracted_templates";
+
+	try 
 	{
-		std::cout << names << "\n";
+		// Prova a creare la nuova directory solo se non esiste già
+		if (!std::filesystem::exists(new_dir_path)) 
+			std::filesystem::create_directory(new_dir_path);
+	}
+	catch (std::filesystem::filesystem_error& e) 
+	{
+		// Gestisci l'eccezione
+		std::cout << "Errore durante la creazione della directory: " << e.what() << std::endl;
 	}
 
-	for(const auto& names: yolo_paths)
-	{
-		std::cout << names << "\n";
-	}
-	*/
+
+
+	std::vector<cv::Mat> final_templates;
+
 
 	for (int i = 0; i < img_paths.size(); i++)
 	{
@@ -81,8 +107,6 @@ void ExtractTemplates()
 
 		std::vector <cv::Rect> airplanes_boxes;
 
-
-		std::vector<cv::Mat> final_templates;
 
 
 		if (file.is_open()) {
@@ -273,21 +297,29 @@ void ExtractTemplates()
 
 
 
+		
 
-
-		for (const auto& airplane_template : final_templates)
-		{
-			// std::cout << airplane_template.cols << " " << airplane_template.rows << "\n";
-			//ipa::imshow("Template", airplane_template);
-		  	cv::imwrite("sa", airplane_template);
-			//cv::waitKey(3000);
-		}
 
 		std::cout << "\n---------------------------------------\n";
 		std::cout << "Image " << i << " has been processed successfully";
 		std::cout << "\n---------------------------------------\n\n";
 
 	}
+
+
+	const std::string name = "giuseppe";
+	
+	for (int k = 0; k < final_templates.size(); k++)
+	{
+		const std::string str = std::to_string(k);
+		const std::string template_name = "template" + str + "_"+ name + ".png";
+		// Crea il percorso del file di output
+		std::filesystem::path output_path = parent_path / template_name;
+		// Salva l'immagine
+		cv::imwrite(output_path.string(), final_templates[k]);
+	}
+
+	
 
 }
 
