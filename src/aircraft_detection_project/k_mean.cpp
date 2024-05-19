@@ -1,3 +1,25 @@
+#include "kmeans.h"
+#include "utils.h"
+#include <filesystem>
+
+
+void kMeansClustering_BySize()
+{
+	std::filesystem::path dataset_path(DATASET_PATH);
+	std::filesystem::path kmeans_path = dataset_path.parent_path();
+
+	std::filesystem::path kmeans_folder = createDirectory(kmeans_path, "kmeans");
+
+
+}
+
+void kMeansClustering_ByIntensity()
+{
+
+}
+
+
+
 /*
     Template for k-mean
     TODO -> filesystem for image upload 
