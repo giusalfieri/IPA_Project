@@ -19,7 +19,8 @@ cv::Rect Yolo2BRect(const cv::Mat& input_img, double x_center, double y_center, 
 cv::Mat getRotationROI(cv::Mat& img, cv::Rect& roi);
 
 
-std::filesystem::path createDirectoryInParent(const std::string& folder_path, const std::string& directory_name);
+
+std::filesystem::path createDirectory(const std::filesystem::path& folder_path, const std::string& directory_name);
 
 // utility function that rotates 'img' by step*90°
 // step = 0 --> no rotation
