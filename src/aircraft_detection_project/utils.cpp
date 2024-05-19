@@ -102,14 +102,12 @@ cv::Mat rotate90(cv::Mat img, int step)
 }
 
 
-std::filesystem::path createDirectoryInParent(const std::string& folder_path, const std::string& directory_name)
+std::filesystem::path createDirectory(const std::filesystem::path& folder_path, const std::string& directory_name)
 {
-	// Ottieni il percorso della directory padre
-	std::filesystem::path dataset_path(folder_path);
-	std::filesystem::path parent_path = dataset_path.parent_path();
+	
 
 	// Crea un nuovo percorso per la nuova directory
-	std::filesystem::path new_dir_path = parent_path / directory_name;
+	std::filesystem::path new_dir_path = folder_path / directory_name;
 
 	if (!std::filesystem::exists(new_dir_path))
 		std::filesystem::create_directory(new_dir_path);
