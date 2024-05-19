@@ -1,0 +1,17 @@
+dataset
+extracted_templates
+kmeans
+  ->cluster_size1
+		->cluster_intensity
+		->cluster_intensity
+		->cluster_intensity
+  ->cluster_size2
+		->cluster_intensity
+		->cluster_intensity
+		->cluster_intensity
+  ->cluster_size3
+		->cluster_intensity
+		->cluster_intensity
+		->cluster_intensity
+
+eigenfaces
