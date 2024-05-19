@@ -1,7 +1,5 @@
-
 #include "template_extraction.h"
 #include "utils.h"
-
 
 
 void ExtractTemplates()
@@ -17,9 +15,13 @@ void ExtractTemplates()
 	cv::glob(pattern2, yolo_paths);
 
 
+	// Ottieni il percorso della directory padre
+	std::filesystem::path dataset_path(DATASET_PATH);
+	std::filesystem::path extracted_templates_path = dataset_path.parent_path();
+
+	std::filesystem::path extracted_templates_folder = createDirectory(extracted_templates_path,"extracted_templates");
 
 
-	std::filesystem::path extracted_templates_folder = createDirectoryInParent(DATASET_PATH,"extracted_templates");
 
 	
 
@@ -31,20 +33,19 @@ void ExtractTemplates()
 	{
 		
 
+
+
 		std::cout << "\n---------------------------------------\n";
 		std::cout << "Starting processing image " << i;
 		std::cout << "\n---------------------------------------\n\n";
 
 		cv::Mat img = cv::imread(img_paths[i]);
 
-
-
 		cv::Mat clone = img.clone();
 		cv::Mat img_HSV = img.clone();
 		cv::cvtColor(img_HSV, img_HSV, cv::COLOR_BGR2HSV);
 		std::vector<cv::Mat> channels;
 		cv::split(img_HSV, channels);
-
 
 
 		std::ifstream file(yolo_paths[i]);
@@ -82,7 +83,7 @@ void ExtractTemplates()
 
 			std::string answer;
 			std::cout << "Process this airplane?\n";
-			cv::imshow("Template 12", airplane);
+			cv::imshow("Airplane template", airplane);
 			cv::waitKey(100);
 			do
 			{
@@ -261,5 +262,3 @@ void ExtractTemplates()
 	
 
 }
-
-
