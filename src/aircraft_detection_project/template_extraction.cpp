@@ -6,51 +6,22 @@
 
 void ExtractTemplates()
 {
-	
+
 	// Utilizza glob per ottenere i nomi dei file corrispondenti al pattern
 	std::vector<std::string> img_paths;
 	std::string pattern1 = DATASET_PATH + std::string("/*.jpg");
 	cv::glob(pattern1, img_paths);
-	std::sort(img_paths.begin(), img_paths.end());
 
 	std::vector<std::string> yolo_paths;
 	std::string pattern2 = DATASET_PATH + std::string("/*.txt");
 	cv::glob(pattern2, yolo_paths);
-	std::sort(yolo_paths.begin(), yolo_paths.end());
-
-	/*
-    for (const auto& names : img_paths)
-    {
-	std::cout << names << "\n";
-    }
-  
-    for(const auto& names: yolo_paths)
-    {
-	std::cout << names << "\n";
-     }
-     */
-
-	// Ottieni il percorso della directory padre
-	std::filesystem::path dataset_path(DATASET_PATH);
-	std::filesystem::path parent_path = dataset_path.parent_path();
 
 
 
-	// Crea un nuovo percorso per la nuova directory
-	std::filesystem::path new_dir_path = parent_path / "extracted_templates";
 
-	try 
-	{
-		// Prova a creare la nuova directory solo se non esiste già
-		if (!std::filesystem::exists(new_dir_path)) 
-			std::filesystem::create_directory(new_dir_path);
-	}
-	catch (std::filesystem::filesystem_error& e) 
-	{
-		// Gestisci l'eccezione
-		std::cout << "Errore durante la creazione della directory: " << e.what() << std::endl;
-	}
+	std::filesystem::path extracted_templates_folder = createDirectoryInParent(DATASET_PATH,"extracted_templates");
 
+	
 
 
 	std::vector<cv::Mat> final_templates;
@@ -58,8 +29,7 @@ void ExtractTemplates()
 
 	for (int i = 0; i < img_paths.size(); i++)
 	{
-
-		//Aggiungere qui il proprio dataset
+		
 
 		std::cout << "\n---------------------------------------\n";
 		std::cout << "Starting processing image " << i;
@@ -271,85 +241,25 @@ void ExtractTemplates()
 		}
 
 
-
-		
-
-
 		std::cout << "\n---------------------------------------\n";
 		std::cout << "Image " << i << " has been processed successfully";
 		std::cout << "\n---------------------------------------\n\n";
 
 	}
 
-
-	const std::string name = "giuseppe";
 	
+	const std::string name = "giuseppe"; // !!!!!! adjust name with your name !!!!!!!!!
+
 	for (int k = 0; k < final_templates.size(); k++)
 	{
 		const std::string str = std::to_string(k);
 		const std::string template_name = "template" + str + "_"+ name + ".png";
-		// Crea il percorso del file di output
-		std::filesystem::path output_path = parent_path / template_name;
 		// Salva l'immagine
-		cv::imwrite(output_path.string(), final_templates[k]);
+		cv::imwrite(extracted_templates_folder.string()+ template_name, final_templates[k]);
 	}
 
 	
 
 }
-
-
-
-// 	void KMeansClusteringSizes()
-// 	{
-
-
-// 		std::filesystem::path template_path();
-		
-
-
-// 		std::vector<cv::Mat> images;
-
-
-
-// 		cv::Mat sizes(images.size(), 2, CV_32F);
-	
-// 		for (int i = 0; i < images.size(); i++)
-// 		{
-// 			sizes.at<float>(i, 0) = images[i].cols;
-// 			sizes.at<float>(i, 1) = images[i].rows;
-// 		}
-		
-// 		cv::Mat labels, centers;
-		
-// 		cv::kmeans(
-// 		sizes, 
-// 		k, labels, cv::TermCriteria criteria(cv::TermCriteria::EPS + cv::TermCriteria::COUNT, 10, 1.0), 
-// 		3, 
-// 		cv::KMEANS_RANDOM_CENTERS,
-// 		centers
-// 		);
-		
-// 		for (int i = 0; i < k; i++)
-// 		{
-// 			std::cout << "Cluster " << i << ":\n";
-// 			for (int j = 0; j < labels.rows; j++)
-// 			{
-// 				if (labels.at<int>(j) == i)
-// 				{
-// 					std::cout << "Image " << j << ": " << images[j].cols << "x" << images[j].rows << "\n";
-// 				}
-// 			}
-// 			std::cout << "\n";
-// 		}
-// 	}
-
-
-// void KMeansClusteringIntensities(){
-	
-
-
-
-// }
 
 
