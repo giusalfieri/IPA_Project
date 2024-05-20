@@ -5,4 +5,4 @@
 #include "ucasConfig.h"
 #include <filesystem> 
 
-void ExtractTemplates();
+void extractTemplates();

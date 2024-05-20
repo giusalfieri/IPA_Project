@@ -4,8 +4,11 @@
 #include "ucasConfig.h"
 #include <filesystem>
 
+namespace fs = std::filesystem;
 
 typedef std::vector <cv::Point>  object;
+
+//typedef std::filesystem::path path;
 
 
 bool sortByDescendingArea(object& first, object& second);
@@ -13,10 +16,6 @@ bool sortByDescendingArea(object& first, object& second);
 double degrees2rad(double degrees);
 
 double rad2degrees(double radians);
-
-cv::Rect Yolo2BRect(const cv::Mat& input_img, double x_center, double y_center, double width, double height);
-
-cv::Mat getRotationROI(cv::Mat& img, cv::Rect& roi);
 
 
 

@@ -2,44 +2,44 @@
 #include "utils.h"
 
 
-void ExtractTemplates()
+
+std::string getValidInput(const std::string& prompt, const std::vector<std::string>& valid_inputs);
+
+cv::Mat getRotationROI(cv::Mat& img, cv::Rect& roi);
+
+cv::Rect Yolo2BRect(const cv::Mat& img, double x_center, double y_center, double width, double height);
+
+
+
+void extractTemplates()
 {
+	
+	std::vector<std::string> dataset_img_paths;
+	auto dataset_img_paths_pattern = DATASET_PATH + std::string("/*.jpg");
+	cv::glob(dataset_img_paths_pattern , dataset_img_paths);
 
-	// Utilizza glob per ottenere i nomi dei file corrispondenti al pattern
-	std::vector<std::string> img_paths;
-	std::string pattern1 = DATASET_PATH + std::string("/*.jpg");
-	cv::glob(pattern1, img_paths);
-
-	std::vector<std::string> yolo_paths;
-	std::string pattern2 = DATASET_PATH + std::string("/*.txt");
-	cv::glob(pattern2, yolo_paths);
+	std::vector<std::string> yolo_labels_paths;
+	auto yolo_labels_paths_pattern = DATASET_PATH + std::string("/*.txt");
+	cv::glob(yolo_labels_paths_pattern  , yolo_labels_paths);
 
 
 	// Ottieni il percorso della directory padre
-	std::filesystem::path dataset_path(DATASET_PATH);
-	std::filesystem::path extracted_templates_path = dataset_path.parent_path();
+	auto extracted_templates_path = std::filesystem::path(DATASET_PATH).parent_path();
 
-	std::filesystem::path extracted_templates_folder = createDirectory(extracted_templates_path,"extracted_templates");
-
-
-
+	auto extracted_templates_folder = createDirectory(extracted_templates_path,"extracted_templates");
 	
+	int count = 0;
 
-
-	std::vector<cv::Mat> final_templates;
-
-
-	for (int i = 0; i < img_paths.size(); i++)
+	for (int k = 0; k < dataset_img_paths.size(); k++)
 	{
-		
-
-
 
 		std::cout << "\n---------------------------------------\n";
-		std::cout << "Starting processing image " << i;
+		std::cout << "      Starting processing image " << k;
 		std::cout << "\n---------------------------------------\n\n";
 
-		cv::Mat img = cv::imread(img_paths[i]);
+		cv::Mat img = cv::imread(dataset_img_paths[k]);
+		std::filesystem::path p(dataset_img_paths[k]);
+		auto img_filename = p.stem().string();
 
 		cv::Mat clone = img.clone();
 		cv::Mat img_HSV = img.clone();
@@ -48,110 +48,96 @@ void ExtractTemplates()
 		cv::split(img_HSV, channels);
 
 
-		std::ifstream file(yolo_paths[i]);
+		std::ifstream file(yolo_labels_paths[k]);
 
 
-		std::vector <cv::Rect> airplanes_boxes;
+		std::vector <cv::Rect> yolo_boxes;
 
-
-
-		if (file.is_open()) {
-
+		// Reading lines from a .txt file.
+        // The data on each line is expected to be in the YOLO label format: 
+		// <class_id> <center_x> <center_y> <width> <height> 
+		// 
+		// class_id --> the class label of the object.
+		// center_x --> the normalized x coord of the bounding box center.
+		// center_y --> the normalized y coord of the bounding box center.
+		// width    --> the normalized width   of the bounding box.
+		// height   --> the normalized height  of the bounding box.
+		if (file.is_open()) 
+		{
 			std::string line;
-
-			while (std::getline(file, line))
+			while (std::getline(file, line)) 
 			{
-
-				std::istringstream iss(line);
+				std::istringstream lineStream(line);
 				int class_id;
 				double center_x, center_y, width, height;
-				if (!(iss >> class_id >> center_x >> center_y >> width >> height))
-					break; // error in reading
-
-				airplanes_boxes.push_back(Yolo2BRect(img, center_x, center_y, width, height));
+				if (!(lineStream >> class_id >> center_x >> center_y >> width >> height))
+				{
+					std::cerr << "Error: could not read line '" << line << "'\n";
+					continue; // skip this line and continue with the next line
+				}
+				yolo_boxes.push_back(Yolo2BRect(img, center_x, center_y, width, height));
 			}
-
-			file.close();
 		}
+		else std::cerr << "Error: could not open file\n";
+		
 
-		std::vector<cv::Mat> airplanes_to_be_processed;
-		std::vector<cv::Rect> yolo_boxes_to_be_processed;
-		for (const auto& box : airplanes_boxes)
+
+		std::vector<cv::Rect> selected_airplanes_yolo_boxes;
+		for (const auto& box : yolo_boxes)
 		{
 			cv::Mat airplane = img(box).clone(); // review carefully if clone is needed
 
-
-			std::string answer;
-			std::cout << "Process this airplane?\n";
-			cv::imshow("Airplane template", airplane);
+			cv::imshow("Airplane", airplane);
 			cv::waitKey(100);
-			do
-			{
-				std::cin >> answer;
-				if (answer != "Y" && answer != "y" && answer != "N" && answer != "n")
-					std::cout << "Invalid input! Please enter:  Y/y(yes) N/n(no)\n";
-
-			} while (answer != "Y" && answer != "y" && answer != "N" && answer != "n");
+			std::string answer = getValidInput("Process this airplane? Y/y(yes) N/n(no): ", { "Y", "y", "N", "n" });
 
 			if (answer == "Y" || answer == "y")
-				yolo_boxes_to_be_processed.push_back(box);
+				selected_airplanes_yolo_boxes.push_back(box);
 			else
-				final_templates.push_back(airplane);
+			{
+				const auto template_name = "template_"  + std::to_string(count) + "_" +  img_filename ;
+				cv::imwrite(extracted_templates_folder.string() + "\\" + template_name + ".png", airplane);
+				count++;
+			}
+			
 		}
 
-		std::vector<cv::Mat> binarized_airplanes;
-		for (const auto& box : yolo_boxes_to_be_processed)
+		// Binarization step 
+		std::vector<cv::Mat> bin_airplanes;
+		for (const auto& box : selected_airplanes_yolo_boxes)
 		{
 			cv::Mat airplane = channels[2](box).clone(); // review carefully if clone is needed
-
 
 			cv::Mat img_bin_adaptive;
 			int block_size = airplane.cols;
 			if (block_size % 2 == 0)
-			{
 				block_size += 1;
-			}
 			int C = -20;
 			cv::adaptiveThreshold(airplane, img_bin_adaptive, 255, cv::ADAPTIVE_THRESH_GAUSSIAN_C, cv::THRESH_BINARY, block_size, C);
 			cv::morphologyEx(img_bin_adaptive, img_bin_adaptive, cv::MORPH_DILATE, cv::getStructuringElement(cv::MORPH_ELLIPSE, cv::Size(5, 5)));
 			//ipa::imshow("Adaptive Binarized", img_bin_adaptive, true);
-			binarized_airplanes.push_back(img_bin_adaptive);
-
+			bin_airplanes.push_back(img_bin_adaptive);
 		}
 
 
 		std::vector<std::pair<cv::Point2f, double>> geometric_moments_descriptors;
-
-		for (int i = 0; i < binarized_airplanes.size(); i++)
+		for (int i = 0; i < bin_airplanes.size(); i++)
 		{
-			std::vector< std::vector <cv::Point> > contours;
+			std::vector< std::vector<cv::Point> > contours;
 
-			cv::findContours(binarized_airplanes[i], contours, cv::RETR_LIST, cv::CHAIN_APPROX_NONE);
+			cv::findContours(bin_airplanes[i], contours, cv::RETR_LIST, cv::CHAIN_APPROX_NONE);
 
 			std::sort(contours.begin(), contours.end(), sortByDescendingArea);
 
-
 			cv::Moments moments = cv::moments(contours[0], true);
+
 			cv::Point2f center(moments.m10 / moments.m00, moments.m01 / moments.m00);
-
-			cv::Point2f corrected_center = cv::Point2f(center.x + airplanes_boxes[i].x,
-				center.y + airplanes_boxes[i].y);
-
-
+	
 			double angle = 0.5 * std::atan2(2 * moments.mu11, moments.mu20 - moments.mu02);
 
-			geometric_moments_descriptors.push_back(std::make_pair(corrected_center, rad2degrees(angle)));
-
-		}
-
-
-		std::vector<double> corrected_angle;
-		std::vector<cv::Mat> templates_vector;
-		for (int i = 0; i < binarized_airplanes.size(); i++)
-		{
-
-			cv::Point2f center = geometric_moments_descriptors[i].first;
-			double angle = geometric_moments_descriptors[i].second;
+			// Centroid correction
+			cv::Point2f corrected_center = cv::Point2f(center.x + yolo_boxes[i].x,
+				center.y + yolo_boxes[i].y);
 
 			// Angle correction
 			if (angle >= 0 && angle <= 90)
@@ -159,28 +145,42 @@ void ExtractTemplates()
 			else if (angle < 0 && angle >= -90)
 				angle = 90.0f - (-angle);
 
-			corrected_angle.push_back(angle);
+			geometric_moments_descriptors.push_back(std::make_pair(corrected_center, rad2degrees(angle)));
+		}
 
 
-			int h = 2;
-			cv::Rect roi(center.x - airplanes_boxes[i].width * h / 2, center.y - airplanes_boxes[i].height * h / 2, airplanes_boxes[i].width * h, airplanes_boxes[i].height * h);
-			cv::Mat rotation_roi = getRotationROI(img, roi);;
+		std::vector<cv::Mat> templates_vector;
+		for (int i = 0; i < bin_airplanes.size(); i++)
+		{
+
+			cv::Point2f center = geometric_moments_descriptors[i].first;
+			double angle = geometric_moments_descriptors[i].second;
+
+			float h = 2.0f;
+			cv::Rect roi(ucas::round<float>(center.x - (yolo_boxes[i].width * h)/2.0f),
+			             ucas::round<float>(center.y - (yolo_boxes[i].height * h)/2.0f),
+				         ucas::round<float>(yolo_boxes[i].width * h), ucas::round<float>(yolo_boxes[i].height * h));
+			cv::Mat rotation_roi = getRotationROI(img, roi);
 
 
-			cv::Point roi_center = cv::Point(ucas::round<float>(rotation_roi.cols / 2), ucas::round<float>(rotation_roi.rows / 2));
+			cv::Point roi_center = cv::Point(ucas::round<float>(rotation_roi.cols/2.0f), ucas::round<float>(rotation_roi.rows/2.0f));
 			cv::Mat rotation_mat = cv::getRotationMatrix2D(roi_center, angle, 1);
 
 			cv::Rect2f bbox = cv::RotatedRect(cv::Point2f(), rotation_roi.size(), angle).boundingRect2f();
+
 			// adjust transformation matrix
-			rotation_mat.at<double>(0, 2) += bbox.width / 2.0 - rotation_roi.cols / 2.0;
-			rotation_mat.at<double>(1, 2) += bbox.height / 2.0 - rotation_roi.rows / 2.0;
+			rotation_mat.at<double>(0, 2) += bbox.width/2.0f  - rotation_roi.cols/2.0f;
+			rotation_mat.at<double>(1, 2) += bbox.height/2.0f - rotation_roi.rows/2.0f;
 
 			cv::Mat dst;
 			cv::warpAffine(rotation_roi, dst, rotation_mat, bbox.size());
 
 
 			float scaling_factor = 1.15;
-			cv::Rect final_roi(dst.cols / 2 - airplanes_boxes[i].width * scaling_factor / 2, dst.rows / 2 - airplanes_boxes[i].height * scaling_factor / 2, airplanes_boxes[i].width * scaling_factor, airplanes_boxes[i].height * scaling_factor);
+			cv::Rect final_roi(ucas::round<float>(dst.cols/2.0f - (yolo_boxes[i].width*scaling_factor)/2.0f), 
+				               ucas::round<float>(dst.rows/2.0f - (yolo_boxes[i].height*scaling_factor)/2.0f),
+				               ucas::round<float>(yolo_boxes[i].width*scaling_factor),
+				               ucas::round<float>(yolo_boxes[i].height*scaling_factor));
 
 			cv::Mat final_template = dst(final_roi);
 
@@ -188,77 +188,97 @@ void ExtractTemplates()
 		}
 
 
-		std::string answer;
+	
 		for (auto& airplane_template : templates_vector)
 		{
-
-			std::cout << "Do you wish to keep this template? Y/y(yes) N/n(no): ";
 			cv::imshow("Template", airplane_template);
 			cv::waitKey(100);
-			//cv::destroyWindow("Template");
 			cv::Mat airplane = airplane_template.clone();
 
-			do
-			{
-				std::cin >> answer;
-				if (answer != "Y" && answer != "y" && answer != "N" && answer != "n")
-					std::cout << "Invalid input! Please enter:  Y/y(yes) N/n(no)\n";
-
-			} while (answer != "Y" && answer != "y" && answer != "N" && answer != "n");
-
-
+			auto answer = getValidInput("Do you wish to keep this template? Y/y(yes) N/n(no): ", { "Y", "y", "N", "n" });
 			if (answer == "Y" || answer == "y")
 			{
-				std::cout << "Perform rotation?  Y/y(yes) N/n(no)\n";
-				do
+				answer = getValidInput("Perform rotation?  Y/y(yes) N/n(no)\n", { "Y", "y", "N", "n" });
+				if (answer == "Y" || answer == "y")
 				{
-					std::cin >> answer;
-					if (answer != "Y" && answer != "y" && answer != "N" && answer != "n")
-						std::cout << "Invalid input! Please enter:  Y/y(yes) N/n(no)\n";
-
-				} while (answer != "Y" && answer != "y" && answer != "N" && answer != "n");
-
+					answer = getValidInput("Please provide a rotation type (0-->no rotation, 1-->CW rotation 90, 2-->CW rotation 180, 3-->CW rotation 270): ", { "0", "1", "2", "3" });
+					airplane = rotate90(airplane_template, std::stoi(answer));
+				}
 			}
 			else continue;
 
-			if (answer == "Y" || answer == "y")
-			{
-				std::cout << "Please provide a rotation type (0-->no rotation, 1-->CW rotation 90, 2-->CW rotation 180, 3-->CW rotation 270): ";
-				do
-				{
-					std::cin >> answer;
-					if (answer != "0" && answer != "1" && answer != "2" && answer != "3")
-						std::cout << "Invalid input! Please enter a type (0-->no rotation, 1-->CW rotation 90, 2-->CW rotation 180, 3-->CW rotation 270): \n";
-
-				} while (answer != "0" && answer != "1" && answer != "2" && answer != "3");
-
-				airplane = rotate90(airplane_template, std::stoi(answer));
-
-			}
-
-
-
-			final_templates.push_back(airplane);
+			const auto template_name = "template" + std::to_string(count) + "_" + img_filename;
+		    cv::imwrite(extracted_templates_folder.string() + "\\" + template_name + ".png", airplane);
+			count++;
+		
 		}
-
-
 		std::cout << "\n---------------------------------------\n";
-		std::cout << "Image " << i << " has been processed successfully";
+		std::cout << "Image " << k << " has been processed successfully";
 		std::cout << "\n---------------------------------------\n\n";
-
 	}
 
-	
-	const std::string name = "giuseppe"; // !!!!!! adjust name with your name !!!!!!!!!
 
-	for (int k = 0; k < final_templates.size(); k++)
+}
+
+std::string getValidInput(const std::string& prompt, const std::vector<std::string>& valid_inputs)
+{
+	std::string answer;
+	do
 	{
-		const std::string str = std::to_string(k);
-		const std::string template_name = "template" + str + "_"+ name + ".png";
-		// Salva l'immagine
-		cv::imwrite(extracted_templates_folder.string()+ template_name, final_templates[k]);
+		std::cout << prompt;
+		std::cin >> answer;
+		if (std::find(valid_inputs.begin(), valid_inputs.end(), answer) == valid_inputs.end())
+		{
+			std::cout << "Invalid input! Please enter one of the following: ";
+			for (const auto& input : valid_inputs)
+				std::cout << input << " ";
+			std::cout << "\n";
+		}
+	} while (std::find(valid_inputs.begin(), valid_inputs.end(), answer) == valid_inputs.end());
+	return answer;
+}
+
+
+cv::Mat getRotationROI(cv::Mat& img, cv::Rect& roi) 
+{
+
+	cv::Mat rotation_roi;
+
+	// Check if the ROI is within the image boundaries
+	if (roi.x >= 0 && roi.y >= 0 && roi.x + roi.width <= img.cols && roi.y + roi.height <= img.rows)
+		rotation_roi = img(roi);
+	else
+	{
+		// If the ROI is out of the image boundaries, pad the image
+		cv::Mat padding_clone;
+		int top = std::max(-roi.y, 0);
+		int bottom = std::max(roi.y + roi.height - img.rows, 0);
+		int left = std::max(-roi.x, 0);
+		int right = std::max(roi.x + roi.width - img.cols, 0);
+
+		cv::copyMakeBorder(img, padding_clone, top, bottom, left, right, cv::BORDER_REFLECT, 0);
+
+		roi.x += left;
+		roi.y += top;
+
+		// Apply the ROI to the padded image
+		rotation_roi = padding_clone(roi);
 	}
 
-	
+	return rotation_roi;
+}
 
+cv::Rect Yolo2BRect(const cv::Mat& img, double x_center, double y_center, double width, double height)
+{
+	// Convert normalized coordinates to pixel values
+	int x_center_px = ucas::round<float>(x_center * img.cols);
+	int y_center_px = ucas::round<float>(y_center * img.rows);
+	int width_px = ucas::round<float>(width * img.cols);
+	int height_px = ucas::round<float>(height * img.rows);
+
+	// Calculate top left corner of bounding box
+	int x = x_center_px - ucas::round<float>(width_px / 2.0f);
+	int y = y_center_px - ucas::round<float>(height_px / 2.0f);
+
+	return cv::Rect(x, y, width_px, height_px);
 }
