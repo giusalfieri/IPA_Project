@@ -166,8 +166,8 @@ void extractTemplates()
 
 			float h = 2.0f;
 			cv::Rect roi(ucas::round<float>(center.x - (yolo_boxes[i].width * h) / 2.0f),
-						 ucas::round<float>(center.y - (yolo_boxes[i].height * h) / 2.0f),
-				         ucas::round<float>(yolo_boxes[i].width * h), ucas::round<float>(yolo_boxes[i].height * h));
+				     ucas::round<float>(center.y - (yolo_boxes[i].height * h) / 2.0f),
+				     ucas::round<float>(yolo_boxes[i].width * h), ucas::round<float>(yolo_boxes[i].height * h));
 			cv::Mat rotation_roi = getRotationROI(img, roi);
 
 
@@ -187,9 +187,9 @@ void extractTemplates()
 			float scaling_factor = 1.15;
 
 			cv::Rect final_roi(ucas::round<float>(dst.cols / 2.0f - (yolo_boxes[i].width * scaling_factor) / 2.0f),
-				ucas::round<float>(dst.rows / 2.0f - (yolo_boxes[i].height * scaling_factor) / 2.0f),
-				ucas::round<float>(yolo_boxes[i].width * scaling_factor),
-				ucas::round<float>(yolo_boxes[i].height * scaling_factor));
+				           ucas::round<float>(dst.rows / 2.0f - (yolo_boxes[i].height * scaling_factor) / 2.0f),
+				           ucas::round<float>(yolo_boxes[i].width * scaling_factor),
+				           ucas::round<float>(yolo_boxes[i].height * scaling_factor));
 
 			
 			cv::Mat final_template = dst(final_roi);
@@ -268,10 +268,10 @@ cv::Mat getRotationROI(cv::Mat& img, cv::Rect& roi)
 	{
 		// If the ROI is out of the image boundaries, pad the image
 		cv::Mat padding_clone;
-		int top = std::max(-roi.y, 0);
+		int top    = std::max(-roi.y, 0);
 		int bottom = std::max(roi.y + roi.height - img.rows, 0);
-		int left = std::max(-roi.x, 0);
-		int right = std::max(roi.x + roi.width - img.cols, 0);
+		int left   = std::max(-roi.x, 0);
+		int right  = std::max(roi.x + roi.width - img.cols, 0);
 
 		cv::copyMakeBorder(img, padding_clone, top, bottom, left, right, cv::BORDER_REFLECT, 0);
 
@@ -299,7 +299,8 @@ cv::Rect Yolo2BRect(const cv::Mat& img, double x_center, double y_center, double
 
 
 	// Check if the bounding box falls beyond the image boundaries: if so an empty cv::Rect is returned
-	if (x < 0 || y < 0 || x + width_px > img.cols || y + height_px > img.rows) {
+	if (x < 0 || y < 0 || x + width_px > img.cols || y + height_px > img.rows) 
+	{
 		std::cerr << "Error: Bounding box falls beyond the image boundaries.\n";
 		return cv::Rect();
 	}
