@@ -19,6 +19,9 @@ bool sortByDescendingArea(object& first, object& second)
 }
 
 
+
+
+
 // utility function that rotates 'img' by step*90°
 // step = 0 --> no rotation
 // step = 1 --> 90° CW rotation
