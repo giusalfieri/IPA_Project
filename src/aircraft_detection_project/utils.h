@@ -4,7 +4,6 @@
 #include "ucasConfig.h"
 #include <filesystem>
 
-namespace fs = std::filesystem;
 
 typedef std::vector <cv::Point>  object;
 
