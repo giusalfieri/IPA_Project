@@ -13,21 +13,21 @@ cv::Rect Yolo2BRect(const cv::Mat& img, double x_center, double y_center, double
 
 void extractTemplates()
 {
-	
+
 	std::vector<std::string> dataset_img_paths;
 	auto dataset_img_paths_pattern = DATASET_PATH + std::string("/*.jpg");
-	cv::glob(dataset_img_paths_pattern , dataset_img_paths);
+	cv::glob(dataset_img_paths_pattern, dataset_img_paths);
 
 	std::vector<std::string> yolo_labels_paths;
 	auto yolo_labels_paths_pattern = DATASET_PATH + std::string("/*.txt");
-	cv::glob(yolo_labels_paths_pattern  , yolo_labels_paths);
+	cv::glob(yolo_labels_paths_pattern, yolo_labels_paths);
 
 
 	// Ottieni il percorso della directory padre
 	auto extracted_templates_path = std::filesystem::path(DATASET_PATH).parent_path();
 
-	auto extracted_templates_folder = createDirectory(extracted_templates_path,"extracted_templates");
-	
+	auto extracted_templates_folder = createDirectory(extracted_templates_path, "extracted_templates");
+
 	int count = 0;
 
 	for (int k = 0; k < dataset_img_paths.size(); k++)
@@ -54,7 +54,7 @@ void extractTemplates()
 		std::vector <cv::Rect> yolo_boxes;
 
 		// Reading lines from a .txt file.
-        // The data on each line is expected to be in the YOLO label format: 
+		// The data on each line is expected to be in the YOLO label format: 
 		// <class_id> <center_x> <center_y> <width> <height> 
 		// 
 		// class_id --> the class label of the object.
@@ -62,10 +62,10 @@ void extractTemplates()
 		// center_y --> the normalized y coord of the bounding box center.
 		// width    --> the normalized width   of the bounding box.
 		// height   --> the normalized height  of the bounding box.
-		if (file.is_open()) 
+		if (file.is_open())
 		{
 			std::string line;
-			while (std::getline(file, line)) 
+			while (std::getline(file, line))
 			{
 				std::istringstream lineStream(line);
 				int class_id;
@@ -75,18 +75,24 @@ void extractTemplates()
 					std::cerr << "Error: could not read line '" << line << "'\n";
 					continue; // skip this line and continue with the next line
 				}
-				yolo_boxes.push_back(Yolo2BRect(img, center_x, center_y, width, height));
+				cv::Rect rect = Yolo2BRect(img, center_x, center_y, width, height);
+				if (rect.empty())
+				{
+					std::cerr << "Error: Bounding box falls beyond the image boundaries.\n";
+					continue; // skip this line and continue with the next line
+				}
+				yolo_boxes.push_back(rect);
 			}
 		}
 		else std::cerr << "Error: could not open file\n";
-		
+
 
 
 		std::vector<cv::Rect> selected_airplanes_yolo_boxes;
 		for (const auto& box : yolo_boxes)
 		{
 			cv::Mat airplane = img(box).clone(); // review carefully if clone is needed
-
+			std::cout << "ciao" << "\n";
 			cv::imshow("Airplane", airplane);
 			cv::waitKey(100);
 			std::string answer = getValidInput("Process this airplane? Y/y(yes) N/n(no): ", { "Y", "y", "N", "n" });
@@ -95,17 +101,20 @@ void extractTemplates()
 				selected_airplanes_yolo_boxes.push_back(box);
 			else
 			{
-				const auto template_name = "template_"  + std::to_string(count) + "_" +  img_filename ;
-				cv::imwrite(extracted_templates_folder.string() + "\\" + template_name + ".png", airplane);
+				const auto template_name = "template_" + std::to_string(count) + "_" + img_filename;
+				std::filesystem::path output_path = extracted_templates_folder / (template_name + ".png");
+				cv::imwrite(output_path.string(), airplane);
 				count++;
+				
 			}
-			
+
 		}
 
 		// Binarization step 
 		std::vector<cv::Mat> bin_airplanes;
 		for (const auto& box : selected_airplanes_yolo_boxes)
 		{
+			
 			cv::Mat airplane = channels[2](box).clone(); // review carefully if clone is needed
 
 			cv::Mat img_bin_adaptive;
@@ -132,7 +141,7 @@ void extractTemplates()
 			cv::Moments moments = cv::moments(contours[0], true);
 
 			cv::Point2f center(moments.m10 / moments.m00, moments.m01 / moments.m00);
-	
+
 			double angle = 0.5 * std::atan2(2 * moments.mu11, moments.mu20 - moments.mu02);
 
 			// Centroid correction
@@ -152,43 +161,45 @@ void extractTemplates()
 		std::vector<cv::Mat> templates_vector;
 		for (int i = 0; i < bin_airplanes.size(); i++)
 		{
-
 			cv::Point2f center = geometric_moments_descriptors[i].first;
 			double angle = geometric_moments_descriptors[i].second;
 
 			float h = 2.0f;
-			cv::Rect roi(ucas::round<float>(center.x - (yolo_boxes[i].width * h)/2.0f),
-			             ucas::round<float>(center.y - (yolo_boxes[i].height * h)/2.0f),
+			cv::Rect roi(ucas::round<float>(center.x - (yolo_boxes[i].width * h) / 2.0f),
+						 ucas::round<float>(center.y - (yolo_boxes[i].height * h) / 2.0f),
 				         ucas::round<float>(yolo_boxes[i].width * h), ucas::round<float>(yolo_boxes[i].height * h));
 			cv::Mat rotation_roi = getRotationROI(img, roi);
 
 
-			cv::Point roi_center = cv::Point(ucas::round<float>(rotation_roi.cols/2.0f), ucas::round<float>(rotation_roi.rows/2.0f));
+			cv::Point roi_center = cv::Point(ucas::round<float>(rotation_roi.cols / 2.0f), ucas::round<float>(rotation_roi.rows / 2.0f));
 			cv::Mat rotation_mat = cv::getRotationMatrix2D(roi_center, angle, 1);
 
 			cv::Rect2f bbox = cv::RotatedRect(cv::Point2f(), rotation_roi.size(), angle).boundingRect2f();
 
 			// adjust transformation matrix
-			rotation_mat.at<double>(0, 2) += bbox.width/2.0f  - rotation_roi.cols/2.0f;
-			rotation_mat.at<double>(1, 2) += bbox.height/2.0f - rotation_roi.rows/2.0f;
+			rotation_mat.at<double>(0, 2) += bbox.width / 2.0f - rotation_roi.cols / 2.0f;
+			rotation_mat.at<double>(1, 2) += bbox.height / 2.0f - rotation_roi.rows / 2.0f;
 
 			cv::Mat dst;
 			cv::warpAffine(rotation_roi, dst, rotation_mat, bbox.size());
 
 
 			float scaling_factor = 1.15;
-			cv::Rect final_roi(ucas::round<float>(dst.cols/2.0f - (yolo_boxes[i].width*scaling_factor)/2.0f), 
-				               ucas::round<float>(dst.rows/2.0f - (yolo_boxes[i].height*scaling_factor)/2.0f),
-				               ucas::round<float>(yolo_boxes[i].width*scaling_factor),
-				               ucas::round<float>(yolo_boxes[i].height*scaling_factor));
 
+			cv::Rect final_roi(ucas::round<float>(dst.cols / 2.0f - (yolo_boxes[i].width * scaling_factor) / 2.0f),
+				ucas::round<float>(dst.rows / 2.0f - (yolo_boxes[i].height * scaling_factor) / 2.0f),
+				ucas::round<float>(yolo_boxes[i].width * scaling_factor),
+				ucas::round<float>(yolo_boxes[i].height * scaling_factor));
+
+			
 			cv::Mat final_template = dst(final_roi);
+		
 
 			templates_vector.push_back(final_template);
 		}
 
 
-	
+
 		for (auto& airplane_template : templates_vector)
 		{
 			cv::imshow("Template", airplane_template);
@@ -207,11 +218,16 @@ void extractTemplates()
 			}
 			else continue;
 
+
+
 			const auto template_name = "template" + std::to_string(count) + "_" + img_filename;
-		    cv::imwrite(extracted_templates_folder.string() + "\\" + template_name + ".png", airplane);
+			std::filesystem::path output_path = extracted_templates_folder / (template_name + ".png");
+			cv::imwrite(output_path.string(), airplane);
 			count++;
-		
+
 		}
+
+
 		std::cout << "\n---------------------------------------\n";
 		std::cout << "Image " << k << " has been processed successfully";
 		std::cout << "\n---------------------------------------\n\n";
@@ -239,8 +255,9 @@ std::string getValidInput(const std::string& prompt, const std::vector<std::stri
 }
 
 
-cv::Mat getRotationROI(cv::Mat& img, cv::Rect& roi) 
+cv::Mat getRotationROI(cv::Mat& img, cv::Rect& roi)
 {
+
 
 	cv::Mat rotation_roi;
 
@@ -273,12 +290,19 @@ cv::Rect Yolo2BRect(const cv::Mat& img, double x_center, double y_center, double
 	// Convert normalized coordinates to pixel values
 	int x_center_px = ucas::round<float>(x_center * img.cols);
 	int y_center_px = ucas::round<float>(y_center * img.rows);
-	int width_px = ucas::round<float>(width * img.cols);
-	int height_px = ucas::round<float>(height * img.rows);
+	int width_px    = ucas::round<float>(width * img.cols);
+	int height_px   = ucas::round<float>(height * img.rows);
 
 	// Calculate top left corner of bounding box
-	int x = x_center_px - ucas::round<float>(width_px / 2.0f);
-	int y = y_center_px - ucas::round<float>(height_px / 2.0f);
+	int x = x_center_px - width_px / 2;
+	int y = y_center_px - height_px / 2;
+
+
+	// Check if the bounding box falls beyond the image boundaries: if so an empty cv::Rect is returned
+	if (x < 0 || y < 0 || x + width_px > img.cols || y + height_px > img.rows) {
+		std::cerr << "Error: Bounding box falls beyond the image boundaries.\n";
+		return cv::Rect();
+	}
 
 	return cv::Rect(x, y, width_px, height_px);
 }
