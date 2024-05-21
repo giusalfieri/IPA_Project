@@ -7,7 +7,7 @@
 
 typedef std::vector <cv::Point>  object;
 
-//typedef std::filesystem::path path;
+namespace fs = std::filesystem;
 
 
 bool sortByDescendingArea(object& first, object& second);
