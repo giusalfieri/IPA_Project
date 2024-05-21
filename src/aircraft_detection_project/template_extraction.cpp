@@ -102,17 +102,16 @@ void extractTemplates()
 				selected_airplanes_yolo_boxes.push_back(box);
 			else
 			{
-				std::string newanswer = getValidInput("Rotate by 90°?", { "Y", "y", "N", "n" });
+				std::string newanswer = getValidInput("Perform rotation by a multiple of 90° (CW)?", { "Y", "y", "N", "n" });
 
 				if (newanswer == "Y" || newanswer == "y")
 				{
 					newanswer = getValidInput("Please provide a rotation type (0-->no rotation, 1-->CW rotation 90, 2-->CW rotation 180, 3-->CW rotation 270): ", { "0", "1", "2", "3" });
 					airplane = rotate90(airplane, std::stoi(newanswer));
 				}
-				const auto template_name = "template_" + std::to_string(count) + "_" + img_filename;
+				const auto template_name = "template_" + std::to_string(count++) + "_" + img_filename;
 				std::filesystem::path output_path = extracted_templates_folder / (template_name + ".png");
 				cv::imwrite(output_path.string(), airplane);
-				count++;
 				
 			}
 
@@ -238,10 +237,10 @@ void extractTemplates()
 
 
 
-			const auto template_name = "template" + std::to_string(count) + "_" + img_filename;
+			const auto template_name = "template_" + std::to_string(count++) + "_" + img_filename;
 			std::filesystem::path output_path = extracted_templates_folder / (template_name + ".png");
 			cv::imwrite(output_path.string(), airplane);
-			count++;
+			
 
 		}
 
