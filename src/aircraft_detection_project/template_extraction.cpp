@@ -23,6 +23,7 @@ void extractTemplates()
 	cv::glob(yolo_labels_paths_pattern, yolo_labels_paths);
 
 
+
 	// Ottieni il percorso della directory padre
 	auto extracted_templates_path = std::filesystem::path(DATASET_PATH).parent_path();
 
@@ -92,7 +93,7 @@ void extractTemplates()
 		for (const auto& box : yolo_boxes)
 		{
 			cv::Mat airplane = img(box).clone(); // review carefully if clone is needed
-			std::cout << "ciao" << "\n";
+		
 			cv::imshow("Airplane", airplane);
 			cv::waitKey(100);
 			std::string answer = getValidInput("Process this airplane? Y/y(yes) N/n(no): ", { "Y", "y", "N", "n" });
@@ -155,12 +156,8 @@ void extractTemplates()
 			cv::Point2f corrected_center = cv::Point2f(center.x + yolo_boxes[i].x,
 				center.y + yolo_boxes[i].y);
 
-			// Angle correction
-			if (angle >= 0 && angle <= 90)
-				angle += 90.0f;
-			else if (angle < 0 && angle >= -90)
-				angle = 90.0f - (-angle);
-
+	
+		
 			geometric_moments_descriptors.push_back(std::make_pair(corrected_center, rad2degrees(angle)));
 		}
 
@@ -171,15 +168,26 @@ void extractTemplates()
 			cv::Point2f center = geometric_moments_descriptors[i].first;
 			double angle = geometric_moments_descriptors[i].second;
 
+			// Angle correction
+			if (angle >= 0 && angle <= 90)
+				angle += 90.0f;
+			else if (angle < 0 && angle >= -90)
+				angle = 90.0f - (-angle);
+
+
 			float h = 2.0f;
 			cv::Rect roi(ucas::round<float>(center.x - (yolo_boxes[i].width * h) / 2.0f),
-						 ucas::round<float>(center.y - (yolo_boxes[i].height * h) / 2.0f),
-				         ucas::round<float>(yolo_boxes[i].width * h), ucas::round<float>(yolo_boxes[i].height * h));
+				ucas::round<float>(center.y - (yolo_boxes[i].height * h) / 2.0f),
+				ucas::round<float>(yolo_boxes[i].width* h), ucas::round<float>(yolo_boxes[i].height* h));
 			cv::Mat rotation_roi = getRotationROI(img, roi);
 
+			
 
 			cv::Point roi_center = cv::Point(ucas::round<float>(rotation_roi.cols / 2.0f), ucas::round<float>(rotation_roi.rows / 2.0f));
+			std::cout << "ANGLE : " << angle << " roi_cengter.x : " << roi_center.x << " roi_cengter.y : " << roi_center.y << "\n";
 			cv::Mat rotation_mat = cv::getRotationMatrix2D(roi_center, angle, 1);
+
+		//	std::cout << "rotation mat 0,2:  " << rotation_mat.at<double>(0, 2) << " rotation mat 1, 2:  " << rotation_mat.at<double>(1, 2) << "\n";
 
 			cv::Rect2f bbox = cv::RotatedRect(cv::Point2f(), rotation_roi.size(), angle).boundingRect2f();
 
@@ -187,6 +195,9 @@ void extractTemplates()
 			rotation_mat.at<double>(0, 2) += bbox.width / 2.0f - rotation_roi.cols / 2.0f;
 			rotation_mat.at<double>(1, 2) += bbox.height / 2.0f - rotation_roi.rows / 2.0f;
 
+			//std::cout << "rotation mat 0,2:  " << rotation_mat.at<double>(0, 2) << "rotation mat 1, 2:  " << rotation_mat.at<double>(1, 2) << "\n";
+
+			
 			cv::Mat dst;
 			cv::warpAffine(rotation_roi, dst, rotation_mat, bbox.size());
 
