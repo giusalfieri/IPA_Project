@@ -61,7 +61,7 @@ void kMeansClustering_BySize()
 		labels,
 		cv::TermCriteria (cv::TermCriteria::EPS + cv::TermCriteria::COUNT, 10, 1.0), 
 		3, 
-		cv::KMEANS_RANDOM_CENTERS,
+		cv::KMEANS_PP_CENTERS,
 		centers
 		);
     
@@ -92,92 +92,100 @@ void kMeansClustering_BySize()
 
     }
 
-
 }
 
 
 
 
-// void kMeansClustering_ByIntensity()
-// {
-// 	//Kmean andrà effettuato poi sulla cartella ricomposta
-// 	//Vado a richiamare il percorso della cartella contenente i templates dopo aver effettuato il kmean sulle dimensioni
-// 	fs::path dataset_path(DATASET_PATH);
-// 	fs::path kmeans_intesity = dataset_path.parent_path();
-// 	fs::path kmeans_folder_path = createDirectory(kmeans_intesity, "kmeans_intensity");
-
-// 	std::vector<std::string> image_files;
-
-// 	std::vector<cv::Mat> images;
-
-// 	//Definisco la cartella dalla quale si vanno a prendere i templates
-// 	fs::path kmean_size_path = dataset_path /"kmeans_by_size";
-	
-// 	for (const auto &k_mean_size_file : fs::directory_iterator(kmean_size_path))
-// 	{
-// 		if (k_mean_size_file.is_regular_file())
-// 		{
-// 			//Andiamo a riempire il vettore con i percorsi di ciascuna immagine
-// 			image_files.push_back(k_mean_size_file.path().string());
-// 		}
-// 	}
-
-// 	    for (const auto &file : image_files)
-//     {
-// 		//Andiamo a caricare tutte le immagini presenti nella cartella "extracted_templates" leggendole dal vettore image_files
-//         cv::Mat image = cv::imread(file);
-//         if (!image.empty())
-//         {
-//             images.push_back(image);
-//         }
-
-//     }
-
-// 	cv::Mat intensities(images.size(), 1, CV_32F);
-// 	for (int i = 0; i < images.size(); i++) 
-// 	{
-// 		cv::Scalar mean_intensity = cv::mean(images[i]);
-// 		float intensity = (mean_intensity[0] + mean_intensity[1] + mean_intensity[2]) / 3.0f;
-// 		intensities.at<float>(i, 0) = intensity;
-// 	}
-	
-// 	cv::Mat labels, centers;	
-// 	int k = 3;
-	
-// 	cv::kmeans(
-//         intensities, 
-//         k, 
-//         labels,
-//         cv::TermCriteria (cv::TermCriteria::EPS + cv::TermCriteria::COUNT, 10, 1.0),
-// 		cv::KMEANS_RANDOM_CENTERS,
-//         centers
-// 			);
 
 
 
-// 	fs::path kmeans_folder_path = fs::path(dataset_path).parent_path() / "kmeans_by_intensity";
-//     fs::create_directory(kmeans_folder_path);
+void kMeansClustering_ByIntensity()
+{
+ // Kmean andrà effettuato poi sulla cartella ricomposta
+    // Vado a richiamare il percorso della cartella contenente i templates dopo aver effettuato il kmean sulle dimensioni
+    fs::path dataset_path(DATASET_PATH);
+    fs::path kmeans_intensity = dataset_path.parent_path();
+    
+    fs::path kmeans_folder_path = fs::path(dataset_path).parent_path() / "kmeans_by_intensity";
+    fs::create_directory(kmeans_folder_path);
 
-//     for (int i = 0; i < k; i++) 
-// 	{
-//         std::string directory_name = "Cluster_" + std::to_string(i);
-//         fs::path new_cluster_path = kmeans_folder_path / directory_name;
-//         fs::create_directory(new_cluster_path);
+    for (int k = 0; k < 4; k++)
+    {
+        std::vector<std::string> image_files;
+        std::vector<cv::Mat> images;
 
-//         for (int j = 0; j < labels.rows; j++) 
-// 		{
-//             if (labels.at<int>(j) == i) {
-//                 std::string file_name = "image_" + std::to_string(j) + ".png";
-//                 fs::path save_path = new_cluster_path / file_name;
-//                 cv::imwrite(save_path.string(), images[j]);
-//             }
-//         }
+        // Definisco la cartella dalla quale si vanno a prendere i templates
+        fs::path kmean_size_path = dataset_path.parent_path() / fs::path("kmeans_by_size") / fs::path("Cluster_" + std::to_string(k));
+        
+        // For debug purposes
+        // std::cout << kmean_size_path.string() << std::endl;
+
+        for (const auto &k_mean_size_file : fs::directory_iterator(kmean_size_path))
+        {
+            if (k_mean_size_file.is_regular_file())
+            {
+                // Andiamo a riempire il vettore con i percorsi di ciascuna immagine
+                image_files.push_back(k_mean_size_file.path().string());
+            }
+        }
+
+        for (const auto &file : image_files)
+        {
+            // Andiamo a caricare tutte le immagini presenti nella cartella "extracted_templates" leggendole dal vettore image_files
+            cv::Mat image = cv::imread(file);
+            if (!image.empty())
+            {
+                images.push_back(image);
+            }
+            else
+            {
+                std::cerr << "Warning: Image " << file << " could not be read." << std::endl;
+            }
+        }
+
+        std::cout << "Number of images loaded: " << images.size() << std::endl;
+
+        cv::Mat intensities(images.size(), 1, CV_32F);
+        for (int i = 0; i < images.size(); i++) 
+        {
+            cv::Scalar mean_intensity = cv::mean(images[i]);
+            float intensity = (mean_intensity[0] + mean_intensity[1] + mean_intensity[2]) / 3.0f;
+            intensities.at<float>(i, 0) = intensity;
+        }
+        
+        cv::Mat labels, centers;    
+        int num_clusters = 4; // Modifica questo valore in base al numero di immagini
+        
+        cv::kmeans(
+            intensities, 
+            num_clusters, 
+            labels,
+            cv::TermCriteria(cv::TermCriteria::EPS + cv::TermCriteria::COUNT, 10, 1.0), 
+            3, 
+            cv::KMEANS_PP_CENTERS,
+            centers
+        );
+
+        for (int i = 0; i < num_clusters; i++) 
+        {
+            std::string directory_name = "Cluster_" + std::to_string(i);
+            fs::path new_cluster_path = kmeans_folder_path / directory_name;
+            fs::create_directory(new_cluster_path);
+        }
+
+        for (int i = 0; i < labels.rows; i++) 
+        {
+            int cluster_idx = labels.at<int>(i);
+            std::string file_name = "image_" + std::to_string(i) + ".png";
+            fs::path save_path = kmeans_folder_path / ("Cluster_" + std::to_string(cluster_idx)) / file_name;
+            cv::imwrite(save_path.string(), images[i]);
+        }
+    }
 
 
-// 	}
 
-
-// }
+}
 
 
 
@@ -211,6 +219,6 @@ void kMeansClustering_BySize()
 
 // }
 
-
+// }
 
 
