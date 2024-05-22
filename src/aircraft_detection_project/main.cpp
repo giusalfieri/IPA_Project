@@ -8,10 +8,13 @@ int main()
 {
 	
 	//#ifdef USE_EXTRACT_TEMPLATES
-		extractTemplates();
-	//#endif
-		
+	extractTemplates();
 	
+	//#endif
+
+	kMeansClustering_BySize();
+	
+	kMeansClustering_ByIntensity();
 
 	return EXIT_SUCCESS;
 }
