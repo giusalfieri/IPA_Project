@@ -37,7 +37,7 @@ void kMeansClustering_BySize()
 
 	// K-Means Clustering 
 	cv::Mat labels, centers;
-	int K = 6;
+	int K = 3;
 	cv::kmeans(
 		templates_dims,
 		K,
@@ -76,39 +76,38 @@ void kMeansClustering_BySize()
 
 }
 
+
+
 void kMeansClustering_ByIntensity()
 {
-  
-    fs::path dataset_path(DATASET_PATH);
+    std::filesystem::path dataset_path(DATASET_PATH);
     
     // Percorso dove verranno salvati i nuovi cluster basati sull'intensità
-    fs::path kmeans_folder_path = fs::path(dataset_path).parent_path() / "kmeans_by_intensity";
-    fs::create_directory(kmeans_folder_path);
+    std::filesystem::path kmeans_intensity_folder_path = dataset_path.parent_path() / "kmeans_by_intensity";
+    std::filesystem::create_directory(kmeans_intensity_folder_path);
 
-    std::vector<std::string> image_files;
-    std::vector<cv::Mat> images;
-
-	int num_clusters = 15;
-    int attempts = 200; // Numero di tentativi per il clustering
-
-
-
-  // Creo le cartelle per salvare i cluster successivamente
-    for (int i = 0; i < num_clusters; i++) 
-    {
-        std::string directory_name = "Cluster_" + std::to_string(i);
-        fs::path new_cluster_path = kmeans_folder_path / directory_name;
-        fs::create_directory(new_cluster_path);
-    }
+    int NUM_CLUSTERS_KMEANS_SIZE = 3;
+    int NUM_CLUSTERS_KMEANS_INTENSITY = 5;
+    int attempts = 100; // Numero di tentativi per il clustering
 
     // Itera su ciascuna delle k cartelle di cluster basate sulle dimensioni
-	//Da migliorare in modo tale da renderlo uguale alle dimensioni del clustering by size
-    for (int k = 0; k < 6; k++)
+    //Da migliorare in modo tale da renderlo uguale alle dimensioni del clustering by size
+    for (int k = 0; k < NUM_CLUSTERS_KMEANS_SIZE; k++)
     {
+        std::vector<std::string> image_files;
+        std::vector<cv::Mat> images;
+
         // Definisco la cartella dalla quale si vanno a prendere i templates
-        fs::path kmean_size_path = dataset_path.parent_path() / fs::path("kmeans_by_size") / fs::path("Cluster_" + std::to_string(k));
-        
-        // Carica i percorsi delle immagini dalla cartella del cluster corrente
+        std::filesystem::path kmean_size_path(dataset_path.parent_path() / fs::path("kmeans_by_size") / fs::path("Cluster_" + std::to_string(k)));
+
+        // Vado a creare le cartelle in cui verranno salvati i risultati del kmeans per le intensità
+        std::filesystem::path new_intensity_cluster_directory(kmeans_intensity_folder_path / fs::path("Intensity_cluster_" + std::to_string(k + 1)));
+        std::filesystem::create_directory(new_intensity_cluster_directory);
+
+        // For debug purposes
+        std::cout << new_intensity_cluster_directory.string() << std::endl;
+
+        // Carica i percorsi delle immagini dalla cartella del cluster per dimensione corrente
         for (const auto &k_mean_size_file : fs::directory_iterator(kmean_size_path))
         {
             if (k_mean_size_file.is_regular_file())
@@ -116,66 +115,90 @@ void kMeansClustering_ByIntensity()
                 image_files.push_back(k_mean_size_file.path().string());
             }
         }
-    }
 
-    // Andiamo a caricare tutte le immagini presenti nella cartella corrente del k_means size leggendole dal vettore image_files
-    for (const auto &file : image_files)
-    {
-        cv::Mat image = cv::imread(file);
-        if (!image.empty())
+        // For debug purposes
+        std::cout << image_files.size() << std::endl;
+
+        // Andiamo a caricare tutte le immagini presenti nella cartella corrente del k_means size leggendole dal vettore image_files
+        for (const auto &file : image_files)
         {
-            images.push_back(image);
+            // Vado a prendere il percorso salvato all'interno del vettore images_files e lo carico
+            cv::Mat image = cv::imread(file);
+            if (image.data)
+            {
+                images.push_back(image);
+            }
+            else
+            {
+                std::cerr << "Warning: Image " << file << " could not be read." << std::endl;
+            }
         }
-	//For debug purposes
-        else
+
+        // For debug purposes
+        std::cout << "Number of images loaded: " << images.size() << std::endl;
+
+        // Crea una matrice per le intensità
+        cv::Mat intensities(images.size(), 1, CV_32F);
+
+        for (int i = 0; i < images.size(); i++)
         {
-            std::cerr << "Warning: Image " << file << " could not be read." << std::endl;
+            float* yRow = intensities.ptr<float>(i);
+            // Sommo l'intensità calcolata canale per canale e poi effettuo la media
+            cv::Scalar mean_intensity = cv::mean(images[i]);
+            float intensity = (mean_intensity[0] + mean_intensity[1] + mean_intensity[2]) / 3.0f;
+
+            yRow[0] = intensity;
         }
-    }
 
-    std::cout << "Number of images loaded: " << images.size() << std::endl;
+        cv::Mat labels, centers;
 
-    // Crea una matrice per le intensità
-    cv::Mat intensities(images.size(), 1, CV_32F);
-    for (int i = 0; i < images.size(); i++) 
-    {
-        // Sommo l'intensità calcolata canale per canale e poi effettuo la media
-        cv::Scalar mean_intensity = cv::mean(images[i]);
-        float intensity = (mean_intensity[0] + mean_intensity[1] + mean_intensity[2]) / 3.0f;
-        intensities.at<float>(i, 0) = intensity;
-    }
+        cv::kmeans(
+            intensities,
+            NUM_CLUSTERS_KMEANS_INTENSITY,
+            labels,
+            cv::TermCriteria(cv::TermCriteria::EPS + cv::TermCriteria::COUNT, 10, 0.1),
+            attempts,
+            cv::KMEANS_PP_CENTERS,
+            centers
+        );
 
-    cv::Mat labels, centers;    
-    
-    cv::kmeans(
-        intensities, 
-        num_clusters, 
-        labels,
-        cv::TermCriteria(cv::TermCriteria::EPS + cv::TermCriteria::COUNT, 10, 0.3), 
-        attempts, 
-        cv::KMEANS_PP_CENTERS,
-        centers
-    );
+        // Sfrutto l'ordinamento delle labels per salvare le immagini
+        int saved_images_count = 0;
 
-    // Sfrutto l'ordinamento delle labels per salvare le immagini
-    int saved_images_count = 0;
-    for (int i = 0; i < labels.rows; i++) 
-    {
-        int cluster_idx = labels.at<int>(i);
-        std::string file_name = "image_" + std::to_string(i) + ".png";
-        fs::path save_path = kmeans_folder_path / ("Cluster_" + std::to_string(cluster_idx)) / file_name;
-        if (cv::imwrite(save_path.string(), images[i]))
+        // Creo le cartelle per i nuovi cluster di intensità
+        for (int i = 0; i < NUM_CLUSTERS_KMEANS_INTENSITY; i++)
         {
-            saved_images_count++;
+            fs::path cluster_path = new_intensity_cluster_directory / ("Cluster_" + std::to_string(i + 1));
+            fs::create_directory(cluster_path);
         }
-		//For debug purposes
-        else
+
+        // Salvo le immagini nei rispettivi cluster
+        for (int i = 0; i < labels.rows; i++)
         {
-            std::cerr << "Error: Could not save image " << file_name << std::endl;
+            int cluster_idx = labels.at<int>(i);
+            std::string file_name = "image_" + std::to_string(i) + ".png";
+
+            // Percorso di salvataggio
+            std::filesystem::path save_path = new_intensity_cluster_directory / ("Cluster_" + std::to_string(cluster_idx + 1)) / file_name;
+
+            // For debug purposes
+            //std::cout << save_path.string() << std::endl;
+
+            if (cv::imwrite(save_path.string(), images[i]))
+            {
+                saved_images_count++;
+            }
+            else
+            {
+                std::cerr << "Error: Could not save image " << file_name << std::endl;
+            }
         }
+
+        // For debug purposes
+        std::cout << "Number of images saved: " << saved_images_count << std::endl;
+
+        // Pulisce i vettori per il prossimo ciclo
+        images.clear();
+        image_files.clear();
     }
-	//For debug purposes
-    std::cout << "Number of images saved: " << saved_images_count << std::endl;
 }
-
-
