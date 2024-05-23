@@ -147,7 +147,7 @@ void kMeansClustering_ByIntensity()
             // Sommo l'intensità calcolata canale per canale e poi effettuo la media
             cv::Scalar mean_intensity = cv::mean(images[i]);
             //float intensity = (mean_intensity[0] + mean_intensity[1] + mean_intensity[2]) / 3.0f;
-            float intensity = static_cast <float> mean_intensity;
+            float intensity = static_cast <float> (mean_intensity[0]);
             yRow[0] =intensity;
         }
 
