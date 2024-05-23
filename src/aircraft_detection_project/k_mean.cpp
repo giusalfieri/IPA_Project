@@ -123,7 +123,7 @@ void kMeansClustering_ByIntensity()
         for (const auto &file : image_files)
         {
             // Vado a prendere il percorso salvato all'interno del vettore images_files e lo carico
-            cv::Mat image = cv::imread(file);
+            cv::Mat image = cv::imread(file, cv::IMREAD_GRAYSCALE);
             if (image.data)
             {
                 images.push_back(image);
@@ -132,6 +132,7 @@ void kMeansClustering_ByIntensity()
             {
                 std::cerr << "Warning: Image " << file << " could not be read." << std::endl;
             }
+            
         }
 
         // For debug purposes
@@ -145,9 +146,9 @@ void kMeansClustering_ByIntensity()
             float* yRow = intensities.ptr<float>(i);
             // Sommo l'intensità calcolata canale per canale e poi effettuo la media
             cv::Scalar mean_intensity = cv::mean(images[i]);
-            float intensity = (mean_intensity[0] + mean_intensity[1] + mean_intensity[2]) / 3.0f;
-
-            yRow[0] = intensity;
+            //float intensity = (mean_intensity[0] + mean_intensity[1] + mean_intensity[2]) / 3.0f;
+            float intensity = static_cast <float> mean_intensity;
+            yRow[0] =intensity;
         }
 
         cv::Mat labels, centers;
