@@ -1,98 +1,78 @@
-#include "k_mean.h"
+#include "kmeans.h"
 #include "utils.h"
 
 
 void kMeansClustering_BySize()
 {
-	fs::path dataset_path(DATASET_PATH);
+	std::filesystem::path kmeans_folder_path = createDirectory(std::filesystem::path(DATASET_PATH).parent_path(), "kmeans_by_size");
 
-	fs::path kmeans_path = dataset_path.parent_path();
+	const auto templates_extracted_path = std::filesystem::path(DATASET_PATH).parent_path() / "extracted_templates";
+	const auto templates_paths_pattern = templates_extracted_path.string() + std::string("/*.png");
+	std::vector<std::string> template_paths;
+	cv::glob(templates_paths_pattern, template_paths);
 
-	fs::path kmeans_folder_path = createDirectory(kmeans_path, "kmeans_by_size");
 
-    std::vector<std::string> image_files;
-
-	std::vector<cv::Mat> images;
-
-	//Definisco la cartella dalla quale si vanno a prendere i templates
-	fs::path templates_extracted_path = dataset_path.parent_path() / "extracted_templates";
-	
-	for (const auto &template_file : fs::directory_iterator(templates_extracted_path))
+	std::vector<cv::Mat> templates;
+	for (const auto& path : template_paths)
 	{
-		if (template_file.is_regular_file())
-		{
-			//Andiamo a riempire il vettore con i percorsi di ciascuna immagine
-			image_files.push_back(template_file.path().string());
-		}
-	}
-    
-
-    for (const auto &file : image_files)
-    {
-		//Andiamo a caricare tutte le immagini presenti nella cartella "extracted_templates" leggendole dal vettore image_files
-        cv::Mat image = cv::imread(file);
-        if (!image.empty())
-        {
-            images.push_back(image);
-        }
-    }
-
-    
-	
-	//Andiamo a creare una matrice di dimensione [righe] sizeof images vector X [colonne] 2 
-	//Matrice di CV_32F come richiesto dalla funzione kmeans
-	cv::Mat sizes(images.size(), 2, CV_32F);
-
-
-	//Andiamo a riempire la matrice sizes con le dimensioni di ciascun template estratto
-	for (int i = 0; i < images.size(); i++)
-	{
-		sizes.at<float>(i, 0) = images[i].cols;
-		sizes.at<float>(i, 1) = images[i].rows;
+		cv::Mat img = cv::imread(path);
+		if (img.data)
+			templates.push_back(img);
 	}
 
 
+	// Creation of a matrix of templates.size() rows and 2 columns
+	// This matrix will store the dimensions (width, height) of each extracted template
+	cv::Mat templates_dims(templates.size(), 2, CV_32F);
+
+
+	// Fill the sizes matrix with the dimensions of each extracted template
+	for (int i = 0; i < templates.size(); i++)
+	{
+		float* yRow = templates_dims.ptr<float>(i);
+		yRow[0] = templates[i].cols;  // the first column stores the width  of the i-th template
+		yRow[1] = templates[i].rows;  // the first column stores the height of the i-th template
+	}
+
+
+	// K-Means Clustering 
 	cv::Mat labels, centers;
-	int k = 6;	
-
+	int K = 6;
 	cv::kmeans(
-		sizes, 
-		k, 
+		templates_dims,
+		K,
 		labels,
-		cv::TermCriteria (cv::TermCriteria::EPS + cv::TermCriteria::COUNT, 10, 1.0), 
-		50, 
+		cv::TermCriteria(cv::TermCriteria::EPS + cv::TermCriteria::COUNT, 10, 1.0),
+		50,
 		cv::KMEANS_PP_CENTERS,
 		centers
-		);
-    
-	//Tramite questo ciclo for si vanno a visualizzare i templates appartenenti ad un certo cluster 
-	
-	//DA MIGLIORARE
-	for (int i = 0; i < k; i++)
-    {
-       // std::cout << "Cluster " << i << ":\n";
-		std::string directory_name = "Cluster_" + std::to_string(i);
-    	
-		fs::path new_cluster_path = createDirectory(kmeans_folder_path, directory_name);
+	);
 
-        for (int j = 0; j < labels.rows; j++)
-        {
-            if (labels.at<int>(j) == i)
-            {
-      // Definisco la cartella nella quale si vanno a salvare i templates
-                std::string kmean_template_name = "template_" + std::to_string(j) + ".png";
-                
-				fs::path save_path = new_cluster_path / kmean_template_name;
+
+
+	//DA MIGLIORARE
+	for (int i = 0; i < K; i++)
+	{
+	
+		std::filesystem::path new_cluster_path = createDirectory(kmeans_folder_path, "Cluster_" + std::to_string(i) );
+
+		for (int j = 0; j < labels.rows; j++)
+		{
+			if (labels.at<int>(j) == i)
+			{
+				// Definisco la cartella nella quale si vanno a salvare i templates
+				std::string kmean_template_name = "template_" + std::to_string(j) + ".png";
+
+				std::filesystem::path save_path = new_cluster_path / kmean_template_name;
 
 				//Le immagini di input non vengono alterate e quindi labels e images hanno lo stesso indice
 				//Utilizzo il metodo string per convertire il percorso in una stringa
-                cv::imwrite(save_path.string(), images[j]);
-            }
-        }
-        std::cout << "\n";
+				cv::imwrite(save_path.string(), templates[j]);
+			}
+		}
+	
 
-
-    }
+	}
 
 }
 
