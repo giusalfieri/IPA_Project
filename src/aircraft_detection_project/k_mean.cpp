@@ -1,4 +1,4 @@
-#include "kmeans.h"
+#include "k_mean.h"
 #include "utils.h"
 
 
