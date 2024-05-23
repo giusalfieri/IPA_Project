@@ -203,3 +203,53 @@ void kMeansClustering_ByIntensity()
         image_files.clear();
     }
 }
+
+void resizeImages(const int numclusters_by_size, const int num_clusters_by_intensity)
+{
+
+    std::filesystem::path dataset_path(DATASET_PATH);
+
+    //(dataset parent folder) + kmeans_by_intensity + untenisty_cluster_i + cluster_i;
+    for (int i = 0; i < num_clusters_by_size; i++)
+    {
+        for (int j = 0; j < num_clusters_by_intensity; j++)
+        {
+
+            int max_width = 0;
+            int max_height = 0;
+
+            std::filesystem::path cluster_path(dataset_path.parent_path() / "kmeans_by_intensity" / "intensity_cluster" / std::tostring(i) / "cluster" / std::to_string(j));
+            std::vector<std::string>final_clusters_paths;
+            const auto final_clusters_paths_pattern = cluster_path.string() + std::string("/*.png");
+            cv::glob(final_clusters_paths_pattern, final_clusters_paths);
+
+            std::vector<cv::Mat> final_clusters;
+            for (const auto& path : final_clusters_paths)
+            {
+                cv::Mat img = cv::imread(path);
+                if (img.data)
+                    final_clusters.push_back(img);
+            }
+
+            for (const auto& img : final_clusters)
+            {
+                max_width  = std::max(max_width,  img.cols);
+                max_height = std::max(max_height, img.rows);
+            }
+
+            // Apply mirroring to each image to make them reach the maximum size
+            for (auto& img : final_clusters)
+            {
+                int padding_width = max_width - img.cols;
+                int padding_height = max_height - img.rows;
+
+                cv::Mat img_with_mirroring;
+                cv::copyMakeBorder(img, img_with_mirroring, 0, padding_height, 0, padding_width, cv::BORDER_REFLECT); // Use mirroring
+
+                img = img_with_mirroring;
+            }
+
+        }
+    }
+
+}
