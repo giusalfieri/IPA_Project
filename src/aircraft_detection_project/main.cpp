@@ -1,5 +1,5 @@
 #include "template_extraction.h"
-
+#include "k_mean.h"
 
 //#define USE_EXTRACT_TEMPLATES
 
