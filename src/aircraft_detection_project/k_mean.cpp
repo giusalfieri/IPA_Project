@@ -242,17 +242,15 @@ void resizeImages(const int num_clusters_by_size, const int num_clusters_by_inte
                 max_height = std::max(max_height, img.rows);
             }
 
-            // Apply mirroring to each image to make them reach the maximum size
-            for (auto& img : final_clusters)
-            {
-                int padding_width = max_width - img.cols;
-                int padding_height = max_height - img.rows;
+           // Apply mirroring to each image to make them reach the maximum size
+	   for (auto& img : imgs_intensity_cluster)
+	   {
+		int padding_width = max_width - img.cols;
+		int padding_height = max_height - img.rows;
 
-                cv::Mat img_with_mirroring;
-                cv::copyMakeBorder(img, img_with_mirroring, 0, padding_height, 0, padding_width, cv::BORDER_REFLECT); // Use mirroring
 
-                img = img_with_mirroring;
-            }
+		cv::resize(img, img, cv::Size(padding_width, padding_height), 2.0, 2.0, cv::INTER_CUBIC);		
+	   }
 
         }
     }
