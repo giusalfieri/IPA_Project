@@ -204,7 +204,7 @@ void kMeansClustering_ByIntensity()
     }
 }
 
-void resizeImages(const int numclusters_by_size, const int num_clusters_by_intensity)
+void resizeImages(const int num_clusters_by_size, const int num_clusters_by_intensity)
 {
 
     std::filesystem::path dataset_path(DATASET_PATH);
@@ -218,7 +218,7 @@ void resizeImages(const int numclusters_by_size, const int num_clusters_by_inten
             int max_width = 0;
             int max_height = 0;
 
-            std::filesystem::path cluster_path(dataset_path.parent_path() / "kmeans_by_intensity" / "intensity_cluster" / std::tostring(i) / "cluster" / std::to_string(j));
+            std::filesystem::path cluster_path(dataset_path.parent_path() / "kmeans_by_intensity" / "intensity_cluster" / std::to_string(i) / "cluster" / std::to_string(j));
             std::vector<std::string>final_clusters_paths;
             const auto final_clusters_paths_pattern = cluster_path.string() + std::string("/*.png");
             cv::glob(final_clusters_paths_pattern, final_clusters_paths);
