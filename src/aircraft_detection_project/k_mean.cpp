@@ -243,7 +243,7 @@ void resizeImages(const int num_clusters_by_size, const int num_clusters_by_inte
             }
 
            // Apply mirroring to each image to make them reach the maximum size
-	   for (auto& img : imgs_intensity_cluster)
+	   for (auto& img : final_clusters)
 	   {
 		int padding_width = max_width - img.cols;
 		int padding_height = max_height - img.rows;
