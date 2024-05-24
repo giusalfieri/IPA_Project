@@ -1,17 +1,2 @@
-dataset
-extracted_templates
-kmeans
-  ->cluster_size1
-		->cluster_intensity
-		->cluster_intensity
-		->cluster_intensity
-  ->cluster_size2
-		->cluster_intensity
-		->cluster_intensity
-		->cluster_intensity
-  ->cluster_size3
-		->cluster_intensity
-		->cluster_intensity
-		->cluster_intensity
-
+refactoring della lettura da file con recursive_directory_iterator
 eigenfaces
