@@ -245,11 +245,7 @@ void resizeImages(const int num_clusters_by_size, const int num_clusters_by_inte
            // Apply mirroring to each image to make them reach the maximum size
 	   for (auto& img : final_clusters)
 	   {
-		int padding_width = max_width - img.cols;
-		int padding_height = max_height - img.rows;
-
-
-		cv::resize(img, img, cv::Size(padding_width, padding_height), 2.0, 2.0, cv::INTER_CUBIC);		
+		cv::resize(img, img, cv::Size(max_width, max_height), 2.0, 2.0, cv::INTER_CUBIC);		
 	   }
 
         }
