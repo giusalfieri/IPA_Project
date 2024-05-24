@@ -50,28 +50,29 @@ void kMeansClustering_BySize()
 
 
 
-	//DA MIGLIORARE
 	for (int i = 0; i < K; i++)
 	{
-	
+
+		
 		std::filesystem::path new_cluster_path = createDirectory(kmeans_folder_path, "Cluster_" + std::to_string(i) );
 
-		for (int j = 0; j < labels.rows; j++)
+		for (int j = 0; j < templates.size(); j++)
 		{
 			if (labels.at<int>(j) == i)
 			{
 				// Definisco la cartella nella quale si vanno a salvare i templates
-				std::string kmean_template_name = "template_" + std::to_string(j) + ".png";
+				//std::string kmean_template_name = "template_" + std::to_string(j) + ".png";
+				//std::cout << std::filesystem::path(template_paths[j]).stem().string() << "\n";
+				//std::cout << j << "\n";
+				auto kmean_template_name = std::filesystem::path(template_paths[j]).stem().string();
 
-				std::filesystem::path save_path = new_cluster_path / kmean_template_name;
+				std::filesystem::path clustered_template_path(new_cluster_path/kmean_template_name);
 
 				//Le immagini di input non vengono alterate e quindi labels e images hanno lo stesso indice
 				//Utilizzo il metodo string per convertire il percorso in una stringa
-				cv::imwrite(save_path.string(), templates[j]);
+				cv::imwrite(clustered_template_path.string(), templates[j]);
 			}
 		}
-	
-
 	}
 
 }
