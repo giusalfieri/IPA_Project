@@ -60,7 +60,6 @@ void kMeansClustering_BySize()
 		{
 			if (labels.at<int>(j) == i)
 			{
-				// Definisco la cartella nella quale si vanno a salvare i templates
 				//std::string kmean_template_name = "template_" + std::to_string(j) + ".png";
 				//std::cout << std::filesystem::path(template_paths[j]).stem().string() << "\n";
 				//std::cout << j << "\n";
@@ -68,8 +67,6 @@ void kMeansClustering_BySize()
 
 				std::filesystem::path clustered_template_path(new_cluster_path/kmean_template_name);
 
-				//Le immagini di input non vengono alterate e quindi labels e images hanno lo stesso indice
-				//Utilizzo il metodo string per convertire il percorso in una stringa
 				cv::imwrite(clustered_template_path.string(), templates[j]);
 			}
 		}
