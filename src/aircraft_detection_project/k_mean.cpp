@@ -63,11 +63,11 @@ void kMeansClustering_BySize()
 				//std::string kmean_template_name = "template_" + std::to_string(j) + ".png";
 				//std::cout << std::filesystem::path(template_paths[j]).stem().string() << "\n";
 				//std::cout << j << "\n";
-				auto kmean_template_name = std::filesystem::path(template_paths[j]).stem().string();
+				auto kmean_template_name = std::filesystem::path(template_paths[j]).stem();
 
 				std::filesystem::path clustered_template_path(new_cluster_path/kmean_template_name);
 
-				cv::imwrite(clustered_template_path.string(), templates[j]);
+				cv::imwrite(clustered_template_path.string()+".png", templates[j]);
 			}
 		}
 	}
