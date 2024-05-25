@@ -19,9 +19,6 @@ bool sortByDescendingArea(object& first, object& second)
 }
 
 
-
-
-
 // utility function that rotates 'img' by step*90°
 // step = 0 --> no rotation
 // step = 1 --> 90° CW rotation
@@ -73,3 +70,24 @@ std::filesystem::path createDirectory(const std::filesystem::path& folder_path, 
 
 	return new_dir_path;
 }
+
+
+void globFiles(const std::string& directory, const std::string& pattern, std::vector<std::string>& file_paths)
+{
+	const std::string full_pattern = directory + "/" + pattern;
+	cv::glob(full_pattern, file_paths);
+}
+
+
+
+void readImages(const std::vector<std::string>& img_paths, std::vector<cv::Mat>& images)
+{
+
+	for (const auto& path : img_paths) {
+		cv::Mat img = cv::imread(path);
+		if (img.data) {
+			images.push_back(img);
+		}
+	}
+}
+
