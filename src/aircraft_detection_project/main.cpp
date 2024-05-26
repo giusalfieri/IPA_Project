@@ -1,7 +1,7 @@
 #include "template_extraction.h"
 #include "kmeans.h"
 #include "utils.h"
-
+#include "eigenplanes.h"
 
 
 
@@ -157,8 +157,16 @@ int main()
 		//************************************************ 
 	}
 	
+
+
+	/*
+	-------------------------------------------------------------
+	  RESIZING THE IMAGES IN EACH CLLUSTER TO BE OF THE SAME SIZE
+	-------------------------------------------------------------
+	*/
 	
-	int dim = 0;
+	std::vector<int> img_heights_in_final_clusters;
+	std::vector<std::filesystem::path> same_size_clusters;
 	const auto final_directory_sam_size = createDirectory(std::filesystem::path(DATASET_PATH).parent_path(), "clusters_same_size_imgs");
 
 	const int final_clusters_num = num_clusters_by_size * num_clusters_by_intensity;
@@ -168,17 +176,33 @@ int main()
 		globFiles(final_clusters_by_intensity_paths[i].string(), "/*.png", final_clusters_paths);
 
 		std::vector<cv::Mat> intensities_img;
+
+
+		
 		for (const auto& path : final_clusters_paths)
 		{
 			cv::Mat img = cv::imread(path, cv::IMREAD_UNCHANGED);
 			if (img.data)
 				intensities_img.push_back(img);
+
 		}
 
 		const auto ith_cluster_by_intensity_folder_path = createDirectory(std::filesystem::path(final_directory_sam_size), "Cluster_same_size_" + std::to_string(i));
+		same_size_clusters.push_back(ith_cluster_by_intensity_folder_path);
+
 
 		reshape2sameDim(intensities_img);
 
+
+		bool actionDone = false;
+		for (const auto& img : intensities_img)
+		{
+			if (!actionDone)
+			{
+				img_heights_in_final_clusters.push_back(img.rows);
+				actionDone = true;
+			}
+		}
 
 
 		for(int j=0; j < intensities_img.size(); j++)
@@ -193,12 +217,22 @@ int main()
 	}
 
 
+	for (const auto& elem : img_heights_in_final_clusters)
+		std::cout << "img_height " << elem << "\n";
+
+
+
 	/*
-	for (const auto& intensity_cluster_path : final_clusters_by_intensity_paths)
+	------------------------------------------------
+	  EIGENPLANES (via Principal Component Analysis)
+	------------------------------------------------
+	*/
+	const auto avg_airplanes_dir = createDirectory(std::filesystem::path(DATASET_PATH).parent_path(), "avg_airplanes_dir");
+	for (int i = 0; i < final_clusters_num; i++)
 	{
-	
+
 		std::vector<std::string>final_clusters_paths;
-		globFiles(intensity_cluster_path.string(), "/*.png", final_clusters_paths, true);
+		globFiles(same_size_clusters[i].string(), "/*.png", final_clusters_paths);
 
 		std::vector<cv::Mat> intensities_img;
 		for (const auto& path : final_clusters_paths)
@@ -206,20 +240,22 @@ int main()
 			cv::Mat img = cv::imread(path, cv::IMREAD_UNCHANGED);
 			if (img.data)
 				intensities_img.push_back(img);
-
-			dim = img.rows;
 		}
+		
 
-		reshape2sameDim(intensities_img);
+		cv::Mat avg_airplane = eigenPlanes(intensities_img, img_heights_in_final_clusters[i]);
 
 
-		for (auto& img : intensities_img)
-		{
+		const std::string avg_airplane_name = "avg_airplane" + std::to_string(i);
 
-			cv::imwrite(, img);
-		}
+		// Save the template image to the corresponding cluster folder
+		cv::imwrite(avg_airplanes_dir.string() + "/" + avg_airplane_name + ".png", avg_airplane);
+
 	}
-	*/
+	
+
+
+
 
 
 
