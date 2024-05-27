@@ -55,7 +55,7 @@ int main()
 	//------------------------
 	// 1.2) Performing K-Means
 	//------------------------
-	const int num_clusters_by_size =  3;
+	const int num_clusters_by_size =  5;
 	cv::Mat labels = kmeansBySize(extracted_templates, num_clusters_by_size);
 	//------------------------
 
