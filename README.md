@@ -36,7 +36,7 @@ The aim of this project is to develop an automated system for detecting aircraft
 
 1. **Clone the repository:**
     ```sh
-    git clone https://github.com/yourusername/aircraft-detection-satellite-images.git
+    git clone https://github.com/giusalfieri/IPA_Project.git
     cd aircraft-detection-satellite-images
     ```
 
