@@ -1,4 +1,6 @@
-<img src="doc/banner.png" alt="Aircraft Detection Banner" style="width:50%; height:auto;">
+<div style="text-align: center;">
+    <img src="doc/banner.png" alt="Aircraft Detection Banner" style="width:50%; height:auto;">
+</div>
 
 # Aircraft Detection from Satellite Images
 
