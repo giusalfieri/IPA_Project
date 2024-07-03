@@ -63,7 +63,7 @@ The aim of this project is to develop an automated system for detecting aircraft
     ./aircraft_detection training_phase extractTemplates
     ```
 
-## Workflow Steps ➡️
+## Workflow Steps ➡️➡️➡️
 
 ### 1. Training Phase
 Initiate the training phase for an SVM model by extracting data from a CSV file.
