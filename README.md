@@ -1,4 +1,4 @@
-![Aircraft Detection Banner](doc/banner.png)
+<img src="doc/banner.png" alt="Aircraft Detection Banner" style="width:50%; height:auto;">
 
 # Aircraft Detection from Satellite Images
 
