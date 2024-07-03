@@ -74,4 +74,6 @@ Initiate the training phase for an SVM model by extracting data from a CSV file.
 ```
 
 ## License
-This project is licensed under the MIT License. See the LICENSE file for details.
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
