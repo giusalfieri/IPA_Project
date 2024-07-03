@@ -21,8 +21,6 @@ The aim of this project is to develop an automated system for detecting aircraft
 
 ## Features
 
-## Features
-
 - **Training Phase:** Extract data from CSV for SVM training.
 - **Template Extraction:** Extract templates from the dataset.
 - **Clustering:** Perform K-Means clustering based on size and intensity.
