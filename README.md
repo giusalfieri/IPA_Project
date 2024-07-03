@@ -1,6 +1,7 @@
-<div style="text-align: center;">
+<div style="display: flex; justify-content: center;">
     <img src="doc/banner.png" alt="Aircraft Detection Banner" style="width:50%; height:auto;">
 </div>
+
 
 # Aircraft Detection from Satellite Images
 
