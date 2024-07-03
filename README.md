@@ -1,7 +1,7 @@
 # Aircraft Detection from Satellite Images
 
 
-<img src="doc/banner.png" alt="Aircraft Detection Banner" width="800">
+<img src="doc/banner.png" alt="Aircraft Detection Banner" width="500">
 
 ## Overview
 This project focuses on detecting aircraft in satellite images using various machine learning and computer vision techniques. The workflow includes data preprocessing, feature extraction, clustering, and classification using Support Vector Machines (SVMs).
