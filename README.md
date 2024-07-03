@@ -71,3 +71,7 @@ The aim of this project is to develop an automated system for detecting aircraft
 Initiate the training phase for an SVM model by extracting data from a CSV file.
 ```sh
 ./aircraft_detection training_phase
+```
+
+## License
+This project is licensed under the MIT License. See the LICENSE file for details.
