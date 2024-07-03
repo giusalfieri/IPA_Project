@@ -1,2 +1,0 @@
-refactoring della lettura da file con recursive_directory_iterator
-eigenfaces
