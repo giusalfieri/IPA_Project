@@ -12,7 +12,7 @@ This project focuses on detecting aircraft in satellite images using various mac
 - [Installation](#installation)
 - [Usage](#usage)
 - [Workflow Steps](#workflow-steps)
-- [Contributing](#contributing)
+- [Contributors](#contributors)
 - [License](#license)
 
 ## Introduction
