@@ -1,7 +1,7 @@
 # Aircraft Detection from Satellite Images
 
 <div align="center">
-  <img src="doc/banner.png" style="width: 100%; height: auto;">
+  <img src="doc/banner.png" style="width: 70%; height: auto;">
 </div>
 
 ## Overview
