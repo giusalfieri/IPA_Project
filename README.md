@@ -30,7 +30,7 @@ The aim of this project is to develop an automated system for detecting aircraft
 - **Performance Evaluation:** Evaluate the performance of the classifier.
 
 
-## Installation
+## Installation 🛠️
 
 1. **Clone the repository:**
     ```sh
