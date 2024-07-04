@@ -71,7 +71,7 @@ Initiate the training phase for an SVM model by extracting data from a CSV file.
 ./aircraft_detection training_phase
 ```
 
-Grazie a tutti coloro che hanno contribuito a questo progetto:
+## Contributors
 
 | Nome            |  GitHub                                               |
 |-----------------|-------------------------------------------------------|
