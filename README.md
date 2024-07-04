@@ -74,12 +74,13 @@ Initiate the training phase for an SVM model by extracting data from a CSV file.
 
 ## Contributors
 
-| Nome            |  GitHub                                               |
-|-----------------|-------------------------------------------------------|
-| Giuseppe Alfieri| [@giusalfieri](https://github.com/giusalfieri)        |
-| Mario Rossi     | [@mariorossi](https://github.com/mariorossi)          |
-| Lucia Verdi     | [@lucia_verdi](https://github.com/lucia_verdi)        |
-| Paolo Neri      | [@paoloneri](https://github.com/paoloneri)            |
+| Nome              |  GitHub                                               |
+|-------------------|-------------------------------------------------------|
+| Giuseppe Alfieri  | [@giusalfieri](https://github.com/giusalfieri)        |
+| Aurora Pisa       | [@aurorapisa](https://github.com/aurorapisa)          |
+| Riccardo D'Aguanno| [@lucia_verdi](https://github.com/lucia_verdi)        |
+| Paolo Simeone     | [@paoloneri](https://github.com/paoloneri)            |
+| Gianmarco Luongo  | [@paoloneri](https://github.com/paoloneri)            |
 
 ---
 
