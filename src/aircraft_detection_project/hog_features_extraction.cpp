@@ -13,8 +13,7 @@ std::vector< std::vector<float> > hog_features_extraction(const std::vector<cv::
         cv::Size(8, 8),
         cv::Size(8, 8), 9);
 
-    // Avoids multiple reallocations
-    // by reserving space for the HOG features of all ROIs
+    // Avoids multiple reallocations by reserving space for the HOG features of all ROIs
 	std::vector<std::vector<float>> hog_features;
     hog_features.reserve(rois.size());
 
@@ -51,10 +50,8 @@ void writeHogFeaturesToCsv(const std::vector<std::vector<float>>& hog_features, 
             if (it != features.cbegin())
                 file << ",";
 
-            // Write the feature to the file with fixed precision and 6 decimal places
-            // (e.g., 0.123456)
-            // This is done to ensure that the features are written in a consistent format
-            // regardless of the locale settings
+            // Write the feature to the file with fixed precision and 6 decimal places (e.g., 0.123456)
+            // This is done to ensure that the features are written in a consistent format, regardless of the locale settings
             // (e.g., using a comma as the decimal separator in some locales)
             file << std::fixed << std::setprecision(6) << *it;
         }
