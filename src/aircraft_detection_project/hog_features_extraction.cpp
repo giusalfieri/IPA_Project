@@ -14,7 +14,7 @@ std::vector< std::vector<float> > hog_features_extraction(const std::vector<cv::
         cv::Size(8, 8), 9);
 
     // Avoids multiple reallocations by reserving space for the HOG features of all ROIs
-	std::vector<std::vector<float>> hog_features;
+    std::vector<std::vector<float>> hog_features;
     hog_features.reserve(rois.size());
 
     for (const auto& roi : rois)
