@@ -1,7 +1,7 @@
 #include "template_extraction.h"
 #include "utils.h"
 #include <unordered_set>
-
+#include <ranges>
 
 
 
@@ -74,7 +74,8 @@ void extractTemplates()
     }
 }
 
-void selectAirplanes(const cv::Mat& img, const std::vector<cv::Rect>& yolo_boxes, std::vector<cv::Rect>& selected_airplanes_yolo_boxes, int& count, const std::string& img_filename, const std::filesystem::path& extracted_templates_folder)
+void selectAirplanes(const cv::Mat& img, const std::vector<cv::Rect>& yolo_boxes, std::vector<cv::Rect>& selected_airplanes_yolo_boxes, int& count, 
+                     const std::string& img_filename, const std::filesystem::path& extracted_templates_folder)
 {
     for (const auto& box : yolo_boxes)
     {
@@ -117,20 +118,22 @@ void binarizeAirplanes(const cv::Mat& channel, const std::vector<cv::Rect>& sele
     }
 }
 
-void calculateGeometricMoments(const std::vector<cv::Mat>& bin_airplanes, const std::vector<cv::Rect>& yolo_boxes, std::vector<std::pair<cv::Point2f, double>>& geometric_moments_descriptors)
+void calculateGeometricMoments(const std::vector<cv::Mat>& bin_airplanes, 
+                               const std::vector<cv::Rect>& yolo_boxes, std::vector<std::pair<cv::Point2f, double>>& geometric_moments_descriptors)
 {
     for (size_t i = 0; i < bin_airplanes.size(); ++i) 
     {
         std::vector<std::vector<cv::Point>> contours;
         cv::findContours(bin_airplanes[i], contours, cv::RETR_LIST, cv::CHAIN_APPROX_NONE);
-        std::sort(contours.begin(), contours.end(), sortByDescendingArea);
+
+        std::ranges::sort(contours, sortByDescendingArea);
 
         cv::Moments moments = cv::moments(contours[0], true);
         cv::Point2f center(moments.m10 / moments.m00, moments.m01 / moments.m00);
         double angle = 0.5 * std::atan2(2 * moments.mu11, moments.mu20 - moments.mu02);
 
         cv::Point2f corrected_center = cv::Point2f(center.x + yolo_boxes[i].x, center.y + yolo_boxes[i].y);
-        geometric_moments_descriptors.push_back(std::make_pair(corrected_center, rad2degrees(angle)));
+        geometric_moments_descriptors.emplace_back(corrected_center, rad2degrees(angle));
     }
 }
 
@@ -156,8 +159,8 @@ cv::Rect calculateCenteredROI(const cv::Point2f& center, const cv::Size& size, f
 }
 
 void extractTemplatesFromAirplanes(const cv::Mat& img, const std::vector<cv::Mat>& bin_airplanes,
-    const std::vector<std::pair<cv::Point2f, double>>& geometric_moments_descriptors,
-    const std::vector<cv::Rect>& yolo_boxes, std::vector<cv::Mat>& templates_vector)
+                                   const std::vector<std::pair<cv::Point2f, double>>& geometric_moments_descriptors,
+                                   const std::vector<cv::Rect>& yolo_boxes, std::vector<cv::Mat>& templates_vector)
 {
     constexpr float finalTemplateScalingFactor = 1.15;
     constexpr float roiExpansionFactor = 2.0f;
@@ -206,7 +209,8 @@ void extractTemplatesFromAirplanes(const cv::Mat& img, const std::vector<cv::Mat
     }
 }
 
-void saveTemplates(const std::vector<cv::Mat>& templates_vector, int& count, const std::string& img_filename, const std::filesystem::path& extracted_templates_folder)
+void saveTemplates(const std::vector<cv::Mat>& templates_vector, int& count, 
+                   const std::string& img_filename, const std::filesystem::path& extracted_templates_folder)
 {
     for (const auto& airplane_template : templates_vector) 
     {
@@ -251,7 +255,7 @@ std::string getValidInput(const std::string& prompt, const std::vector<std::stri
         std::cout << prompt;
         std::cin >> answer;
 
-        if (valid_set.find(answer) == valid_set.end()) 
+        if (!valid_set.contains(answer))
         {
             std::cout << "Invalid input! Please enter one of the following: ";
             for (const auto& input : valid_inputs)
@@ -260,7 +264,7 @@ std::string getValidInput(const std::string& prompt, const std::vector<std::stri
             std::cout << "\n";
         }
 
-    } while (valid_set.find(answer) == valid_set.end());
+    } while (!valid_set.contains(answer));
 
     return answer;
 }
