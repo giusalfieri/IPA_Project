@@ -70,6 +70,7 @@ Initiate the training phase for an SVM model by extracting data from a CSV file.
 ```sh
 ./aircraft_detection training_phase
 ```
+---
 
 ## Contributors
 
