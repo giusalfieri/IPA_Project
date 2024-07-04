@@ -78,8 +78,8 @@ Initiate the training phase for an SVM model by extracting data from a CSV file.
 |-------------------|-------------------------------------------------------|
 | Giuseppe Alfieri  | [@giusalfieri](https://github.com/giusalfieri)        |
 | Aurora Pisa       | [@aurorapisa](https://github.com/aurorapisa)          |
+| Paolo Simeone     | [@bonoboprog](https://github.com/bonoboprog)          |
 | Riccardo D'Aguanno| [@ricdag8](https://github.com/ricdag8)                |
-| Paolo Simeone     | [@paoloneri](https://github.com/paoloneri)            |
 | Gianmarco Luongo  | [@paoloneri](https://github.com/paoloneri)            |
 
 ---
