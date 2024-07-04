@@ -32,6 +32,7 @@ The aim of this project is to develop an automated system for detecting aircraft
 - **Classification:** Classify images using SVM and HOG features.
 - **Performance Evaluation:** Evaluate the performance of the classifier.
 
+---
 
 ## Installation 🛠️
 
