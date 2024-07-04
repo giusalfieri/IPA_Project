@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="doc/banner.png" style="width: 70%; height: auto;">
+  <img src="doc/banner.png" style="width: 50%; height: auto;">
 </div>
 
 ## 🌍 Overview 
