@@ -22,7 +22,7 @@ This project focuses on detecting aircraft in satellite images using various mac
 The aim of this project is to develop an automated system for detecting aircraft in satellite imagery. The project utilizes a combination of image processing techniques, feature extraction methods, and machine learning algorithms to achieve high accuracy in aircraft detection.
 
 ---
-## Core Functionalities
+## ⚙️ Core Functionalities
 
 - **Training Phase:** Extract data from CSV for SVM training.
 - **Template Extraction:** Extract templates from the dataset.
