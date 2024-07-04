@@ -36,7 +36,7 @@ The aim of this project is to develop an automated system for detecting aircraft
 
 ---
 
-## Installation 🛠️
+## 🛠️ Installation 
 
 1. **Clone the repository:**
     ```sh
