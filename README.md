@@ -76,7 +76,7 @@ Initiate the training phase for an SVM model by extracting data from a CSV file.
 
 | Nome            |  GitHub                                               |
 |-----------------|-------------------------------------------------------|
-| Alice Bianchi   | [@alicebianchi](https://github.com/alicebianchi)      |
+| Giuseppe Alfieri| [@giusalfieri](https://github.com/giusalfieri)        |
 | Mario Rossi     | [@mariorossi](https://github.com/mariorossi)          |
 | Lucia Verdi     | [@lucia_verdi](https://github.com/lucia_verdi)        |
 | Paolo Neri      | [@paoloneri](https://github.com/paoloneri)            |
