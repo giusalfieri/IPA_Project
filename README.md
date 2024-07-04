@@ -76,7 +76,7 @@ Initiate the training phase for an SVM model by extracting data from a CSV file.
 ```
 ---
 
-## Contributors
+##  👥 Contributors
 
 | Nome              |  GitHub                                               |
 |-------------------|-------------------------------------------------------|
