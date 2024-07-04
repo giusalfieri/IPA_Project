@@ -56,11 +56,11 @@ The aim of this project is to develop an automated system for detecting aircraft
 
 2. **Run the project:**
     ```sh
-    ./aircraft_detection [step1] [step2] ...
+    ./aircraft_detection_project [step1] [step2] ...
     ```
     For example, to run the training phase and extract templates:
     ```sh
-    ./aircraft_detection training_phase extractTemplates
+    ./aircraft_detection_project training_phase extractTemplates
     ```
 
 ## Workflow Steps ➡️➡️➡️
