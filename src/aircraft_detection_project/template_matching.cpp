@@ -87,11 +87,11 @@ std::vector<cv::Point> findTemplateMatchesMultiThreaded(const cv::Mat& src_img, 
     constexpr auto angle_step = 5;
     std::vector<std::shared_future<std::vector<cv::Point>>> futures;
 
-    for (const auto& avg_plane : avg_planes) 
+    for (const auto& avg_plane : avg_planes)
     {
-        for (auto degree_angle : angle_range(0, 360, angle_step)) 
+        for (auto degree_angle : angle_range(0, 360, angle_step))
         {
-            futures.push_back(std::async(std::launch::async, [src_img, avg_plane, degree_angle]() {
+            futures.emplace_back(std::async(std::launch::async, [src_img, avg_plane, degree_angle]() {
                 return performTemplateMatching(src_img, avg_plane, degree_angle);
                 }));
         }
