@@ -1,4 +1,5 @@
 #include "utils.h"
+#include <ranges>
 
 constexpr double PI = 3.14159265358979323846;	
 
@@ -21,9 +22,9 @@ bool sortByDescendingArea(const object& first, const object& second)
 
 // utility function that rotates 'img' by step * 90 degree
 // step = 0 --> no rotation
-// step = 1 --> 90 degree CW rotation
-// step = 2 --> 180 degree CW rotation
-// step = 3 --> 270 degree CW rotation
+// step = 1 --> 90  deg CW rotation
+// step = 2 --> 180 deg CW rotation
+// step = 3 --> 270 deg CW rotation
 cv::Mat rotate90(cv::Mat img, int step)
 {
 	cv::Mat img_rot;
@@ -37,16 +38,16 @@ cv::Mat rotate90(cv::Mat img, int step)
 	// no rotation
 	if (step == 0)
 		img_rot = img;
-	// 90 degree CW rotation
+	// 90 deg CW rotation
 	else if (step == 1)
 	{
 		cv::transpose(img, img_rot);
 		cv::flip(img_rot, img_rot, 1);
 	}
-	// 180 degree CW rotation
+	// 180 deg CW rotation
 	else if (step == 2)
 		cv::flip(img, img_rot, -1);
-	// 270 degree CW rotation
+	// 270 deg CW rotation
 	else if (step == 3)
 	{
 		cv::transpose(img, img_rot);
@@ -129,12 +130,11 @@ void processYoloLabels(const std::string& filePath,const cv::Mat& img, std::vect
 
 cv::Rect Yolo2BRect(const cv::Mat& img, double x_center, double y_center, double width, double height)
 {
-	// Convert normalized coordinates to pixel values
+	// Convert normalized, [0, 1], coordinates to pixel values
 	const int x_center_px = static_cast<int>(std::round(x_center * img.cols));
 	const int y_center_px = static_cast<int>(std::round(y_center * img.rows));
 	int width_px = static_cast<int>(std::round(width * img.cols));
 	int height_px = static_cast<int>(std::round(height * img.rows));
-
 
 	// Calculate top left corner of bounding box
 	int x = x_center_px - width_px / 2;
@@ -153,10 +153,10 @@ cv::Rect Yolo2BRect(const cv::Mat& img, double x_center, double y_center, double
 
 bool isRoiInImage(const cv::Rect& roi,int width, int height)
 {
-	// Crea un rettangolo che rappresenta l'intera immagine
+	// Create a rectangle that represents the image boundaries
 	cv::Rect imageRect(0, 0, width, height);
 
-	// Verifica se il ROI è contenuto completamente nel rettangolo dell'immagine
+	// Check if the roi is completely inside the image
 	return (imageRect & roi) == roi;
 }
 
@@ -210,6 +210,7 @@ std::ofstream openFile(const std::string& filename)
 	return file;
 }
 
+
 std::vector<cv::Rect> generateRoisFromPoints(const std::vector<cv::Point>& points, const std::array<cv::Size, 5>& roi_sizes)
 {
 	std::vector<cv::Rect> rois;
@@ -234,12 +235,14 @@ std::vector<cv::Rect> generateRoisFromPoints(const std::vector<cv::Point>& point
 
 cv::Size calculateAvgDims(const std::filesystem::path& directory_path)
 {
+	// Get all the image paths in the directory
 	std::vector<std::string> image_paths;
 	cv::glob(directory_path.string() + "/*.png", image_paths);
 
 	if (image_paths.empty()) 
 		throw std::runtime_error("No images found in the directory.");
 
+	// Calculate the average dimensions of the images in the directory
 	int acc_widths = 0;
 	int acc_heights = 0;
 	std::vector<cv::Mat> images;
@@ -262,6 +265,7 @@ cv::Size calculateAvgDims(const std::filesystem::path& directory_path)
 	};
 }
 
+// Reshape all the images in the vector to the same dimensions
 void reshape2sameDim(std::vector<cv::Mat>& clustered_imgs_by_intensity,const cv::Size& avg_dim)
 {
 	for (auto& img : clustered_imgs_by_intensity) 
@@ -277,7 +281,7 @@ double euclidean_distance(const cv::Point& a, const cv::Point& b)
 std::vector<cv::Point> filterPointsByMinDistance(std::vector<cv::Point>& points, double min_distance)
 {
 	// Sort the points by their coordinates
-	std::sort(points.begin(), points.end(), [](const cv::Point& a, const cv::Point& b)
+	std::ranges::sort(points, [](const cv::Point& a, const cv::Point& b)
 	{
 		return a.x < b.x || (a.x == b.x && a.y < b.y);
 	});
@@ -287,6 +291,7 @@ std::vector<cv::Point> filterPointsByMinDistance(std::vector<cv::Point>& points,
 	for (const cv::Point& point : points)
 	{
 		bool too_close = false;
+
 		//Check if the point is too close to any previously selected points
 		for (const cv::Point& selected_point : selected_points)
 		{
@@ -296,6 +301,7 @@ std::vector<cv::Point> filterPointsByMinDistance(std::vector<cv::Point>& points,
 				break;
 			}
 		}
+
 		// If the point is not too close to any previously selected points, select it
 		if (!too_close)
 			selected_points.push_back(point);
@@ -305,7 +311,7 @@ std::vector<cv::Point> filterPointsByMinDistance(std::vector<cv::Point>& points,
 }
 
 
-
+// Function to list all the directories in a given directory
 void listDirectories(const std::filesystem::path& directory_path, std::vector<std::string>& final_paths)
 {
 	bool isLeaf = true;
@@ -335,7 +341,7 @@ void drawRectangles(cv::Mat& src_img_drawing, const std::vector<std::pair<cv::Re
 		const cv::Rect& roi = roi_label.first;
 		const std::string& label = roi_label.second;
 
-		// Disegna il rettangolo sull'immagine solo se l'etichetta è "TP"
+		// Disegna il rettangolo sull'immagine solo se l'etichetta Ã¨ "TP"
 		if (label == "TP")
 			cv::rectangle(src_img_drawing, roi, color, thickness);
 		
@@ -344,9 +350,9 @@ void drawRectangles(cv::Mat& src_img_drawing, const std::vector<std::pair<cv::Re
 
 
 /*******************************************
-*   OpenCV UTILITY functions	           *
+*        OpenCV UTILITY functions	       *
 ********************************************
----------------------------------------------*/
+*/
 
 // wrapper that adapts cv::imshow to the current screen
 void imshow(const std::string winname, cv::InputArray arr, bool wait, float scale)
