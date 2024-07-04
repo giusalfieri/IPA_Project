@@ -69,6 +69,8 @@ The aim of this project is to develop an automated system for detecting aircraft
     ./aircraft_detection_project training_phase extractTemplates
     ```
 
+---
+
 ## ➡️ ✅ ➡️ ✅ Workflow Steps 
 
 ### 1. Training Phase
