@@ -38,6 +38,7 @@ import os
 from pathlib import Path
 import sys
 
+# Questi sono i path sul mio pc (Paolo)
 sco_file = Path(r'D:\IPA\Sources\IPA_Project-main\src\false_positive.txt')
 csv_file = Path(r'D:\IPA\Sources\IPA_Project-main\src\roi_label_pairs.csv')
 output_file = Path(r'D:\IPA\Sources\IPA_Project-main\src\output.csv')
