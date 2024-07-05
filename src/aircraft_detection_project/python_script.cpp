@@ -45,10 +45,6 @@ os.environ['SRC_DIR_PATH'] = ')" + srcDirPath + R"('
 SRC_DIR_PATH = os.getenv('SRC_DIR_PATH', '.')
 print(f'SRC_DIR_PATH: {SRC_DIR_PATH}')
 
-import pandas as pd
-import matplotlib.pyplot as plt
-
-
 # Carica il file CSV
 file_path = '/mnt/data/tuo_file.csv'
 data = pd.read_csv(file_path, header=None, names=['label', 'score'])
