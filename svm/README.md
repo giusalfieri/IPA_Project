@@ -62,4 +62,15 @@ This guide will help you install and run the `ucasML` program on Ubuntu. Follow 
    sudo apt install <missing-library>
    ```
 
+## Running the Program
+
+Once all dependencies are resolved, you can run the ucasML program from the bin directory:
+
+   ```sh
+   ./ucasML
+   ```
+
+
+
+
 
