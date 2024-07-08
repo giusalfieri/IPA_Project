@@ -31,7 +31,7 @@ The aim of this project is to develop an automated system for detecting aircraft
 ## ⚙️ Features
 
 > [!NOTE]  
-> For a detailed description of design choices taken during projecy developemnt, see [project_report.pdf](doc/project_proposal/main.pdf).
+> For a detailed description of design choices taken, see [project_report.pdf](doc/project_proposal/main.pdf).
 
 - **Training Phase:** Extract data from CSV for SVM training.
 - **Template Extraction:** Extract templates from the dataset.
