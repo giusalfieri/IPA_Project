@@ -2,7 +2,9 @@
 
 This guide will help you install and run the `ucasML` program on Ubuntu. Follow the steps below to ensure all dependencies are met and the program runs successfully.
 
-> **⚠️ Caution:** The `ucasML` program is designed to be run on a Linux system. Ensure you are using a compatible Linux distribution.
+
+> [!IMPORTANT]  
+> The `ucasML` program is designed to be run on a Linux system. Ensure you are using a compatible Linux distribution.
 
 ## Prerequisites
 
