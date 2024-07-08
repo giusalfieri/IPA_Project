@@ -28,17 +28,21 @@ This guide will help you install and run the `ucasML` program on Ubuntu. Follow 
    chmod +x ucasML
    ```
 
-Set the Library Path Permanently
+3. **Set the Library Path Permanently**
 
-To make the library path setting permanent, you need to add the library path to your .bashrc file.
+   To make the library path setting permanent, you need to add the library path to your .bashrc file.
 
    ```sh
    nano ~/.bashrc
    ```
 
-Add the following line at the end of the file:
+   Add the following line at the end of the file:
 
    ```sh
    export LD_LIBRARY_PATH=/home/your-username/Desktop/SVM/opencv_libs_ucasML:$LD_LIBRARY_PATH
    ```
-  
+   Save the file and exit the text editor. Then, apply the changes:
+   ```sh
+   source ~/.bashrc
+   ```
+
