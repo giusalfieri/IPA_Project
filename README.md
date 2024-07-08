@@ -39,7 +39,7 @@ The aim of this project is to develop an automated system for detecting aircraft
 - **Performance Evaluation:** Evaluate the performance of the classifier.
 
 > [!NOTE]  
-> For a detailed description, see project_report.pdf inside doc folder.
+> For a detailed description, see [project_report.pdf](project_report.pdf).
 
 ---
 
