@@ -28,7 +28,7 @@ The aim of this project is to develop an automated system for detecting aircraft
 
 ---
 
-## ⚙️ Features
+## Features ⚙️
 
 > [!NOTE]  
 > For a detailed description of the underlying ***ratio*** of design choices taken, see [project_report.pdf](doc/project_proposal/main.pdf).
@@ -43,7 +43,7 @@ The aim of this project is to develop an automated system for detecting aircraft
 
 ---
 
-## 📦 Dependencies
+## Dependencies 📦
 (Section to be completed)
 
 Ensure you have the following dependencies installed on your system:
@@ -56,7 +56,7 @@ Ensure you have the following dependencies installed on your system:
 > Make sure Python is installed system wide (i.e ....).
 
 ---
-## 🛠️ Installation 
+## Installation 🛠️
 
 1. **Clone the repository:**
     ```sh
@@ -91,7 +91,7 @@ Ensure you have the following dependencies installed on your system:
 
 ---
 
-## ➡️ ✅ ➡️ ✅ Workflow Steps 
+## Workflow Steps ➡️ ✅ ➡️ ✅
 
 ### 1. Training Phase
 Initiate the training phase for an SVM model by extracting data from a CSV file.
@@ -100,7 +100,7 @@ Initiate the training phase for an SVM model by extracting data from a CSV file.
 ```
 ---
 
-##  👥 Contributors
+## Contributors 👥
 
 | Nome              |  GitHub                                               |
 |-------------------|-------------------------------------------------------|
@@ -113,7 +113,7 @@ Initiate the training phase for an SVM model by extracting data from a CSV file.
 ---
 
 
-##  📜 License
+## License 📜
 
 This project is licensed under the MIT License. See the [LICENSE](License.txt) file for details.
 
