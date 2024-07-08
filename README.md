@@ -53,7 +53,7 @@ Ensure you have the following dependencies installed on your system:
 - **Python 3.x**
 
 > [!IMPORTANT]  
-> Make sure Puthon is installed system wide (i.e ....).
+> Be 100% sure Python is installed system wide (i.e ....).
 
 ---
 ## 🛠️ Installation 
