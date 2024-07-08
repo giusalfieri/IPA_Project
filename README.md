@@ -50,7 +50,7 @@ Ensure you have the following dependencies installed on your system:
 
 - [**OpenCV**](https://opencv.org/releases/)
 - [**CMake**](https://cmake.org/): For building the project. 
-- **Python 3.x**
+- [**Python 3.x**](https://www.python.org/)
 
 > [!IMPORTANT]  
 > Make sure Python is installed system wide (i.e ....).
