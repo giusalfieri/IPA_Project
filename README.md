@@ -9,7 +9,7 @@ This project focuses on detecting aircraft in satellite images using various mac
 
 ---
 
-##  Table of Contents 📚
+## 📚 Table of Contents 
 
 - [Introduction](#introduction)
 - [Features](#features)
