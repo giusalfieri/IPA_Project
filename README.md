@@ -53,7 +53,7 @@ Ensure you have the following dependencies installed on your system:
 - **Python 3.x**
 
 > [!IMPORTANT]  
-> Be 100% sure Python is installed system wide (i.e ....).
+> Make sure Python is installed system wide (i.e ....).
 
 ---
 ## 🛠️ Installation 
