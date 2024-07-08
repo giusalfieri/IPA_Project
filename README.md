@@ -96,7 +96,7 @@ Ensure you have the following dependencies installed on your system:
 ### 1. Training Phase
 Initiate the training phase for an SVM model by extracting data from a CSV file.
 ```sh
-./aircraft_detection training_phase
+./aircraft_detection_project training_phase
 ```
 ---
 
