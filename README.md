@@ -43,7 +43,7 @@ The aim of this project is to develop an automated system for detecting aircraft
 
 Ensure you have the following dependencies installed on your system:
 
-- **OpenCV:** For image processing.
+- **OpenCV:** [OpenCV](https://opencv.org/).
 - **CMake:** For building the project.
 - **Python 3.x**
   
