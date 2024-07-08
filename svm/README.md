@@ -41,8 +41,25 @@ This guide will help you install and run the `ucasML` program on Ubuntu. Follow 
    ```sh
    export LD_LIBRARY_PATH=/home/your-username/Desktop/SVM/opencv_libs_ucasML:$LD_LIBRARY_PATH
    ```
+   
    Save the file and exit the text editor. Then, apply the changes:
+
+   
    ```sh
    source ~/.bashrc
    ```
+
+4. **Check and Install Missing Dependencies**
+
+   Use ldd to check for any missing dependencies:
+
+   ```sh
+   ldd ./ucasML
+   ```
+   Install any missing libraries as indicated by the ldd output. For example, if a library is missing, you can typically install it using apt:
+
+   ```sh
+   sudo apt install <missing-library>
+   ```
+
 
