@@ -40,7 +40,7 @@ The aim of this project is to develop an automated system for detecting aircraft
 
 ---
 
-##  📦  Dependencies
+## 📦 Dependencies
 
 Ensure you have the following dependencies installed on your system:
 
