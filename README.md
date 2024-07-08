@@ -30,6 +30,9 @@ The aim of this project is to develop an automated system for detecting aircraft
 
 ## ⚙️ Features
 
+> [!NOTE]  
+> For a detailed description, see [project_report.pdf](doc/project_proposal/main.pdf).
+
 - **Training Phase:** Extract data from CSV for SVM training.
 - **Template Extraction:** Extract templates from the dataset.
 - **Clustering:** Perform K-Means clustering based on size and intensity.
@@ -37,9 +40,6 @@ The aim of this project is to develop an automated system for detecting aircraft
 - **Eigenplanes Generation:** Generate eigenplanes for the clustered images.
 - **Classification:** Classify images using SVM and HOG features.
 - **Performance Evaluation:** Evaluate the performance of the classifier.
-
-> [!NOTE]  
-> For a detailed description, see [project_report.pdf](doc/project_proposal/main.pdf).
 
 ---
 
