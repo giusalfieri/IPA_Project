@@ -38,10 +38,13 @@ The aim of this project is to develop an automated system for detecting aircraft
 - **Classification:** Classify images using SVM and HOG features.
 - **Performance Evaluation:** Evaluate the performance of the classifier.
 
+> [!NOTE]  
+> For a detailed description, see project_report.pdf inside doc folder.
+
 ---
 
 ## 📦 Dependencies
-
+(Section to be completed)
 Ensure you have the following dependencies installed on your system:
 
 - [**OpenCV**](https://opencv.org/releases/)
