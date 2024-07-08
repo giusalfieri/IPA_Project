@@ -45,12 +45,15 @@ The aim of this project is to develop an automated system for detecting aircraft
 
 ## 📦 Dependencies
 (Section to be completed)
+
 Ensure you have the following dependencies installed on your system:
 
 - [**OpenCV**](https://opencv.org/releases/)
 - [**CMake**](https://cmake.org/): For building the project. 
 - **Python 3.x**
-  
+
+  > [!IMPORTANT]  
+  > Make sure Puthon is installed system wide (i.e ....).
 
 ---
 ## 🛠️ Installation 
