@@ -13,6 +13,7 @@ This project focuses on detecting aircraft in satellite images using various mac
 
 - [Introduction](#introduction)
 - [Features](#features)
+- [Dependencies](#dependencies)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Workflow Steps](#workflow-steps)
@@ -38,6 +39,28 @@ The aim of this project is to develop an automated system for detecting aircraft
 
 ---
 
+## 🛠️ Dependencies
+
+Ensure you have the following dependencies installed on your system:
+
+- **OpenCV:** For image processing.
+- **CMake:** For building the project.
+- **Python 3.x** and the following Python packages:
+    - numpy
+    - scipy
+    - scikit-learn
+    - matplotlib
+    - pandas
+- **Additional libraries:**
+    - libgtkglext1
+    - libdc1394-22
+
+You can install the required Python packages using:
+```sh
+pip install -r requirements.txt
+```
+
+---
 ## 🛠️ Installation 
 
 1. **Clone the repository:**
