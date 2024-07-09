@@ -14,7 +14,7 @@ This project focuses on detecting aircraft in satellite images using various mac
 - [Introduction](#introduction)
 - [Features](#features)
 - 📦[Dependencies](#dependencies)
-- 🛠️[Installation](#installation)
+- 🔨[Installation](#installation)
 - [Usage](#usage)
 - ➡️ ✅ ➡️ ✅[Workflow Steps](#workflow-steps)
 - 👥[Contributors](#contributors)
@@ -58,7 +58,7 @@ Ensure you have the following dependencies installed on your system:
 
 ---
 
-## <a name="installation">🛠️ Installation</a>
+## <a name="installation">🔨 Installation</a>
 
 1. **Clone the repository:**
     ```sh
