@@ -49,22 +49,12 @@ The aim of this project is to develop an automated system for detecting aircraft
 
 Ensure you have the following dependencies installed on your machine:
 
+### Click the badges below to visit their official websites:
+
 [![OpenCV](https://img.shields.io/badge/-OpenCV-black?style=for-the-badge&logoColor=white&logo=opencv&color=1C77C3)](https://opencv.org/releases/)
 [![CMake](https://img.shields.io/badge/-CMake-black?style=for-the-badge&logoColor=white&logo=cmake&color=4CAF50)](https://cmake.org/)
 [![Python 3.x](https://img.shields.io/badge/-Python%203.x-black?style=for-the-badge&logoColor=white&logo=python&color=DA5B53)](https://www.python.org/)
-
-<div style="text-align: center; font-size: 16px;">
-    <p>Clicca sui badge per visitare i siti ufficiali:</p>
-    <a href="https://opencv.org/" style="text-decoration: none;">
-        <img src="https://img.shields.io/badge/-OpenCV-black?style=for-the-badge&logoColor=white&logo=opencv&color=4682B4" alt="OpenCV">
-    </a>
-    <a href="https://cmake.org/" style="text-decoration: none;">
-        <img src="https://img.shields.io/badge/-CMake-black?style=for-the-badge&logoColor=white&logo=cmake&color=6B8E23" alt="CMake">
-    </a>
-    <a href="https://www.python.org/" style="text-decoration: none;">
-        <img src="https://img.shields.io/badge/-Python%203.x-black?style=for-the-badge&logoColor=white&logo=python&color=CD5C5C" alt="Python">
-    </a>
-</div>
+  
 
 
 > [!IMPORTANT]  
