@@ -16,9 +16,9 @@ This project focuses on detecting aircraft in satellite images using various mac
 - 📦[Dependencies](#dependencies)
 - [Installation](#installation)
 - [Usage](#usage)
-- [Workflow Steps](#workflow-steps)
-- [Contributors](#contributors)
-- [License](#license)
+- ➡️ ✅ ➡️ ✅[Workflow Steps](#workflow-steps)
+- 👥[Contributors](#contributors)
+- 📜[License](#license)
 
 ---
 
@@ -57,7 +57,8 @@ Ensure you have the following dependencies installed on your system:
 > Make sure Python is installed system wide (i.e ....).
 
 ---
-## Installation 🛠️
+
+## <a name="installation">🛠️ Installation</a>
 
 1. **Clone the repository:**
     ```sh
@@ -92,7 +93,7 @@ Ensure you have the following dependencies installed on your system:
 
 ---
 
-## Workflow Steps ➡️ ✅ ➡️ ✅
+## <a name="workflow-steps">➡️ ✅ ➡️ ✅ Workflow Steps</a>
 
 ### 1. Training Phase
 Initiate the training phase for an SVM model by extracting data from a CSV file.
@@ -101,7 +102,7 @@ Initiate the training phase for an SVM model by extracting data from a CSV file.
 ```
 ---
 
-## Contributors 👥
+## <a name="contributors">👥 Contributors</a>
 
 | Nome              |  GitHub                                               |
 |-------------------|-------------------------------------------------------|
@@ -113,8 +114,7 @@ Initiate the training phase for an SVM model by extracting data from a CSV file.
 
 ---
 
-
-## License 📜
+## <a name="license">📜 License</a> 
 
 This project is licensed under the MIT License. See the [LICENSE](License.txt) file for details.
 
