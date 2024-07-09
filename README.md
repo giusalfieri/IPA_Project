@@ -28,7 +28,7 @@ The aim of this project is to develop an automated system for detecting aircraft
 
 ---
 
-## Features ⚙️
+## <a name="features">⚙️ Features</a>
 
 > [!NOTE]  
 > For a detailed description of the underlying ***ratio*** of design choices taken, see [project_report.pdf](doc/project_proposal/main.pdf).
