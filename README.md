@@ -13,7 +13,7 @@ This project focuses on detecting aircraft in satellite images using various mac
 
 - [Introduction](#introduction)
 - [Features](#features)
-- [Dependencies](#dependencies)
+- 📦[Dependencies](#dependencies)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Workflow Steps](#workflow-steps)
@@ -43,7 +43,8 @@ The aim of this project is to develop an automated system for detecting aircraft
 
 ---
 
-## Dependencies 📦
+## <a name="dependencies">📦 Dependencies</a>
+
 (Section to be completed)
 
 Ensure you have the following dependencies installed on your system:
