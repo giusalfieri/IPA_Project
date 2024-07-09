@@ -50,8 +50,8 @@ The aim of this project is to develop an automated system for detecting aircraft
 Ensure you have the following dependencies installed on your machine:
 
 [![OpenCV](https://img.shields.io/badge/-OpenCV-black?style=for-the-badge&logoColor=white&logo=opencv&color=0000FF)](https://opencv.org/releases/)
-[![CMake](https://img.shields.io/badge/-CMake-black?style=for-the-badge&logoColor=white&logo=cmake&color=6B8E23)](https://cmake.org/)
-[![Python 3.x](https://img.shields.io/badge/-Python%203.x-black?style=for-the-badge&logoColor=white&logo=python&color=4CAF50)](https://www.python.org/)
+[![CMake](https://img.shields.io/badge/-CMake-black?style=for-the-badge&logoColor=white&logo=cmake&color=4CAF50)](https://cmake.org/)
+[![Python 3.x](https://img.shields.io/badge/-Python%203.x-black?style=for-the-badge&logoColor=white&logo=python&color=DA5B53)](https://www.python.org/)
 
 
 
