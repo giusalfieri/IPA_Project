@@ -103,8 +103,7 @@ std::vector<std::pair<cv::Rect, std::string>> labelRoisWithMaxIouAboveThreshold(
             }
         }
 
-        // FOR DEBUG PURPOSES
-        std::cout << "\nmax_iou: " << max_iou << "\n";
+        
         // Assign label only if a valid ROI was found
         if (found_valid_roi)
         {
