@@ -51,7 +51,7 @@ Ensure you have the following dependencies installed on your machine:
 
 
 [![OpenCV](https://img.shields.io/badge/-OpenCV-black?style=for-the-badge&logoColor=white&logo=opencv&color=blue)](https://opencv.org/releases/)
-[![CMake](https://img.shields.io/badge/-CMake-black?style=for-the-badge&logoColor=white&logo=cmake&color=lime)](https://cmake.org/)
+[![CMake](https://img.shields.io/badge/-CMake-black?style=for-the-badge&logoColor=white&logo=cmake&color=4CAF50)](https://cmake.org/)
 [![Python 3.x](https://img.shields.io/badge/-Python%203.x-black?style=for-the-badge&logoColor=white&logo=python&color=yellow)](https://www.python.org/)
 [![C++20](https://img.shields.io/badge/-C++20-black?style=for-the-badge&logo=c%2B%2B&logoColor=white&color=red)](https://isocpp.org/)
 
