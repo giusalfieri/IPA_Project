@@ -3,7 +3,7 @@
 > [!IMPORTANT]
 > The `ucasML` program is designed to be run on a Linux system. Ensure you are using a compatible Linux distribution.
 
-This guide will help you install and run the `ucasML` program on **Ubuntu**. 
+This guide will help you install and run the `ucasML` program on **Ubuntu** (and other distros). 
 
 Follow the steps below to ensure all dependencies are met and the program runs successfully.
 
@@ -34,19 +34,19 @@ Follow the steps below to ensure all dependencies are met and the program runs s
 
 3. **Set the Library Path Permanently**
 
-   To make the library path setting permanent, you need to add the library path to your .bashrc file.
+   To make the library path setting permanent, you need to add the library path to your .bashrc (or .zshrc for zsh shell, or the config file of the shell you are using) file; here is done for bash shell:
 
    ```sh
    nano ~/.bashrc
    ```
 
-   Add the following line at the end of the file:
+   Add the following line at the end of the file (here ucasML is the name of the folder of the extracted UcasML package, lib is the folder for extracted openCV ucasML, change accordingly if needed):
 
    ```sh
-   export LD_LIBRARY_PATH=/home/your-username/Desktop/SVM/opencv_libs_ucasML:$LD_LIBRARY_PATH
+   export LD_LIBRARY_PATH=/home/your-username/Desktop/'ucasML package'/lib:$LD_LIBRARY_PATH
    ```
    
-   Save the file and exit the text editor. Then, apply the changes:
+   Save the file and exit the text editor. Then, apply the changes (.bashrc for bash config file, change accordingly if using a different shell):
 
    
    ```sh
