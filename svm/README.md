@@ -25,10 +25,10 @@ Follow the steps below to ensure all dependencies are met and the program runs s
    
 2. **Make the ucasML Executable**
 
-   Navigate to the bin directory inside the SVM folder and make the ucasML file executable:
+   Navigate to the bin directory inside the SVM folder and make the ucasML file executable (here ucasML is the name of the folder of the extracted ucasML package, change if needed):
 
    ```sh
-   cd SVM/bin
+   cd 'ucasML package'/bin
    chmod +x ucasML
    ```
 
@@ -40,7 +40,7 @@ Follow the steps below to ensure all dependencies are met and the program runs s
    nano ~/.bashrc
    ```
 
-   Add the following line at the end of the file (here ucasML is the name of the folder of the extracted UcasML package, lib is the folder for extracted openCV ucasML, change accordingly if needed):
+   Add the following line at the end of the file (lib is the folder for extracted openCV ucasML, change accordingly if needed):
 
    ```sh
    export LD_LIBRARY_PATH=/home/your-username/Desktop/'ucasML package'/lib:$LD_LIBRARY_PATH
