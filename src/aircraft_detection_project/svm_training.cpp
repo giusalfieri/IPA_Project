@@ -33,8 +33,10 @@ bool is_significantly_overlapping(const cv::Rect& box1, const cv::Rect& box2, do
 // =============================================================================
 
 // Extracts HOG features from images in the training dataset and saves them to CSV files for SVM training
-void extract_csv_for_svm_training()
+void extract_csv_for_svm_cross_validation()
 {
+
+    /*
     constexpr int image_width = 4800;
     constexpr int image_height = 2703;
     constexpr int num_false_positives_per_img = 24;
@@ -59,6 +61,30 @@ void extract_csv_for_svm_training()
                 std::cerr << "Failed to process image and annotations for: " << image_file_path << "\n";
         }
     }
+    */
+
+    std::vector<std::string> dataset_img_paths;
+    globFiles(TRAINING_DATASET_PATH, "/*.jpg", dataset_img_paths);
+
+    std::vector<std::string> yolo_labels_paths;
+    globFiles(TRAINING_DATASET_PATH, "/*.txt", yolo_labels_paths);
+
+
+
+    std::vector<cv::Mat> src_imgs;
+    readImages(dataset_img_paths, src_imgs, cv::IMREAD_GRAYSCALE);
+
+
+    
+    for(const auto & src_img_gray:src_imgs)
+	{
+        // Perform template matching 
+        std::vector<cv::Point> max_corr_points = templateMatching(src_img_gray);
+
+
+	}
+    
+   
 
     // Create output directory for SVM training input
     const std::filesystem::path output_dir = createDirectory(std::filesystem::path(SRC_DIR_PATH), "svm_training_input");
@@ -77,6 +103,7 @@ void extract_csv_for_svm_training()
     {
         std::cerr << "Error writing to CSV file: " << e.what() << "\n";
     }
+
 }
 
 
