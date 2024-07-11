@@ -84,7 +84,7 @@ void extract_csv_for_svm_cross_validation()
     std::vector<std::vector<float>> true_positive_hog_features;
     std::vector<std::vector<float>> false_positive_hog_features;
 
-    constexpr auto dataset_training_cardinality = dataset_img_paths.size();
+    const auto dataset_training_cardinality = dataset_img_paths.size();
 
     for (size_t i=0;i< dataset_training_cardinality;i++)
 	{
