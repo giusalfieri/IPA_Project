@@ -3,9 +3,13 @@
 > [!IMPORTANT]
 > The `ucasML` program is designed to be run on a Linux system. Ensure you are using a compatible Linux distribution.
 
-This guide will help you install and run the `ucasML` program on **Ubuntu** (and other distros). 
+This guide will help you install and run the `ucasML` program on **Ubuntu** (and other distros as well, has been tested on Kali too). 
 
 Follow the steps below to ensure all dependencies are met and the program runs successfully.
+
+![Ubuntu 24.04](https://img.shields.io/badge/Ubuntu-24.04-E95420?logo=ubuntu&logoColor=white&style=for-the-badge)
+![Kali Linux 2024.1](https://img.shields.io/badge/Kali_Linux-2024.1-0057A4?logo=kalilinux&logoColor=white&style=for-the-badge)
+
 
 
 
