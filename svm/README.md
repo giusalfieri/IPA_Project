@@ -60,7 +60,7 @@ Follow the steps below to ensure all dependencies are met and the program runs s
    ```sh
    ldd ./ucasML
    ```
-   Install any missing libraries as indicated by the ldd output. For example, if a library is missing, you can typically install it installing the corresponding package using apt (or the packet manager of the distro being used):
+   Install any missing libraries as indicated by the ldd output. For example, if a library is missing, you can typically install it by installing the corresponding package using apt (or the package manager of the distro being used):
 
    ```sh
    sudo apt install <missing-library>
