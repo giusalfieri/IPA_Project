@@ -70,7 +70,7 @@ Follow the steps below to ensure all dependencies are met and the program runs s
    sudo apt install <missing-library>
    ```
 
-Please note that in order for proper functionality, some changes may be necessary. `libjpeg8` needs to be installed, but it is obsolete and has been substituted by `libjpegturbo` packages.
+Please note that to ensure proper functionality, some changes may be necessary. `libjpeg8` needs to be installed, but it is obsolete and has been substituted by `libjpegturbo` packages.
 
 If any problems persist, consider removing conflicting packages and installing `libjpeg8`. On Kali Linux, this translates to removing the `libturbojpeg0` package and installing the `libjpeg8` package (similar steps may apply to Debian as well, though this has not been tested extensively).
 
