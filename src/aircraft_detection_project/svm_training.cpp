@@ -148,7 +148,6 @@ void extract_csv_for_svm_cross_validation()
 
 
         // std::vector<std::pair<cv::Rect, std::string>> ---> std::vector<cv::Rect>
-        // These vectors will contain the ROIs for the true positives and false positives of all training images
         std::vector<cv::Rect> tp_rois = extractRois(rois_labels_for_points_inside_yolo);
        
         std::vector<std::vector<float>> new_tp_hog_features = hog_features_extraction(tp_rois, src_imgs_gray[i]);
