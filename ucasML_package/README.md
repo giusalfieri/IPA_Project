@@ -82,7 +82,7 @@ sudo ln -s /usr/lib/x86_64-linux-gnu/libdc1394.so.25 /usr/lib/x86_64-linux-gnu/l
 
 ## Running the Program
 
-Once all dependencies are resolved, you can run the ucasML program from the bin directory:
+Once all dependencies are resolved, you can run the ucasML program from the `bin` directory:
 
    ```sh
    ./ucasML
