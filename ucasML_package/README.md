@@ -29,7 +29,7 @@ Follow the steps below to ensure all dependencies are met and the program runs s
    
 2. **Make the ucasML Executable**
 
-   Navigate to the bin directory inside the SVM folder and make the ucasML file executable (here ucasML is the name of the folder of the extracted ucasML package, change if needed):
+   Navigate to the bin directory inside the ucasML_package folder and make the ucasML file executable (here ucasML is the name of the folder of the extracted ucasML package, change if needed):
 
    ```sh
    cd ucasML_package/bin
