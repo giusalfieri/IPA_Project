@@ -29,7 +29,7 @@ Follow the steps below to ensure all dependencies are met and the program runs s
    
 2. **Make the ucasML Executable**
 
-   First of all, extract opencv_libs_ucasML.zip in a folder. 
+   Proceed to extract opencv_libs_ucasML.zip in a folder. 
 
    Navigate to the bin directory inside the extracted folder and make the ucasML file executable (here ucasML is the name of the folder of the extracted ucasML package, change if needed):
 
