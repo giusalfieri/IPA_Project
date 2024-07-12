@@ -40,7 +40,7 @@ bool is_significantly_overlapping(const cv::Rect& box1, const cv::Rect& box2, do
 void extract_csv_for_svm_cross_validation()
 {
 
-    /*
+    /* !!!!!OLD CODE!!!!!!
     constexpr int image_width = 4800;
     constexpr int image_height = 2703;
     constexpr int num_false_positives_per_img = 24;
@@ -78,14 +78,16 @@ void extract_csv_for_svm_cross_validation()
     std::vector<cv::Mat> src_imgs_gray;
     readImages(dataset_img_paths, src_imgs_gray, cv::IMREAD_GRAYSCALE);
 
-
+   
 
     // Qui devono essere disponibili due vettori di HOG features, uno per i true positive e uno per i false positive
     std::vector<std::vector<float>> true_positive_hog_features;
     std::vector<std::vector<float>> false_positive_hog_features;
 
     const auto dataset_training_cardinality = dataset_img_paths.size();
-
+    const auto buffer_size = 100;
+   
+    
     for (size_t i=0;i< dataset_training_cardinality;i++)
 	{
 
@@ -103,7 +105,7 @@ void extract_csv_for_svm_cross_validation()
 
 
         // Filter outside yolo points by minimum distance between them
-        std::vector<cv::Point> max_corr_points_out_yolo = filterPointsByMinDistance(max_corr_points_outside_yolo, 50);
+        std::vector<cv::Point> max_corr_points_out_yolo = filterPointsByMinDistance(max_corr_points_outside_yolo, 100);
 
 
     	// Associate each YOLO box with the ROIs extracted from the points inside it
@@ -149,11 +151,25 @@ void extract_csv_for_svm_cross_validation()
         // These vectors will contain the ROIs for the true positives and false positives of all training images
         std::vector<cv::Rect> tp_rois = extractRois(rois_labels_for_points_inside_yolo);
        
+        std::vector<std::vector<float>> new_tp_hog_features = hog_features_extraction(tp_rois, src_imgs_gray[i]);
+        std::vector<std::vector<float>> new_fp_hog_features = hog_features_extraction(fp_rois, src_imgs_gray[i]);
 
-       
-        // Extract HOG features for true positives and false positives
-        true_positive_hog_features = hog_features_extraction(tp_rois, src_imgs_gray[i]);
-    	false_positive_hog_features = hog_features_extraction(fp_rois, src_imgs_gray[i]);
+    
+        // N.B buffer_size is an arbitrary buffer chosen to reduce the number of reallocations
+    	// needed when inserting new elements into the vectors. The idea is to reserve 
+    	// slightly more space than necessary to minimize the number of times the vector 
+    	// needs to reallocate memory, which is a costly operation.
+        if (true_positive_hog_features.capacity() < true_positive_hog_features.size() + new_tp_hog_features.size())
+        {
+            true_positive_hog_features.reserve(true_positive_hog_features.size() + new_tp_hog_features.size() + buffer_size);
+        }
+        if (false_positive_hog_features.capacity() < false_positive_hog_features.size() + new_fp_hog_features.size())
+        {
+            false_positive_hog_features.reserve(false_positive_hog_features.size() + new_fp_hog_features.size() + buffer_size);
+        }
+
+        true_positive_hog_features.insert(true_positive_hog_features.end(), new_tp_hog_features.begin(), new_tp_hog_features.end());
+        false_positive_hog_features.insert(false_positive_hog_features.end(), new_fp_hog_features.begin(), new_fp_hog_features.end());
 	}
 
 
@@ -177,20 +193,14 @@ void extract_csv_for_svm_cross_validation()
     {
         std::cerr << "Error writing to CSV file: " << e.what() << "\n";
     }
-
+    
 }
 
 
 
-
-
-
-
-
-
-
-
-
+// =============================================================================
+// FROM HERE !!!!!OLD CODE!!!!!!
+// =============================================================================
 
 
 
@@ -346,8 +356,3 @@ bool is_significantly_overlapping(const cv::Rect& box1, const cv::Rect& box2, do
 
 
 
-// ============================================================================= 
-// =============================================================================
-//                               SVM TESTING 
-// =============================================================================
-// =============================================================================
