@@ -62,7 +62,7 @@ Follow the steps below to ensure all dependencies are met and the program runs s
 
 6. **Check and Install Missing Dependencies**
 
-   Use ldd to check for any missing dependencies:
+   Use `ldd` to check for any missing dependencies:
 
    ```sh
    ldd ./ucasML
