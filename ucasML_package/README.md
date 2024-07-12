@@ -27,7 +27,7 @@ Follow the steps below to ensure all dependencies are met and the program runs s
 2. **Making the `ucasML` File Executable**
 
 
-   Navigate to the `bin` directory inside this folder and make the `ucasML` file executable (here ucasML is the name of the folder of the extracted ucasML package, change if needed):
+   Navigate to the `bin` directory inside the `ucasML_package` directory and make the `ucasML` file executable (here ucasML is the name of the folder of the extracted ucasML package, change if needed):
 
    ```sh
    cd ucasML_package/bin
