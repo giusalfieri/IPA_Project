@@ -38,7 +38,7 @@ Follow the steps below to ensure all dependencies are met and the program runs s
 
    Proceed to extract opencv_libs_ucasML.zip in a folder.
 
-   To make the library path setting permanent, you need to add the library path to your .bashrc (or .zshrc for zsh shell, or the config file of the shell you are using) file; here is done for bash shell:
+   To make the library path setting permanent, you need to add the library path to your `.bashrc` (or `.zshrc` for zsh shell, or the config file of the shell you are using) file; here is done for bash shell:
 
    ```sh
    nano ~/.bashrc
