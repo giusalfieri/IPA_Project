@@ -32,7 +32,7 @@ Follow the steps below to ensure all dependencies are met and the program runs s
    Navigate to the bin directory inside the SVM folder and make the ucasML file executable (here ucasML is the name of the folder of the extracted ucasML package, change if needed):
 
    ```sh
-   cd 'ucasML package'/bin
+   cd ucasML_package/bin
    chmod +x ucasML
    ```
 
@@ -47,7 +47,7 @@ Follow the steps below to ensure all dependencies are met and the program runs s
    Add the following line at the end of the file (lib is the folder for extracted openCV ucasML, change accordingly if needed):
 
    ```sh
-   export LD_LIBRARY_PATH=/home/your-username/Desktop/'ucasML package'/lib:$LD_LIBRARY_PATH
+   export LD_LIBRARY_PATH=/home/your-username/Desktop/ucasML_package/lib:$LD_LIBRARY_PATH
    ```
    
    Save the file and exit the text editor. Then, apply the changes (.bashrc for bash config file, change accordingly if using a different shell):
@@ -69,6 +69,16 @@ Follow the steps below to ensure all dependencies are met and the program runs s
    ```sh
    sudo apt install <missing-library>
    ```
+
+Please note that in order for proper functionality, some changes may be necessary. `libjpeg8` needs to be installed, but it is obsolete and has been substituted by `libjpegturbo` packages.
+
+If any problems persist, consider removing conflicting packages and installing `libjpeg8`. On Kali Linux, this translates to removing the `libturbojpeg0` package and installing the `libjpeg8` package (similar steps may apply to Debian as well, though this has not been tested extensively).
+
+Additionally, further library linking may be required as follows (mandatory on Ubuntu 24.04 and Kali):
+
+```sh
+sudo ln -s /usr/lib/x86_64-linux-gnu/libdc1394.so.25 /usr/lib/x86_64-linux-gnu/libdc1394.so.26
+```
 
 ## Running the Program
 
