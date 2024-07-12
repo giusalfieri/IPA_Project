@@ -28,14 +28,17 @@ Follow the steps below to ensure all dependencies are met and the program runs s
    ```
    
 2. **Make the ucasML Executable**
-   Navigate to the bin directory inside the ucasML_package folder and make the ucasML file executable (here ucasML is the name of the folder of the extracted ucasML package, change if needed):
+
+   First of all, extract opencv_libs_ucasML.zip in a folder. 
+
+   Navigate to the bin directory inside the extracted folder and make the ucasML file executable (here ucasML is the name of the folder of the extracted ucasML package, change if needed):
 
    ```sh
    cd ucasML_package/bin
    chmod +x ucasML
    ```
 
-3. **Set the Library Path Permanently**
+4. **Set the Library Path Permanently**
 
    To make the library path setting permanent, you need to add the library path to your .bashrc (or .zshrc for zsh shell, or the config file of the shell you are using) file; here is done for bash shell:
 
@@ -56,7 +59,7 @@ Follow the steps below to ensure all dependencies are met and the program runs s
    source ~/.bashrc
    ```
 
-4. **Check and Install Missing Dependencies**
+5. **Check and Install Missing Dependencies**
 
    Use ldd to check for any missing dependencies:
 
