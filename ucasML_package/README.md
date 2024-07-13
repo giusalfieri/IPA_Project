@@ -1,5 +1,9 @@
 # ucasML Installation Guide
 
+## Author
+
+This program was developed by [Alessandro Bria](https://github.com/abria), Associate Professor at the University of Cassino.
+
 > [!IMPORTANT]
 > The `ucasML` program is designed to be run on a Linux system. Ensure you are using a compatible Linux distribution.
 
