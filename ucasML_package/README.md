@@ -55,7 +55,7 @@ Follow the steps below to ensure all dependencies are met and the program runs s
    Add the following line at the end of the file:
 
    ```sh
-   export LD_LIBRARY_PATH=/home/your-username/Desktop/ucasML_package/opencv_libs:$LD_LIBRARY_PATH
+   export LD_LIBRARY_PATH=/path/to/ucasML_package/opencv_libs:$LD_LIBRARY_PATH
    ```
    
    Save the file and exit the text editor. Then, apply the changes (.bashrc for bash config file, change accordingly if using a different shell):
