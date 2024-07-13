@@ -8,7 +8,7 @@ This program was developed by [Alessandro Bria](https://github.com/abria), curre
 > The `ucasML` program is designed to be run on a Linux system. Ensure you are using a compatible Linux distribution.
 
 > [!WARNING]
-> All commands have been tested, but anyway, everything you do is "at your own risk".
+> Despite all the following commands have been tested, everything you do is "at your own risk".
 
 This guide will help you install and run the `ucasML` program on **Ubuntu** (and other distros as well, has been tested on Kali too). 
 
