@@ -60,6 +60,7 @@ Follow the steps below to ensure all dependencies are met and the program runs s
    git clone https://github.com/giusalfieri/IPA_Project.git
    cd IPA_Project
    ```
+   
    ---
 2. **Making the `ucasML` file executable**
 
@@ -80,7 +81,6 @@ Follow the steps below to ensure all dependencies are met and the program runs s
    > [!TIP]  
    > After the extraction, you can delete [opencv_libs.zip](./opencv_libs.zip).
 
-   
    ---
 5. **Set the Library Path Permanently**
 
@@ -97,7 +97,7 @@ Follow the steps below to ensure all dependencies are met and the program runs s
    ```
    
    > [!IMPORTANT]
-   >Replace `/path/to/ucasML_package/opencv_libs` with the actual path to the `opencv_libs` directory on your system. For example, if you have extracted the package to your home directory, the line above would look like this:
+   > Replace `/path/to/ucasML_package/opencv_libs` with the actual path to the `opencv_libs` directory on your system. For example, if you have extracted the package to your home directory, the line above would look like this:
    > ```sh 
    > export LD_LIBRARY_PATH=/home/your-username/ucasML_package/opencv_libs:$LD_LIBRARY_PATH
 
@@ -122,14 +122,14 @@ Follow the steps below to ensure all dependencies are met and the program runs s
    ```
    
    > [!NOTE]
-   >Additionally, it may be necessary to create **symbolic links** to resolve dependencies required by the application. For example, on Ubuntu 24.04 and Kali, you need to create the following symbolic link:
+   > Additionally, it may be necessary to create **symbolic links** to resolve dependencies required by the application. For example, on Ubuntu 24.04 and Kali, you need to create the following symbolic link:
    > ```sh 
    > sudo ln -s /usr/lib/x86_64-linux-gnu/libdc1394.so.25 /usr/lib/x86_64-linux-gnu/libdc1394
 
    > [!NOTE]
-   >`libjpeg8` is required by the application, but it is obsolete and has been substituted by `libjpegturbo` packages. Some changes may be necessary.
+   > `libjpeg8` is required by the application, but it is obsolete and has been substituted by `libjpegturbo` packages. Some changes may be necessary.
    >
-   >If any problems persist, consider removing conflicting packages and installing `libjpeg8`. 
+   > If any problems persist, consider removing conflicting packages and installing `libjpeg8`. 
 
 
 ## 🚀 Running the Program 
