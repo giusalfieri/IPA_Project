@@ -78,6 +78,7 @@ Follow the steps below to ensure all dependencies are met and the program runs s
    
    > [!TIP]
    > After the extraction, you can delete [opencv_libs.zip](./opencv_libs.zip).
+   
    ---
 4. **Set the Library Path Permanently**
 
