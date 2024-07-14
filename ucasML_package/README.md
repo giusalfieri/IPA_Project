@@ -74,15 +74,15 @@ Follow the steps below to ensure all dependencies are met and the program runs s
 
    ---
    
-4. **Unzip OpenCV Precompiled .so Libraries**
+3. **Unzip OpenCV Precompiled .so Libraries**
    
    Extract the content of [opencv_libs.zip](./opencv_libs.zip) into the [opencv_libs](./opencv_libs) folder.
    
-     > [!TIP]
-     > After the extraction, you can delete [opencv_libs.zip](./opencv_libs.zip).
+   > [!TIP]
+   > After the extraction, you can delete [opencv_libs.zip](./opencv_libs.zip).
 
    
-5. **Set the Library Path Permanently**
+4. **Set the Library Path Permanently**
 
    To make the library path setting permanent, you need to add the library path to your `.bashrc` file (`.zshrc` for zsh shell, or the config file of the shell you are using):
 
@@ -108,7 +108,7 @@ Follow the steps below to ensure all dependencies are met and the program runs s
    source ~/.bashrc
    ```
    ---
-6. **Check and Install Missing Dependencies**
+5. **Check and Install Missing Dependencies**
 
    Use `ldd` to check for any missing dependencies:
 
