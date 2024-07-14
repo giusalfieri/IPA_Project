@@ -74,7 +74,7 @@ Follow the steps below to ensure all dependencies are met and the program runs s
 
    ---
    
-3. **Unzip OpenCV Precompiled .so Libraries**
+   **Unzip OpenCV Precompiled .so Libraries**
    
    Extract the content of [opencv_libs.zip](./opencv_libs.zip) into the [opencv_libs](./opencv_libs) folder.
    
