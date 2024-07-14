@@ -74,12 +74,12 @@ chmod +x ucasML
 
 ---
    
-**Unzip OpenCV Precompiled .so Libraries**
+   **Unzip OpenCV Precompiled .so Libraries**
    
-Extract the content of [opencv_libs.zip](./opencv_libs.zip) into the [opencv_libs](./opencv_libs) folder.
+   Extract the content of [opencv_libs.zip](./opencv_libs.zip) into the [opencv_libs](./opencv_libs) folder.
    
-> [!TIP]
-> After the extraction, you can delete [opencv_libs.zip](./opencv_libs.zip).
+   > [!TIP]
+   > After the extraction, you can delete [opencv_libs.zip](./opencv_libs.zip).
 
    
 **Set the Library Path Permanently**
