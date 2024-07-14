@@ -81,7 +81,7 @@ Follow the steps below to ensure all dependencies are met and the program runs s
    > [!TIP]
    > After the extraction, you can delete [opencv_libs.zip](./opencv_libs.zip).
 
-   ---
+   
 5. **Set the Library Path Permanently**
 
    To make the library path setting permanent, you need to add the library path to your `.bashrc` file (`.zshrc` for zsh shell, or the config file of the shell you are using):
