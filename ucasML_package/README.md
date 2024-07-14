@@ -53,63 +53,62 @@ Follow the steps below to ensure all dependencies are met and the program runs s
 ### Setup Steps
 
 
-1. **Clone the Repository**
+**Clone the Repository**
 
-   First, clone the repository from GitHub:
+First, clone the repository from GitHub:
 
-   ```sh
-   git clone https://github.com/giusalfieri/IPA_Project.git
-   cd IPA_Project
-   ```
+```sh
+git clone https://github.com/giusalfieri/IPA_Project.git
+cd IPA_Project
+```
    
-   ---
-2. **Making the `ucasML` file executable**
+---
+**Making the `ucasML` file executable**
 
+Navigate to the `bin` directory inside the `ucasML_package` directory and make the `ucasML` file executable:
 
-   Navigate to the `bin` directory inside the `ucasML_package` directory and make the `ucasML` file executable:
+```sh
+cd ucasML_package/bin
+chmod +x ucasML
+```
 
-   ```sh
-   cd ucasML_package/bin
-   chmod +x ucasML
-   ```
-
-   ---
+---
    
-   **Unzip OpenCV Precompiled .so Libraries**
+**Unzip OpenCV Precompiled .so Libraries**
    
-   Extract the content of [opencv_libs.zip](./opencv_libs.zip) into the [opencv_libs](./opencv_libs) folder.
+Extract the content of [opencv_libs.zip](./opencv_libs.zip) into the [opencv_libs](./opencv_libs) folder.
    
-   > [!TIP]
-   > After the extraction, you can delete [opencv_libs.zip](./opencv_libs.zip).
+> [!TIP]
+> After the extraction, you can delete [opencv_libs.zip](./opencv_libs.zip).
 
    
-4. **Set the Library Path Permanently**
+**Set the Library Path Permanently**
 
-   To make the library path setting permanent, you need to add the library path to your `.bashrc` file (`.zshrc` for zsh shell, or the config file of the shell you are using):
+To make the library path setting permanent, you need to add the library path to your `.bashrc` file (`.zshrc` for zsh shell, or the config file of the shell you are using):
 
-   ```sh
-   nano ~/.bashrc
-   ```
+ ```sh
+ nano ~/.bashrc
+ ```
 
-   Add the following line at the end of the file:
+Add the following line at the end of the file:
 
-   ```sh
-   export LD_LIBRARY_PATH=/path/to/ucasML_package/opencv_libs:$LD_LIBRARY_PATH
-   ```
+```sh
+export LD_LIBRARY_PATH=/path/to/ucasML_package/opencv_libs:$LD_LIBRARY_PATH
+```
    
-   > [!IMPORTANT]
-   > Replace `/path/to/ucasML_package/opencv_libs` with the actual path to the `opencv_libs` directory on your system. For example, if you have extracted the package to your home directory, the line above would look like this:
-   > ```sh 
-   > export LD_LIBRARY_PATH=/home/your-username/ucasML_package/opencv_libs:$LD_LIBRARY_PATH
+> [!IMPORTANT]
+> Replace `/path/to/ucasML_package/opencv_libs` with the actual path to the `opencv_libs` directory on your system. For example, if you have extracted the package to your home directory, the line above would look like this:
+> ```sh 
+> export LD_LIBRARY_PATH=/home/your-username/ucasML_package/opencv_libs:$LD_LIBRARY_PATH
 
 
-   Save the file and exit the text editor. Then, apply the changes:
+Save the file and exit the text editor. Then, apply the changes:
    
-   ```sh
-   source ~/.bashrc
-   ```
-   ---
-5. **Check and Install Missing Dependencies**
+```sh
+source ~/.bashrc
+```
+---
+**Check and Install Missing Dependencies**
 
    Use `ldd` to check for any missing dependencies:
 
