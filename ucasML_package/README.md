@@ -76,8 +76,9 @@ Follow the steps below to ensure all dependencies are met and the program runs s
    
    Extract the content of [opencv_libs.zip](./opencv_libs.zip) into the [opencv_libs](./opencv_libs) folder.
    
-   > [!TIP]
+   > **Tip**
    > After the extraction, you can delete [opencv_libs.zip](./opencv_libs.zip).
+   
    ---
 4. **Set the Library Path Permanently**
 
