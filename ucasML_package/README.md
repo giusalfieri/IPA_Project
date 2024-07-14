@@ -92,10 +92,10 @@ Follow the steps below to ensure all dependencies are met and the program runs s
    ```sh
    export LD_LIBRARY_PATH=/path/to/ucasML_package/opencv_libs:$LD_LIBRARY_PATH
    ```
-   > [!IMPORTANT]
-   > Replace `/path/to/ucasML_package/opencv_libs` with the actual path to the `opencv_libs` directory on your system. For example, if you have extracted the package to your home directory, the line above would look like this:
-   > ```sh 
-   > export LD_LIBRARY_PATH=/home/your-username/ucasML_package/opencv_libs:$LD_LIBRARY_PATH
+> [!IMPORTANT]
+> Replace `/path/to/ucasML_package/opencv_libs` with the actual path to the `opencv_libs` directory on your system. For example, if you have extracted the package to your home directory, the line above would look like this:
+> ```sh 
+> export LD_LIBRARY_PATH=/home/your-username/ucasML_package/opencv_libs:$LD_LIBRARY_PATH
 
 
    Save the file and exit the text editor. Then, apply the changes:
