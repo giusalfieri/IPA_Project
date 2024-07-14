@@ -38,7 +38,6 @@
 > [!TIP]  
 > Click the badges to visit the distro official website.
 
----
 ## Installation 🔨
 
 Follow the steps below to ensure all dependencies are met and the program runs successfully.
@@ -52,7 +51,8 @@ Follow the steps below to ensure all dependencies are met and the program runs s
 
 ### Setup Steps
 
-   **Clone the Repository**
+
+1. **Clone the Repository**
 
    First, clone the repository from GitHub:
 
@@ -60,9 +60,9 @@ Follow the steps below to ensure all dependencies are met and the program runs s
    git clone https://github.com/giusalfieri/IPA_Project.git
    cd IPA_Project
    ```
-   
    ---
-   **Making the `ucasML` file executable**
+2. **Making the `ucasML` file executable**
+
 
    Navigate to the `bin` directory inside the `ucasML_package` directory and make the `ucasML` file executable:
 
@@ -72,18 +72,16 @@ Follow the steps below to ensure all dependencies are met and the program runs s
    ```
 
    ---
-   
-   **Unzip OpenCV Precompiled .so Libraries**
+3. **Unzip OpenCV Precompiled .so Libraries**
    
    Extract the content of [opencv_libs.zip](./opencv_libs.zip) into the [opencv_libs](./opencv_libs) folder.
    
    > [!TIP]
    > After the extraction, you can delete [opencv_libs.zip](./opencv_libs.zip).
+   ---
+4. **Set the Library Path Permanently**
 
-   
-   **Set the Library Path Permanently**
-
-   To make the library path setting permanent, you need to add the library path to your `.bashrc` file (`.zshrc` for zsh shell, or the config file of the shell       you are using):
+   To make the library path setting permanent, you need to add the library path to your `.bashrc` file (`.zshrc` for zsh shell, or the config file of the shell you are using):
 
    ```sh
    nano ~/.bashrc
@@ -94,7 +92,6 @@ Follow the steps below to ensure all dependencies are met and the program runs s
    ```sh
    export LD_LIBRARY_PATH=/path/to/ucasML_package/opencv_libs:$LD_LIBRARY_PATH
    ```
-   
    > [!IMPORTANT]
    > Replace `/path/to/ucasML_package/opencv_libs` with the actual path to the `opencv_libs` directory on your system. For example, if you have extracted the package to your home directory, the line above would look like this:
    > ```sh 
@@ -107,7 +104,7 @@ Follow the steps below to ensure all dependencies are met and the program runs s
    source ~/.bashrc
    ```
    ---
-   **Check and Install Missing Dependencies**
+5. **Check and Install Missing Dependencies**
 
    Use `ldd` to check for any missing dependencies:
 
@@ -121,14 +118,14 @@ Follow the steps below to ensure all dependencies are met and the program runs s
    ```
    
    > [!NOTE]
-   > Additionally, it may be necessary to create **symbolic links** to resolve dependencies required by the application. For example, on Ubuntu 24.04 and Kali, you need to create the following symbolic link:
+   >Additionally, it may be necessary to create **symbolic links** to resolve dependencies required by the application. For example, on Ubuntu 24.04 and Kali, you need to create the following symbolic link:
    > ```sh 
    > sudo ln -s /usr/lib/x86_64-linux-gnu/libdc1394.so.25 /usr/lib/x86_64-linux-gnu/libdc1394
 
    > [!NOTE]
-   > `libjpeg8` is required by the application, but it is obsolete and has been substituted by `libjpegturbo` packages. Some changes may be necessary.
+   >`libjpeg8` is required by the application, but it is obsolete and has been substituted by `libjpegturbo` packages. Some changes may be necessary.
    >
-   > If any problems persist, consider removing conflicting packages and installing `libjpeg8`. 
+   >If any problems persist, consider removing conflicting packages and installing `libjpeg8`. 
 
 
 ## 🚀 Running the Program 
@@ -142,3 +139,9 @@ Once all dependencies are resolved, you can run the ucasML program from the `bin
 ## <a name="author">👨‍💻 Author</a> 
 
 This program was developed by [Alessandro Bria](https://github.com/abria), currently Associate Professor at the University of Cassino.
+
+
+
+
+
+
