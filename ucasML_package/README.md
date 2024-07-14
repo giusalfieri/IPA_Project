@@ -20,6 +20,7 @@
 >To ensure compatibility, you need to have GCC version 12 or later installed on your system. You can check your current GCC version by running the following command:
 > ```sh 
 > gcc --version
+> ```
 
 > [!CAUTION]  
 > **Upgrading your GCC is strongly discouraged**: such an action may lead to a broken system. 
