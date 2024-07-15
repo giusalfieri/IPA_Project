@@ -59,7 +59,7 @@ Follow the steps below to ensure all dependencies are met and the program runs s
    cd IPA_Project
    ```
    ---
-2. **Making the `ucasML` file executable**
+3. **Making the `ucasML` file executable**
 
 
    Navigate to the `bin` directory inside the `ucasML_package` directory and make the `ucasML` file executable:
@@ -70,15 +70,15 @@ Follow the steps below to ensure all dependencies are met and the program runs s
    ```
 
    ---
-3. **Unzip OpenCV Precompiled .so Libraries**
+4. **Unzip OpenCV Precompiled .so Libraries**
    
    Extract the content of [opencv_libs.zip](./opencv_libs.zip) into the [opencv_libs](./opencv_libs) folder.
    
-   > **Tip**
+   > [!TIP]
    > After the extraction, you can delete [opencv_libs.zip](./opencv_libs.zip).
    
    ---
-4. **Set the Library Path Permanently**
+5. **Set the Library Path Permanently**
 
    To make the library path setting permanent, you need to add the library path to your `.bashrc` file (`.zshrc` for zsh shell, or the config file of the shell you are using):
 
