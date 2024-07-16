@@ -24,9 +24,9 @@
 > [!CAUTION]  
 > **Upgrading your GCC is strongly discouraged**: such an action may lead to a broken system. 
 > 
-> If the above requirement is not met, install or upgrade to a distro which supports GCC version 12 (or later), like the ones we used: see [Recommended Linux Distributions](#recommended-linux-distributions).
+> If the above requirement is not met, install or upgrade to a distro which supports GCC version 12 (or later), like the ones we used: see [Tested Linux Distributions](#tested-linux-distributions).
 
-### Recommended Linux Distributions
+### Tested Linux Distributions
 
 [![Ubuntu 24.04](https://img.shields.io/badge/Ubuntu-24.04-E95420?logo=ubuntu&logoColor=white&style=for-the-badge)](https://ubuntu.com/download/desktop)
 [![Kali Linux 2024.1](https://img.shields.io/badge/Kali_Linux-2024.1-0057A4?logo=kalilinux&logoColor=white&style=for-the-badge)](https://www.kali.org)
