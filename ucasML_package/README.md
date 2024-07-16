@@ -5,7 +5,7 @@
 ## 📚 Table of Contents 
 
 - 📋[Prerequisites](#prerequisites)
-- 🔨[Installation](#installation)## <a name="author">👨‍💻 Author</a>   
+- 🔨[Installation](#installation)## <a name="author">
 - 🚀[Running the Program](#running-the-program)
 - 👨‍💻[Author](#author)
 
