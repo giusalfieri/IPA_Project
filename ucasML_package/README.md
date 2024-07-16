@@ -15,7 +15,7 @@
 > [!IMPORTANT]  
 > The `ucasML` program is designed to run on a **Linux** operating system.
 > 
-> The OpenCV `.so` libraries included in [opencv_libs.zip](./opencv_libs.zip) have been compiled with a dependency on `GLIBCXX_3.4.32`. This version of `GLIBCXX`is part of `libstdc++`, which comes with GCC (GNU Compiler Collection) version 12 or later.
+> The OpenCV `.so` libraries included in [opencv_libs.zip](./opencv_libs.zip) have been compiled with a dependency on `GLIBCXX_3.4.32`. This version of `GLIBCXX`is part of `libstdc++`, which comes with GCC (GNU Compiler Collection) **version 12** or later.
 > 
 >To ensure compatibility, you need to have GCC version 12 or later installed on your system. You can check your current GCC version by running the following command:
 > ```sh 
@@ -38,7 +38,7 @@
 > [!TIP]  
 > Click the badges to visit the distro official website.
 
-## Installation 🔨
+## 🔨 Installation 
 
 Follow the steps below to ensure all dependencies are met and the program runs successfully.
 
