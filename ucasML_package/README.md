@@ -52,7 +52,7 @@ Follow the steps below to ensure all dependencies are met and the program runs s
 > Despite all the following commands have been alredy tested, everything you do is "at your own risk".
 
 
-➡️  **Clone the Repository**
+➡️  **Clone the Repository** ⬅️
 
 First, clone the repository from GitHub:
 
@@ -62,7 +62,7 @@ cd IPA_Project
 ```
 
 
-➡️ **Making the `ucasML` file executable**
+➡️ **Making the `ucasML` file executable** ⬅️
 
 
 Navigate to the `bin` directory inside the `ucasML_package` directory and make the `ucasML` file executable:
@@ -73,7 +73,7 @@ chmod +x ucasML
 ```
 
 
-➡️ **Unzip OpenCV Precompiled .so Libraries**
+➡️ **Unzip OpenCV Precompiled .so Libraries** ⬅️
 
 
 Extract the content of [opencv_libs.zip](./opencv_libs.zip) into the [opencv_libs](./opencv_libs) folder.
@@ -82,7 +82,7 @@ Extract the content of [opencv_libs.zip](./opencv_libs.zip) into the [opencv_lib
 > After the extraction, you can delete [opencv_libs.zip](./opencv_libs.zip).
 
 
-➡️ **Set the Library Path Permanently**
+➡️ **Set the Library Path Permanently** ⬅️
 
 To make the library path setting permanent, you need to add the library path to your `.bashrc` file (`.zshrc` for zsh shell, or the config file of the shell you are using):
 
@@ -106,7 +106,7 @@ Save the file and exit the text editor. Then, apply the changes:
 source ~/.bashrc
 ```
 
-➡️ **Check and Install Missing Dependencies**
+➡️ **Check and Install Missing Dependencies** ⬅️
 
 
 Use `ldd` to check for any missing dependencies:
