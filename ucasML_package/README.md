@@ -50,85 +50,79 @@ Follow the steps below to ensure all dependencies are met and the program runs s
 > Despite all the following commands have been alredy tested, everything you do is "at your own risk".
 
 
-1. **Clone the Repository**
+**Clone the Repository**
 
-   First, clone the repository from GitHub:
+First, clone the repository from GitHub:
 
-   ```sh
-   git clone https://github.com/giusalfieri/IPA_Project.git
-   cd IPA_Project
-   ```
-   ---
-3. **Making the `ucasML` file executable**
+```sh
+git clone https://github.com/giusalfieri/IPA_Project.git
+cd IPA_Project
+```
+---
+**Making the `ucasML` file executable**
 
+Navigate to the `bin` directory inside the `ucasML_package` directory and make the `ucasML` file executable:
 
-   Navigate to the `bin` directory inside the `ucasML_package` directory and make the `ucasML` file executable:
+```sh
+cd ucasML_package/bin
+chmod +x ucasML
+```
 
-   ```sh
-   cd ucasML_package/bin
-   chmod +x ucasML
-   ```
-
-   ---
-4. **Unzip OpenCV Precompiled .so Libraries**
+---
+**Unzip OpenCV Precompiled .so Libraries**
    
-   Extract the content of [opencv_libs.zip](./opencv_libs.zip) into the [opencv_libs](./opencv_libs) folder.
+Extract the content of [opencv_libs.zip](./opencv_libs.zip) into the [opencv_libs](./opencv_libs) folder.
 
-
-
-   > [!TIP]
-   > After the extraction, you can delete [opencv_libs.zip](./opencv_libs.zip).
+> [!TIP]
+> After the extraction, you can delete [opencv_libs.zip](./opencv_libs.zip).
    
- 
-  
-   ---
-5. **Set the Library Path Permanently**
+---
+**Set the Library Path Permanently**
 
-   To make the library path setting permanent, you need to add the library path to your `.bashrc` file (`.zshrc` for zsh shell, or the config file of the shell you are using):
+To make the library path setting permanent, you need to add the library path to your `.bashrc` file (`.zshrc` for zsh shell, or the config file of the shell you are using):
 
-   ```sh
-   nano ~/.bashrc
-   ```
+```sh
+nano ~/.bashrc
+```
 
-   Add the following line at the end of the file:
+Add the following line at the end of the file:
 
-   ```sh
-   export LD_LIBRARY_PATH=/path/to/ucasML_package/opencv_libs:$LD_LIBRARY_PATH
-   ```
+```sh
+export LD_LIBRARY_PATH=/path/to/ucasML_package/opencv_libs:$LD_LIBRARY_PATH
+```
 > [!IMPORTANT]
-   > Replace `/path/to/ucasML_package/opencv_libs` with the actual path to the `opencv_libs` directory on your system. For example, if you have extracted the package to your home directory, the line above would look like this:
-   > ```sh 
-   > export LD_LIBRARY_PATH=/home/your-username/ucasML_package/opencv_libs:$LD_LIBRARY_PATH
+> Replace `/path/to/ucasML_package/opencv_libs` with the actual path to the `opencv_libs` directory on your system. For example, if you have extracted the package to your home directory, the line above would look like this:
+> ```sh 
+> export LD_LIBRARY_PATH=/home/your-username/ucasML_package/opencv_libs:$LD_LIBRARY_PATH
 
-
-   Save the file and exit the text editor. Then, apply the changes:
+Save the file and exit the text editor. Then, apply the changes:
    
-   ```sh
-   source ~/.bashrc
-   ```
-   ---
-5. **Check and Install Missing Dependencies**
+```sh
+source ~/.bashrc
+```
+---
+**Check and Install Missing Dependencies**
 
-   Use `ldd` to check for any missing dependencies:
+Use `ldd` to check for any missing dependencies:
 
-   ```sh
-   ldd ./ucasML
-   ```
-   Install any missing libraries as indicated by the `ldd` output. For example, if a library is missing, you can typically install it by installing the corresponding package using apt (or the package manager of the distro being used):
+```sh
+ldd ./ucasML
+```
+Install any missing libraries as indicated by the `ldd` output. For example, if a library is missing, you can typically install it by installing the corresponding package using apt (or the package manager of the distro being used):
 
-   ```sh
-   sudo apt install <missing-library>
-   ```
+```sh
+sudo apt install <missing-library>
+```
    
-   > [!NOTE]
-   >Additionally, it may be necessary to create **symbolic links** to resolve dependencies required by the application. For example, on Ubuntu 24.04 and Kali, you need to create the following symbolic link:
-   > ```sh 
-   > sudo ln -s /usr/lib/x86_64-linux-gnu/libdc1394.so.25 /usr/lib/x86_64-linux-gnu/libdc1394
+> [!NOTE]
+>Additionally, it may be necessary to create **symbolic links** to resolve dependencies required by the application. For example, on Ubuntu 24.04 and Kali, you need to create the following symbolic link:
+> ```sh 
+> sudo ln -s /usr/lib/x86_64-linux-gnu/libdc1394.so.25 /usr/lib/x86_64-linux-gnu/libdc1394
 
-   > [!NOTE]
-   >`libjpeg8` is required by the application, but it is obsolete and has been substituted by `libjpegturbo` packages. Some changes may be necessary.
-   >
-   >If any problems persist, consider removing conflicting packages and installing `libjpeg8`. 
+> [!NOTE]
+>`libjpeg8` is required by the application, but it is obsolete and has been substituted by `libjpegturbo` packages. Some changes may be necessary.
+>
+>If any problems persist, consider removing conflicting packages and installing `libjpeg8`. 
 
 
 ## 🚀 Running the Program 
