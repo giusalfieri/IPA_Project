@@ -52,7 +52,7 @@ Follow the steps below to ensure all dependencies are met and the program runs s
 > Despite all the following commands have been alredy tested, everything you do is "at your own risk".
 
 
-1️⃣ **Clone the Repository**
+1️⃣  **Clone the Repository**
 
 First, clone the repository from GitHub:
 
