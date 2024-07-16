@@ -91,6 +91,7 @@ Ensure you have the following dependencies installed on your machine:
     cmake ..
     make
     ```
+![](./doc/render1721142899171.gif)
 
 2. **Run the project:**
     ```sh
