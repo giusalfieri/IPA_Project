@@ -39,8 +39,8 @@
 > Click the badges to visit the distro official website.
 
 ---
-
-## 🔨 Installation 
+## <a name="installation">🔨 Installation</a> 
+ 
 
 Follow the steps below to ensure all dependencies are met and the program runs successfully.
 
