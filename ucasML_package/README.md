@@ -61,7 +61,7 @@ git clone https://github.com/giusalfieri/IPA_Project.git
 cd IPA_Project
 ```
 
-2️⃣ **Making the `ucasML` file executable**
+:two: **Making the `ucasML` file executable**
 
 Navigate to the `bin` directory inside the `ucasML_package` directory and make the `ucasML` file executable:
 
