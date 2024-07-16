@@ -33,7 +33,7 @@
 
 
 > [!NOTE]  
-> This program has been tested and is recommended to be run on these Linux distros.
+> This program has been installed on these Linux distros.
 
 > [!TIP]  
 > Click the badges to visit the distro official website.
