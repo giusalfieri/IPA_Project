@@ -5,11 +5,12 @@
 ## 📚 Table of Contents 
 
 - 📋[Prerequisites](#prerequisites)
-- 🔨[Installation](#installation)
+- 🔨[Installation](#installation)## <a name="author">👨‍💻 Author</a>   
+- 🚀[Running the Program](#running-the-program)
 - 👨‍💻[Author](#author)
 
 ---
-## 📋 Prerequisites 
+## <a name="prerequisites">📋 Prerequisites</a> 
 
 
 > [!IMPORTANT]  
@@ -131,7 +132,8 @@ sudo apt install <missing-library>
 >If any problems persist, consider removing conflicting packages and installing `libjpeg8`. 
 
 ---
-## 🚀 Running the Program 
+## <a name="running-the-program">🚀 Running the Program</a> 
+
 
 Once all dependencies are resolved, you can run the ucasML program from the `bin` directory:
 
