@@ -70,7 +70,8 @@ chmod +x ucasML
 
 ---
 **Unzip OpenCV Precompiled .so Libraries**
----
+
+--
    
 Extract the content of [opencv_libs.zip](./opencv_libs.zip) into the [opencv_libs](./opencv_libs) folder.
 
