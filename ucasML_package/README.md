@@ -60,7 +60,7 @@ First, clone the repository from GitHub:
 git clone https://github.com/giusalfieri/IPA_Project.git
 cd IPA_Project
 ```
-
+___
 ➡️ **Making the `ucasML` file executable**
 
 Navigate to the `bin` directory inside the `ucasML_package` directory and make the `ucasML` file executable:
