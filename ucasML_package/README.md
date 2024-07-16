@@ -49,7 +49,7 @@ Follow the steps below to ensure all dependencies are met and the program runs s
 
 
 > [!WARNING]
-> Despite all the following commands have been alredy tested, everything you do is "at your own risk".
+> Despite all the following commands have been alredy tested, everything you do is "**at your own risk**".
 
 
 ➡️  **Clone the Repository** ⬅️
@@ -121,7 +121,7 @@ sudo apt install <missing-library>
 ```
    
 > [!NOTE]
->Additionally, it may be necessary to create **symbolic links** to resolve dependencies required by the application. For example, on Ubuntu 24.04 and Kali, you need to create the following symbolic link:
+>Additionally, it may be necessary to create **symbolic links** to resolve dependencies required by the application. For example, on Ubuntu 24.04 and Kali, we needed to create the following symbolic link:
 > ```sh 
 > sudo ln -s /usr/lib/x86_64-linux-gnu/libdc1394.so.25 /usr/lib/x86_64-linux-gnu/libdc1394
 
