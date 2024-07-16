@@ -53,8 +53,8 @@ Follow the steps below to ensure all dependencies are met and the program runs s
 
 <br>
  <br>
-➡️  **Clone the Repository** 
-<br>
+➡️  **Clone the Repository** <br>
+
 
 First, clone the repository from GitHub:
 
