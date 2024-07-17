@@ -64,7 +64,7 @@ Ensure you have the following dependencies installed on your machine:
 > [!TIP]  
 > Click the badges to visit their official websites.
 > 
-> For a list of C++20 compilers, click [here](https://en.cppreference.com/w/cpp/compiler_support).
+> For a list of C++20 compliant compilers, click [here](https://en.cppreference.com/w/cpp/compiler_support).
 
 ---
 
