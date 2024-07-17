@@ -137,9 +137,8 @@ sudo apt install <missing-library>
 
 Once all dependencies are resolved, you can run the ucasML program from the `bin` directory:
 
-   ```sh
-   ./ucasML
-   ```
+![Giuseppe's bash terminal](./ucasML_demo.gif)
+
 ---
 ## <a name="author">👨‍💻 Author</a> 
 
