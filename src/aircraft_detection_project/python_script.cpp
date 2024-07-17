@@ -42,9 +42,20 @@ import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.metrics import precision_recall_curve
 
+os.environ['SRC_DIR_PATH'] = ')" + srcDirPath + R"('
+SRC_DIR_PATH = os.getenv('SRC_DIR_PATH', '.')
+print(f'SRC_DIR_PATH: {SRC_DIR_PATH}')
+
+# Leggi il nome del file di ground truth dalla prima riga del file nella cartella detection
+positive_sco_path = os.path.join(SRC_DIR_PATH, 'svm_cv_output', 'positive.sco')
+negative_sco_path = os.path.join(SRC_DIR_PATH, 'svm_cv_output', 'negative.sco')
+print(f'File di input: {positive_sco_path}')
+print(f'File di input: {negative_sco_path}')
+
+
 # Caricamento dei dati dai file .sco
-positive_df = pd.read_csv('positive.sco', header=None, names=['sample_id', 'score'])
-negative_df = pd.read_csv('negative.sco', header=None, names=['sample_id', 'score'])
+positive_df = pd.read_csv(positive_sco_path, header=None, names=['sample_id', 'score'])
+negative_df = pd.read_csv(negative_sco_path, header=None, names=['sample_id', 'score'])
 
 # Aggiunta delle etichette
 positive_df['label'] = 1
