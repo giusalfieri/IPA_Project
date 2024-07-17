@@ -239,14 +239,14 @@ std::vector<std::pair<cv::Rect, std::vector<cv::Rect>>> associateYoloBoxesWithRo
         const auto& points = points_in_boxes[i];
 
         // Use the generateRoisFromPoints function to generate ROIs
-        // N.B HERE roi_sizes IS A GLOBAL VARIABLE !!!!!!
         std::vector<std::string> kmeans_by_size_clusters;
         listDirectories(std::filesystem::path(SRC_DIR_PATH) / "kmeans_by_size", kmeans_by_size_clusters);
-
-
         std::vector<cv::Size> roi_sizes(kmeans_by_size_clusters.size());
         for (size_t i = 0; i < kmeans_by_size_clusters.size(); i++)
             roi_sizes.emplace_back(calculateAvgDims(std::filesystem::path(kmeans_by_size_clusters[i])));
+
+
+
         std::vector<cv::Rect> rois = generateRoisFromPoints(points, roi_sizes);
 
         yoloBox_roi_pairs.emplace_back(yolo_box, rois);
