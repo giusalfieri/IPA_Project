@@ -113,7 +113,7 @@ Initiate the training phase for an SVM model by extracting data from a CSV file.
 
 ## <a name="contributors">👥 Contributors</a>
 
-| Nome              |  GitHub                                               |
+| Name              |  GitHub                                               |
 |-------------------|-------------------------------------------------------|
 | Giuseppe Alfieri  | [@giusalfieri](https://github.com/giusalfieri)        |
 | Paolo Simeone     | [@bonoboprog](https://github.com/bonoboprog)          |
