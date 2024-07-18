@@ -57,7 +57,7 @@ Ensure you have the above installed on your machine:
   
 
 > [!IMPORTANT]  
-> Make sure Python is installed system wide (e.g., on Windows, Python must be added to the system PATH).
+> Make sure Python is installed system wide (e.g., on Windows, Python must be added to the system `PATH`).
 
 > [!TIP]  
 > Click the badges to visit their official websites.
