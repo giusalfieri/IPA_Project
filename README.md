@@ -2,7 +2,8 @@
   <img src="doc/banner.png" style="width: 50%; height: auto;">
 </div>
 
-![GitHub stars](https://img.shields.io/github/stars/giusalfieri/https://github.com/giusalfieri/IPA_Project?style=social)
+![GitHub stars](https://img.shields.io/github/stars/giusalfieri/IPA_Project?style=social)
+
 
 ## <a name="overview">🌍 Overview</a>
 
