@@ -153,6 +153,30 @@ void extract_csv_for_svm_cross_validation()
 
         true_positive_hog_features.insert(true_positive_hog_features.end(), new_tp_hog_features.begin(), new_tp_hog_features.end());
         false_positive_hog_features.insert(false_positive_hog_features.end(), new_fp_hog_features.begin(), new_fp_hog_features.end());
+
+        // Only for debugging purposes
+        /*
+        // Disegna le ROI estratte nell'immagine corrente
+        cv::Mat img_with_rois = src_imgs_gray[i].clone();
+        cv::cvtColor(src_imgs_gray[i], img_with_rois, cv::COLOR_GRAY2BGR);
+
+        // Disegna le true positive ROI in verde
+        for (const auto& roi : tp_rois)
+        {
+            cv::rectangle(img_with_rois, roi, cv::Scalar(0, 255, 0), 2);
+        }
+
+        // Disegna le false positive ROI in rosso
+        for (const auto& roi : fp_rois)
+        {
+            cv::rectangle(img_with_rois, roi, cv::Scalar(0, 0, 255), 2);
+        }
+
+        // Per visualizzare l'immagine
+        imshow("ROIs", img_with_rois, true, 0.2f);
+        cv::imwrite(". . . . . . . . . . . . . . . . . /temp_img.jpg", img_with_rois);
+        cv::waitKey(0);
+        */
 	}
 
 
