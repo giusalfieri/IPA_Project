@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) 2024 Giuseppe ALfieri, Aurora Pisa, Paolo Simeone, Riccardo D'Aguanno, Gianmarco Luongo
+Copyright (c) 2024 Giuseppe Alfieri, Aurora Pisa, Paolo Simeone, Riccardo D'Aguanno, Gianmarco Luongo
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
