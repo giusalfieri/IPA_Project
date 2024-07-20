@@ -3,6 +3,8 @@
 </div>
 
 ![GitHub stars](https://img.shields.io/github/stars/giusalfieri/IPA_Project?style=social)
+![GitHub contributors](https://img.shields.io/github/contributors/giusalfieri/IPA_Project?style=social)
+![GitHub repo size](https://img.shields.io/github/repo-size/giusalfieri/IPA_Project?style=social)
 
 
 ## <a name="overview">🌍 Overview</a>
