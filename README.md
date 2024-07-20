@@ -2,9 +2,10 @@
   <img src="doc/banner.png" style="width: 50%; height: auto;">
 </div>
 
-![GitHub stars](https://img.shields.io/github/stars/giusalfieri/IPA_Project?style=flat-square&color=ff69b4&labelColor=8a2be2)
-![GitHub contributors](https://img.shields.io/github/contributors/giusalfieri/IPA_Project?style=flat-square&color=ff69b4&labelColor=8a2be2)
-![GitHub repo size](https://img.shields.io/github/repo-size/giusalfieri/IPA_Project?style=flat-square&color=ff69b4&labelColor=8a2be2)
+![GitHub stars](https://img.shields.io/github/stars/octocat/Hello-World?style=flat-square&color=ff69b4&labelColor=8a2be2)
+![GitHub contributors](https://img.shields.io/github/contributors/octocat/Hello-World?style=flat-square&color=ff69b4&labelColor=8a2be2)
+![GitHub repo size](https://img.shields.io/github/repo-size/octocat/Hello-World?style=flat-square&color=ff69b4&labelColor=8a2be2)
+
 
 
 ## <a name="overview">🌍 Overview</a>
