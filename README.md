@@ -6,6 +6,7 @@
     <img src="https://img.shields.io/github/stars/octocat/Hello-World?style=plastic&color=ff69b4&labelColor=8a2be2" alt="GitHub stars">
     <img src="https://img.shields.io/github/contributors/octocat/Hello-World?style=plastic&color=ff69b4&labelColor=8a2be2" alt="GitHub contributors">
     <img src="https://img.shields.io/github/repo-size/octocat/Hello-World?style=plastic&color=ff69b4&labelColor=8a2be2" alt="GitHub repo size">
+    <img src="https://img.shields.io/github/license/octocat/Hello-World?style=plastic&color=ff69b4&labelColor=8a2be2" alt="GitHub License">
 </p>
 
 ## <a name="overview">🌍 Overview</a>
