@@ -1,7 +1,7 @@
 # ucasML Installation Guide
 
 <p align="center">
-  <img src="./banner.png" style="width: 50%; height: auto;">
+  <img src="./ucasML_banner.png" style="width: 50%; height: auto;">
 </p>
 
 ## 📚 Table of Contents 
