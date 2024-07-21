@@ -13,13 +13,13 @@
 
 This project focuses on detecting aircraft in satellite images using various machine learning and computer vision techniques. The workflow includes data preprocessing, feature extraction, clustering, and classification using Support Vector Machines (SVMs).
 
-### ucasML tool
+### ucasML Tool
+
+The SVM used in this project is part of the **ucasML** *command-line interface (CLI)* tool.
 
 <p align="center">
   <img src="ucasML_package/ucasML_banner.png" alt="ucasML Logo" style="width: 25%; height: auto; margin-top: 20px;">
 </p>
-
-The SVM used in this project is part of the **ucasML** tool. 
 
 > [!IMPORTANT]  
 > For detailed instructions on installing the SVM, please refer to the *ad hoc* [README](ucasML_package/README.md).
