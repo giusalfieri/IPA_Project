@@ -56,6 +56,9 @@ The aim of this project is to develop an automated system for detecting aircraft
 - **Classification:** Classify images using SVM and HOG features.
 - **Performance Evaluation:** Evaluate the performance of the classifier.
 
+> [!NOTE]  
+> The training dataset used is a sub-set of the training dataset of [HRPlanesv2 Data Set](https://github.com/dilsadunsal/HRPlanesv2-Data-Set).
+
 ---
 
 ## <a name="dependencies">📦 Dependencies</a>
