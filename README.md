@@ -16,8 +16,8 @@ This project focuses on detecting aircraft in satellite images using various mac
 > [!NOTE]  
 > The SVM used in this project is part of the **ucasML** *command-line interface (CLI)* tool.
 > <p align="center">
-  <img src="ucasML_package/ucasML_banner.png" alt="ucasML Logo" style="width: 25%; height: auto; margin-top: 20px;">
-  </p>
+> <img src="ucasML_package/ucasML_banner.png" alt="ucasML Logo" style="width: 25%; height: auto; margin-top: 20px;">
+> </p>
 
 > [!IMPORTANT]  
 > For detailed instructions on installing the SVM, please refer to the *ad hoc* [README](ucasML_package/README.md).
