@@ -20,7 +20,7 @@ This project focuses on detecting aircraft in satellite images using various mac
 > </p>
 
 > [!IMPORTANT]  
-> For detailed instructions on installing the SVM, please refer to the *ad hoc* [README](ucasML_package/README.md).
+> For detailed instructions on installing the **ucasML** tool on your machine, please refer to the *ad hoc* [README](ucasML_package/README.md).
 
 ---
 
