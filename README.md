@@ -16,7 +16,7 @@ This project focuses on detecting aircraft in satellite images using various Com
 > [!NOTE]  
 > The SVM used in this project is part of the **ucasML** *command-line interface (CLI)* tool.
 > <p align="center">
-> <img src="ucasML_package/ucasML_banner.png" alt="ucasML Logo" style="width: 25%; height: auto; margin-top: 20px;">
+> <img src="ucasML_package/assets/ucasML_banner.png" alt="ucasML Logo" style="width: 25%; height: auto; margin-top: 20px;">
 > </p>
 
 > [!IMPORTANT]  
