@@ -1,6 +1,6 @@
 
 <p align="center">
-  <img src="./ucasML_banner.png" style="width: 50%; height: auto;">
+  <img src="./assets/ucasML_banner.png" style="width: 50%; height: auto;">
 </p>
 
 # ucasML Installation Guide
@@ -140,9 +140,9 @@ sudo apt install <missing-library>
 
 Once all dependencies are resolved, you can run the ucasML program from the `bin` directory:
 
-<div align="center">
-  <img src="./ucasML_demo.gif" alt="Giuseppe's bash terminal">
-</div>
+<p align="center">
+  <img src="./assets/ucasML_demo.gif" alt="Giuseppe's bash terminal">
+</p>
 
 ---
 ## <a name="author">👨‍💻 Author</a> 
