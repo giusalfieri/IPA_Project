@@ -45,8 +45,6 @@ The aim of this project is to develop an automated system for detecting aircraft
 
 ## <a name="features">⚙️ Features</a>
 
-> [!NOTE]  
-> For a detailed description of the underlying ***ratio*** of design choices taken, see [project_report.pdf](doc/project_proposal/main.pdf).
 
 - **Training Phase:** Extract data from CSV for SVM training.
 - **Template Extraction:** Extract templates from the dataset.
@@ -58,6 +56,9 @@ The aim of this project is to develop an automated system for detecting aircraft
 
 > [!NOTE]  
 > The training dataset used is a sub-set of the training dataset of [HRPlanesv2 Data Set](https://github.com/dilsadunsal/HRPlanesv2-Data-Set).
+
+> [!IMPORTANT]  
+> For a detailed description of the underlying ***ratio*** of design choices taken, see [project_report.pdf](doc/project_proposal/main.pdf).
 
 ---
 
