@@ -11,7 +11,7 @@
 
 ## <a name="overview">🌍 Overview</a>
 
-This project focuses on detecting aircraft in satellite images using various machine learning and computer vision techniques. The workflow includes data preprocessing, feature extraction, clustering, and classification using Support Vector Machines (SVMs).
+This project focuses on detecting aircraft in satellite images using various Computer Vision and Machine Learning techniques. The workflow includes data preprocessing, feature extraction, clustering, and classification using Support Vector Machines (SVMs).
 
 > [!NOTE]  
 > The SVM used in this project is part of the **ucasML** *command-line interface (CLI)* tool.
