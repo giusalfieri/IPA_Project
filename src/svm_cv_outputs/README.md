@@ -1,1 +1,1 @@
-PUT HERE THE TWO .sco FILES OUTPUTED BY THE SVM OF UCASML_PACKAGE IN CROSS VALIDATION MODALITY
+Put here the two .sco files produced by the SVM, in cross validation mode.
