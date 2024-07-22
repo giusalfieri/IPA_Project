@@ -48,8 +48,8 @@ SRC_DIR_PATH = os.getenv('SRC_DIR_PATH', '.')
 print(f'SRC_DIR_PATH: {SRC_DIR_PATH}')
 
 # Leggi i percorsi dei file di input
-positive_sco_path = os.path.join(SRC_DIR_PATH, 'svm_cv_output', 'positive.sco').replace('\\', '/')
-negative_sco_path = os.path.join(SRC_DIR_PATH, 'svm_cv_output', 'negative.sco').replace('\\', '/')
+positive_sco_path = os.path.join(SRC_DIR_PATH, 'svm_cv_outputs', 'positive.sco').replace('\\', '/')
+negative_sco_path = os.path.join(SRC_DIR_PATH, 'svm_cv_outputs', 'negative.sco').replace('\\', '/')
 print(f'File di input: {positive_sco_path}')
 print(f'File di input: {negative_sco_path}')
 
