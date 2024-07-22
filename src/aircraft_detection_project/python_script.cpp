@@ -47,8 +47,8 @@ SRC_DIR_PATH = os.getenv('SRC_DIR_PATH', '.')
 print(f'SRC_DIR_PATH: {SRC_DIR_PATH}')
 
 # Leggi il nome del file di ground truth dalla prima riga del file nella cartella detection
-positive_sco_path = os.path.join(SRC_DIR_PATH, 'svm_cv_output', 'positive.sco')
-negative_sco_path = os.path.join(SRC_DIR_PATH, 'svm_cv_output', 'negative.sco')
+positive_sco_path = os.path.join(SRC_DIR_PATH, 'svm_cv_outputs', 'positive.sco')
+negative_sco_path = os.path.join(SRC_DIR_PATH, 'svm_cv_outputs', 'negative.sco')
 print(f'File di input: {positive_sco_path}')
 print(f'File di input: {negative_sco_path}')
 
