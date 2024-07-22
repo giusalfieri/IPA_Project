@@ -40,7 +40,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import os
 
-GROUNDTRUTH_SIGNS = 384
+GROUNDTRUTH_PLANES = 384
 
 # Ottieni il percorso dalla variabile d'ambiente
 os.environ['SRC_DIR_PATH'] = ')" + srcDirPath + R"('
