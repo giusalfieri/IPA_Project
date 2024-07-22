@@ -36,50 +36,82 @@ void configureAndRunPythonScript()
 
     // The indentation is crucial in the following Python script
     const std::string pythonScript = R"(
-import os
-import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-from sklearn.metrics import precision_recall_curve
+import os
 
+GROUNDTRUTH_SIGNS = 384
+
+# Ottieni il percorso dalla variabile d'ambiente
 os.environ['SRC_DIR_PATH'] = ')" + srcDirPath + R"('
 SRC_DIR_PATH = os.getenv('SRC_DIR_PATH', '.')
-print(f'SRC_DIR_PATH: {SRC_DIR_PATH}')
 
-# Leggi il nome del file di ground truth dalla prima riga del file nella cartella detection
+# Costruisci i percorsi dei file
 positive_sco_path = os.path.join(SRC_DIR_PATH, 'svm_cv_outputs', 'positive.sco')
 negative_sco_path = os.path.join(SRC_DIR_PATH, 'svm_cv_outputs', 'negative.sco')
-print(f'File di input: {positive_sco_path}')
-print(f'File di input: {negative_sco_path}')
 
+# Verifica se i file esistono
+if not os.path.isfile(positive_sco_path):
+    print(f"File non trovato: {positive_sco_path}")
+    exit(1)
 
-# Caricamento dei dati dai file .sco
-positive_df = pd.read_csv(positive_sco_path, header=None, names=['sample', 'score'])
-negative_df = pd.read_csv(negative_sco_path, header=None, names=['sample', 'score'])
+if not os.path.isfile(negative_sco_path):
+    print(f"File non trovato: {negative_sco_path}")
+    exit(1)
 
-# Aggiunta delle etichette
-positive_df['label'] = 1
-negative_df['label'] = 0
+print(f'SRC_DIR_PATH: {SRC_DIR_PATH}')
+print(f'positive score file path: {positive_sco_path}')
+print(f'negative score file path: {negative_sco_path}')
 
-# Unione dei due DataFrame
-combined_df = pd.concat([positive_df, negative_df])
+# Leggi i file
+with open(positive_sco_path, 'r') as file_tp, open(negative_sco_path, 'r') as file_fp:
+    tp_data = file_tp.readlines()
+    fp_data = file_fp.readlines()
 
-# Ordinamento per punteggio di confidenza in ordine decrescente
-combined_df = combined_df.sort_values(by='score', ascending=False)
+# Analizza i punteggi e ignora l'intestazione
+tp_scores = np.array([float(line.split('\t')[1].strip()) for line in tp_data[1:]])
+fp_scores = np.array([float(line.split('\t')[1].strip()) for line in fp_data[1:]])
 
-# Estrazione dei punteggi e delle etichette
-scores = combined_df['score']
-labels = combined_df['label']
+# Crea etichette (1 per TPs e 0 per FPs)
+tp_labels = np.ones_like(tp_scores)
+fp_labels = np.zeros_like(fp_scores)
 
-# Calcolo di precision e recall
-precision, recall, thresholds = precision_recall_curve(labels, scores)
+# Combina punteggi e etichette
+scores = np.concatenate((tp_scores, fp_scores))
+labels = np.concatenate((tp_labels, fp_labels))
 
-# Tracciamento della curva precision-recall
-plt.plot(recall, precision, marker='.')
-plt.xlabel('Recall')
-plt.ylabel('Precision')
-plt.title('Precision-Recall Curve')
+# Ottieni gli indici che ordinerebbero i punteggi in ordine decrescente
+sorted_indices = np.argsort(scores)[::-1]
+
+# Usa questi indici per ordinare entrambi gli array
+scores_sorted = scores[sorted_indices]
+labels_sorted = labels[sorted_indices]
+
+cumulativeTP = 0
+cumulativeFP = 0
+precision = []
+recall = []
+
+for score, label in zip(scores_sorted, labels_sorted):
+    if label:
+        cumulativeTP += 1
+    else:
+        cumulativeFP += 1
+
+    precision.append(cumulativeTP / (cumulativeTP + cumulativeFP))
+    recall.append(cumulativeTP / GROUNDTRUTH_SIGNS)
+
+avg_precision = precision[0] * recall[0]
+for i in range(1, len(recall)):
+    avg_precision += (recall[i] - recall[i - 1]) * precision[i]
+
+print("avg precision: " + str(avg_precision))
+
+path = os.path.dirname(positive_sco_path) + '/'
+plt.plot(recall, precision)
+plt.savefig(os.path.join(path, f"{avg_precision:.2f}.png"))
 plt.show()
+
 )";
 
 
