@@ -36,82 +36,60 @@ void configureAndRunPythonScript()
 
     // The indentation is crucial in the following Python script
     const std::string pythonScript = R"(
+import os
+import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-import os
-
-GROUNDTRUTH_PLANES = 384
+from sklearn.metrics import precision_recall_curve, auc
 
 # Ottieni il percorso dalla variabile d'ambiente
 os.environ['SRC_DIR_PATH'] = ')" + srcDirPath + R"('
 SRC_DIR_PATH = os.getenv('SRC_DIR_PATH', '.')
-
-# Costruisci i percorsi dei file
-positive_sco_path = os.path.join(SRC_DIR_PATH, 'svm_cv_outputs', 'positive.sco')
-negative_sco_path = os.path.join(SRC_DIR_PATH, 'svm_cv_outputs', 'negative.sco')
-
-# Verifica se i file esistono
-if not os.path.isfile(positive_sco_path):
-    print(f"File non trovato: {positive_sco_path}")
-    exit(1)
-
-if not os.path.isfile(negative_sco_path):
-    print(f"File non trovato: {negative_sco_path}")
-    exit(1)
-
 print(f'SRC_DIR_PATH: {SRC_DIR_PATH}')
-print(f'positive score file path: {positive_sco_path}')
-print(f'negative score file path: {negative_sco_path}')
 
-# Leggi i file
-with open(positive_sco_path, 'r') as file_tp, open(negative_sco_path, 'r') as file_fp:
-    tp_data = file_tp.readlines()
-    fp_data = file_fp.readlines()
+# Leggi i percorsi dei file di input
+positive_sco_path = os.path.join(SRC_DIR_PATH, 'svm_cv_output', 'positive.sco').replace('\\', '/')
+negative_sco_path = os.path.join(SRC_DIR_PATH, 'svm_cv_output', 'negative.sco').replace('\\', '/')
+print(f'File di input: {positive_sco_path}')
+print(f'File di input: {negative_sco_path}')
 
-# Analizza i punteggi e ignora l'intestazione
-tp_scores = np.array([float(line.split('\t')[1].strip()) for line in tp_data[1:]])
-fp_scores = np.array([float(line.split('\t')[1].strip()) for line in fp_data[1:]])
+# Funzione per caricare i dati dai file .sco saltando le righe di commento
+def load_sco_file(filepath):
+    return pd.read_csv(filepath, comment='#', sep=r'\s+', names=['sample', 'score'])
 
-# Crea etichette (1 per TPs e 0 per FPs)
-tp_labels = np.ones_like(tp_scores)
-fp_labels = np.zeros_like(fp_scores)
+# Caricamento dei dati dai file .sco
+positive_df = load_sco_file(positive_sco_path)
+negative_df = load_sco_file(negative_sco_path)
 
-# Combina punteggi e etichette
-scores = np.concatenate((tp_scores, fp_scores))
-labels = np.concatenate((tp_labels, fp_labels))
+# Aggiunta delle etichette
+positive_df['label'] = 1
+negative_df['label'] = 0
 
-# Ottieni gli indici che ordinerebbero i punteggi in ordine decrescente
-sorted_indices = np.argsort(scores)[::-1]
+# Unione dei due DataFrame
+combined_df = pd.concat([positive_df, negative_df])
 
-# Usa questi indici per ordinare entrambi gli array
-scores_sorted = scores[sorted_indices]
-labels_sorted = labels[sorted_indices]
+# Ordinamento per punteggio di confidenza in ordine decrescente
+combined_df = combined_df.sort_values(by='score', ascending=False)
 
-cumulativeTP = 0
-cumulativeFP = 0
-precision = []
-recall = []
+# Estrazione dei punteggi e delle etichette
+scores = combined_df['score']
+labels = combined_df['label']
 
-for score, label in zip(scores_sorted, labels_sorted):
-    if label:
-        cumulativeTP += 1
-    else:
-        cumulativeFP += 1
+# Calcolo di precision e recall
+precision, recall, thresholds = precision_recall_curve(labels, scores)
 
-    precision.append(cumulativeTP / (cumulativeTP + cumulativeFP))
-    recall.append(cumulativeTP / GROUNDTRUTH_SIGNS)
+# Calcolo dell'AUC con il metodo dei trapezi
+auc_score = auc(recall, precision)
+print(f'AUC: {auc_score:.2f}')
 
-avg_precision = precision[0] * recall[0]
-for i in range(1, len(recall)):
-    avg_precision += (recall[i] - recall[i - 1]) * precision[i]
-
-print("avg precision: " + str(avg_precision))
-
-path = os.path.dirname(positive_sco_path) + '/'
-plt.plot(recall, precision)
-plt.savefig(os.path.join(path, f"{avg_precision:.2f}.png"))
+# Tracciamento della curva precision-recall
+plt.plot(recall, precision, marker='.', label=f'AUC = {auc_score:.2f}')
+plt.fill_between(recall, precision, step='post', alpha=0.3, color='mediumpurple')
+plt.xlabel('Recall')
+plt.ylabel('Precision')
+plt.title('Precision-Recall Curve')
+plt.legend()
 plt.show()
-
 )";
 
 
