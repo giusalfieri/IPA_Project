@@ -1,7 +1,6 @@
 # Project related settings
 PROJECT_NAME           = "Aircraft Detection"
 PROJECT_NUMBER         = "1.0"
-OUTPUT_DIRECTORY       = "docs"
 CREATE_SUBDIRS         = YES
 
 # Build related settings
@@ -11,7 +10,7 @@ EXTRACT_STATIC         = YES
 EXTRACT_LOCAL_CLASSES  = YES
 EXTRACT_LOCAL_METHODS  = YES
 RECURSIVE              = YES
-INPUT                  = src doc ucasML_package
+INPUT                  = src  
 
 # HTML related settings
 GENERATE_HTML          = YES
