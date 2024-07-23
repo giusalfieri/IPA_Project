@@ -176,8 +176,9 @@ Execute the following command:
 This is the most important step.
 Classify the given testing image based on the features extracted in the previous phase (HOG features).
 This phase consists in performing template matching, classifying points by YOLO boxes, extracting ROIs and finally using a SVM model to classify the ROIs.
+In SVM training, 10 fold cross validation is done, and the outcome are two .sco files, relative to true positives and negatives, respectively; these two files must then be placed in /src/svm_cv_outputs directory.
 Detection is done by executing:
-```sh
+```shs
 ./aircraft_detection_project extract_SVM_Training_Data
 ```
 ---
