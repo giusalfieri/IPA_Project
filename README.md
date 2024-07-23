@@ -123,6 +123,10 @@ Ensure you have the above installed on your machine:
 ---
 
 ## <a name="workflow-steps">➡️ ✅ ➡️ ✅ Workflow Steps</a>
+> **Note:**
+> In the following lines, workflow steps instructions are given and explained.
+> After each phase is concluded, meaning that each command given has terminated execution, a corresponding file with a .done extension is created in /src/steps_completed folder.
+> While given a command, the program checks if the previous step has been done, checking the existance of the corresponding file in /src/steps_completed folder; if not, a warning message indicating the missing step is printed out.
 
 ### 1. Training Phase
 Initiate the training phase for an SVM model by extracting data from a CSV file.
