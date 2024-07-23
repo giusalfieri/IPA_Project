@@ -174,7 +174,7 @@ Classify the given testing image based on the features extracted in the previous
 This phase consists in performing template matching, classifying points by YOLO boxes, extracting ROIs and finally using a SVM model to classify the ROIs.
 Detection is done by executing:
 ```sh
-./aircraft_detection_project Compute_SVM_inputs
+./aircraft_detection_project extract_SVM_Training_Data
 ```
 ---
 ### 8. Performance evaluation phase 
