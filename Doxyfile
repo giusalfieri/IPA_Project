@@ -6,8 +6,12 @@ CREATE_SUBDIRS         = YES
 
 # Build related settings
 EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = YES
+EXTRACT_STATIC         = YES
+EXTRACT_LOCAL_CLASSES  = YES
+EXTRACT_LOCAL_METHODS  = YES
 RECURSIVE              = YES
-INPUT                  = src 
+INPUT                  = src doc ucasML_package
 
 # HTML related settings
 GENERATE_HTML          = YES
