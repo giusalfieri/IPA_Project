@@ -37,7 +37,7 @@ For a detailed reference of all functions and classes, please refer to the [API 
 - 📦[Dependencies](#dependencies)
 - 🔨[Installation](#installation)
 - [Usage](#usage)
-- ➡️ ✅ ➡️ ✅[Workflow Steps](#workflow-steps)
+- ➡️ ✅ ➡️ ✅[Pipeline](#pipeline)
 - 👥[Contributors](#contributors)
 - 📜[License](#license)
 
@@ -109,6 +109,7 @@ Ensure you have the above installed on your machine:
     cmake ..
     make
     ```
+
 ![](./doc/render1721142899171.gif)
 
 2. **Run the project:**
@@ -122,7 +123,7 @@ Ensure you have the above installed on your machine:
 
 ---
 
-## <a name="workflow-steps">➡️ ✅ ➡️ ✅ Workflow Steps</a>
+## <a name="pipeline">➡️ ✅ ➡️ ✅ Pipeline</a>
 > [!NOTE]
 > In the following lines, workflow steps instructions are given and explained.
 > After each phase is concluded, meaning that each command given has terminated execution, a corresponding file with a .done extension is created in /src/steps_completed folder.
