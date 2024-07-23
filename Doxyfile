@@ -1,0 +1,14 @@
+# Project related settings
+PROJECT_NAME           = "Aircraft Detection"
+PROJECT_NUMBER         = "1.0"
+OUTPUT_DIRECTORY       = "docs"
+CREATE_SUBDIRS         = YES
+
+# Build related settings
+EXTRACT_ALL            = YES
+RECURSIVE              = YES
+INPUT                  = src 
+
+# HTML related settings
+GENERATE_HTML          = YES
+HTML_OUTPUT            = html
