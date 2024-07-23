@@ -1,18 +1,18 @@
 # Project related settings
-PROJECT_NAME           = "IPA_Project"
+PROJECT_NAME           = "NomeDellaTuaRepoSuGitHub"
 PROJECT_NUMBER         = "1.0"
-OUTPUT_DIRECTORY       = "docs"
 CREATE_SUBDIRS         = YES
 
 # Build related settings
 EXTRACT_ALL            = YES
-EXTRACT_PRIVATE        = YES
-EXTRACT_STATIC         = YES
-EXTRACT_LOCAL_CLASSES  = YES
-EXTRACT_LOCAL_METHODS  = YES
 RECURSIVE              = YES
 INPUT                  = src/aircraft_detection_project
+FILE_PATTERNS          = *.cpp *.h
 
 # HTML related settings
 GENERATE_HTML          = YES
 HTML_OUTPUT            = html
+
+# Dot related settings
+HAVE_DOT               = YES
+GENERATE_TREEVIEW      = YES
