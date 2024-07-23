@@ -102,26 +102,84 @@ Ensure you have the above installed on your machine:
 
 ## Usage
 
-1. **Build the project:**
+## Usage
+
+### Command Line Instructions
+
+1. **Clone the repository:**
+    ```sh
+    git clone https://github.com/giusalfieri/IPA_Project.git
+    cd IPA_Project
+    ```
+
+2. **Create a build directory:**
     ```sh
     mkdir build
     cd build
+    ```
+
+3. **Configure the project using CMake:**
+    ```sh
     cmake ..
+    ```
+
+4. **Compile the project:**
+    ```sh
     make
     ```
 
-![](./doc/render1721142899171.gif)
-
-2. **Run the project:**
+5. **Run the project:**
     ```sh
     ./aircraft_detection_project [step1] [step2] ...
     ```
-    For example, to run the training phase and extract templates:
+    For example, to run the entire pipeline:
     ```sh
-    ./aircraft_detection_project training_phase extractTemplates
+    ./aircraft_detection_project training_phase extractTemplates KMeansBySize KMeansByIntensity resizeImagesInClusters generateEigenplanes extract_SVM_Training_Data Performance_evaluation
+    ```
+    Or you can run individual steps as needed. See the [Pipeline](#pipeline) section for detailed steps.
+
+![](./doc/render1721142899171.gif)
+
+### CMake GUI and Visual Studio Instructions
+
+1. **Clone the repository:**
+    ```sh
+    git clone https://github.com/giusalfieri/IPA_Project.git
+    cd IPA_Project
     ```
 
----
+2. **Open CMake GUI:**
+    - Set the "Where is the source code" field to the path of the `IPA_Project` directory.
+    - Set the "Where to build the binaries" field to a new `build` directory within the `IPA_Project` directory (e.g., `IPA_Project/build`).
+
+3. **Configure the project:**
+    - Click on the "Configure" button.
+    - Select your version of Visual Studio (e.g., Visual Studio 2019) and the appropriate platform (e.g., x64).
+    - Click "Finish" to start the configuration process.
+    - If there are any missing dependencies, resolve them and click "Configure" again.
+
+4. **Generate the project files:**
+    - Once the configuration is complete, click the "Generate" button to create the Visual Studio solution and project files.
+
+5. **Open the project in Visual Studio:**
+    - Navigate to the `build` directory and open the generated `.sln` file (e.g., `IPA_Project.sln`) with Visual Studio.
+
+6. **Build the project:**
+    - In Visual Studio, set the build configuration to `Release` or `Debug` as needed.
+    - Build the solution by selecting "Build Solution" from the "Build" menu.
+
+7. **Run the project:**
+    - In Visual Studio, set the startup project to `aircraft_detection_project`.
+    - Configure the project properties if needed to include any command-line arguments.
+    - Start debugging or run the project without debugging as needed.
+
+For example, to run the entire pipeline, you can set the command-line arguments in the project properties as:
+
+```sh
+./aircraft_detection_project training_phase extractTemplates KMeansBySize KMeansByIntensity resizeImagesInClusters generateEigenplanes extract_SVM_Training_Data Performance_evaluation
+```
+
+Or you can run individual steps as needed. See the [Pipeline](#pipeline) section for detailed steps.
 
 ## <a name="pipeline">➡️ ✅ ➡️ ✅ Pipeline</a>
 > [!NOTE]
