@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="doc/banner.png" style="width: 50%; height: auto;">
+  <img src="docs/banner.png" style="width: 50%; height: auto;">
 </p>
 
 <p align="center" style="margin-top: 40px;">
@@ -62,7 +62,7 @@ The aim of this project is to develop an automated system for detecting aircraft
 > The training dataset used is a sub-set of the training dataset of [HRPlanesv2 Data Set](https://github.com/dilsadunsal/HRPlanesv2-Data-Set).
 
 > [!IMPORTANT]  
-> For a detailed description of the underlying ***ratio*** of design choices taken, see [project_report.pdf](doc/project_proposal/main.pdf).
+> For a detailed description of the underlying ***ratio*** of design choices taken, see [project_report.pdf](docs/project_proposal/main.pdf).
 
 ---
 
@@ -137,7 +137,7 @@ Ensure you have the above installed on your machine:
     ```
     Or you can run individual steps as needed. See the [Pipeline](#pipeline) section for detailed steps.
 
-![](./doc/render1721142899171.gif)
+![](./docs/render1721142899171.gif)
 
 ### CMake GUI and Visual Studio Instructions
 
