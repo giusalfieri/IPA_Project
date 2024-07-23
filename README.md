@@ -180,7 +180,7 @@ Detection is done by executing:
 ### 8. Performance evaluation phase 
 Evaluate the performance of detection done in the previous step by running a Python script, to obtain the Precision-Recall curve and the average precision, calculated with trapezoidal method.
 ```sh
-./aircraft_detection_project Detection
+./aircraft_detection_project Performance_evaluation
 ```
 ---
 ## <a name="contributors">👥 Contributors</a>
