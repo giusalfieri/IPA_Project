@@ -14,7 +14,7 @@
 # paths will be considered relative to the root of the repository, not the
 # location of the DOXYFILE.
 
-DOXYFILE = Doxyfile
+DOXYFILE = ./Doxyfile
 
 INPUT += README.md
 USE_MDFILE_AS_MAINPAGE = README.md
