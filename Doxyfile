@@ -1,5 +1,5 @@
 # Project related settings
-PROJECT_NAME           = "AircraftDetection"
+PROJECT_NAME           = "IPA_Project"
 PROJECT_NUMBER         = "1.0"
 OUTPUT_DIRECTORY       = "docs"
 CREATE_SUBDIRS         = YES
