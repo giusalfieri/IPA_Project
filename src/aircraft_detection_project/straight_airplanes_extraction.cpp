@@ -55,10 +55,10 @@ cv::Mat getBoundarySafeROI(const cv::Mat& img, cv::Rect& roi);
 void extractStraightAirplanes()
 {
     std::vector<std::string> dataset_img_paths;
-    globFiles(TRAINING_DATASET_PATH, "/*.jpg", dataset_img_paths);
+    globFiles(std::string(TRAINING_DATASET_PATH) + "/" + "dataset_for_straight_airplanes_extraction", "/*.jpg", dataset_img_paths);
 
     std::vector<std::string> yolo_labels_paths;
-    globFiles(TRAINING_DATASET_PATH, "/*.txt", yolo_labels_paths);
+    globFiles(std::string(TRAINING_DATASET_PATH) + "/" + "dataset_for_straight_airplanes_extraction", "/*.txt", yolo_labels_paths);
 
     auto straight_airplanes_folder = createDirectory(std::filesystem::path(SRC_DIR_PATH), "straight_airplanes");
 
