@@ -102,7 +102,6 @@ Ensure you have the above installed on your machine:
 
 ## Usage
 
-## Usage
 
 ### Command Line Instructions
 
