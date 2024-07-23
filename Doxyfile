@@ -1,7 +1,6 @@
 # Project related settings
-PROJECT_NAME           = "NomeDellaTuaRepoSuGitHub"
+PROJECT_NAME           = "Aircraft Detection"
 PROJECT_NUMBER         = "1.0"
-CREATE_SUBDIRS         = YES
 
 # Build related settings
 EXTRACT_ALL            = YES
