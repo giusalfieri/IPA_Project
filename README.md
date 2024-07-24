@@ -204,66 +204,7 @@ Make sure to follow this precise order when running the steps.
 > [!IMPORTANT]
 > The output of the SVM in cross-validation mode are two `.sco` files. Rename them  `positive.sco` and `negative.sco` and put them inside `/src/svm_cv_outputs` directory.
 
-### 1. Training Phase
-Initiate the training phase for an SVM model by extracting data from a CSV file.
-The extracted data is prepared and formatted to be used for training the SVM algorithm.
-```sh
-./aircraft_detection_project training_phase
-```
----
-### 2. Template extraction Phase
-Extract templates from the dataset, which are necessary for further processing and analysis.
-This can be done by executing the command:
-```sh
-./aircraft_detection_project extractTemplates
-```
----
-### 3. K-means-by-size clustering Phase
-Apply the K-Means clustering algorithm to group extracted templates, treated as data points, based on their size; templates with similar dimensions are grouped into clusters.
-Do this by executing the following command:
-```sh
-./aircraft_detection_project KMeansBySize
-```
----
-### 4. K-means-by-intensity clustering Phase
-Apply the K-Means clustering algorithm to group extracted templates, treated as data points, based on their intensity; templates with similar intensity values are grouped into clusters.
-This can be done by executing:
-```sh
-./aircraft_detection_project KMeansByIntensity
-```
----
-### 5. Images resizing Phase 
-All the images in each cluster need to have the same dimensions as this is necessary for generating eigenplanes (see next phase).
-In order to do this, execute as follows: 
-```sh
-./aircraft_detection_project resizeImagesInClusters
-```
----
-### 6. Eigenplanes generating Phase 
-Generate Eigenplanes for each cluster of images previously resized.
-By "Eigenplanes" is meant the outcome of the application of the EigenFace algorithm.
-The details of the algorithm can be read here: https://docs.opencv.org/4.x/da/d60/tutorial_face_main.html
-Execute the following command:
-```sh
-./aircraft_detection_project generateEigenplanes
-```
----
-### 7. Detection Phase 
-This is the most important step.
-Classify the given testing image based on the features extracted in the previous phase (HOG features).
-This phase consists in performing template matching, classifying points by YOLO boxes, extracting ROIs and finally using a SVM model to classify the ROIs.
-In SVM training, 10 fold cross validation is done, and the outcome are two .sco files, relative to true positives and negatives, respectively; these two files must then be placed in /src/svm_cv_outputs directory.
-Every row in these files is a sample (candidate region) with a classification score associated, columns being sample id and score. 
-Detection is done by executing:
-```shs
-./aircraft_detection_project extract_SVM_Training_Data
-```
----
-### 8. Performance evaluation phase 
-Evaluate the performance of detection done in the previous step by running a Python script, to obtain the Precision-Recall curve and the average precision, calculated with trapezoidal method.
-```sh
-./aircraft_detection_project Performance_evaluation
-```
+
 ![](./docs/render1721142899171.gif)
 
 ---
