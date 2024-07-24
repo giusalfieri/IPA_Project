@@ -192,11 +192,11 @@ The steps in the pipeline must be executed in the following order to ensure the 
 Make sure to follow this precise order when running the steps.
 
 > [!NOTE]
-> After each phase is concluded, meaning that each command given has terminated execution, a corresponding file with a .done extension is created in the /src/steps_completed folder.
-> While given a command, the program checks if the previous step has been done by checking the existence of the corresponding file in the `/src/steps_completed` folder; if not, a warning message indicating the missing step is printed out.
+> After each phase completes, a .done file is created in the `/src/steps_completed folder`. When a command is issued, the program verifies the previous step's completion by checking for the corresponding `.done` file. If the file is missing, a warning message indicates the unmet prerequisite.
 
 > [!NOTE]
 > The step `extractStraightAirplanes` has already been completed by us, and its `.done` file is already present inside `/src/steps_completed` folder. 
+> Furthermore, the straight airplanes extracted must be downloaded from a Google Drive folder: see [](). 
 
 ### 1. Training Phase
 Initiate the training phase for an SVM model by extracting data from a CSV file.
