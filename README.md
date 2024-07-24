@@ -89,7 +89,7 @@ Ensure you have the above installed on your machine:
 ## <a name="installation">🔨 Installation</a>
 
 <details>
-<summary>**Command Line Instructions**</summary>
+<summary><strong>Command Line Instructions</strong></summary>
 
  1. **Clone the repository:**
     ```sh
@@ -127,7 +127,7 @@ Ensure you have the above installed on your machine:
 
 
 <details>
-<summary>**CMake GUI and Visual Studio Instructions**</summary>
+<summary><strong>CMake GUI and Visual Studio Instructions</strong></summary>
   
 1. **Clone the repository:**
     ```sh
