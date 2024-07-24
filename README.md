@@ -36,7 +36,7 @@ For a detailed reference of all functions and classes, please refer to the [API 
 - [Features](#features)
 - 📦[Dependencies](#dependencies)
 - 🔨[Installation](#installation)
-- [Usage](#usage)
+- 🚀[Usage](#usage)
 - ➡️ ✅ ➡️ ✅[Pipeline](#pipeline)
 - 👥[Contributors](#contributors)
 - 📜[License](#license)
@@ -166,7 +166,9 @@ To run the entire pipeline, use the following command:
 ./aircraft_detection_project extractTemplates KMeansBySize KMeansByIntensity resizeImagesInClusters generateEigenplanes extract_SVM_Training_Data Performance_evaluation
 ```
 
-## Usage
+---
+
+## <a name="usage">🚀 Usage</a>
 ![](./docs/render1721142899171.gif)
 
 Or you can run individual steps as needed. See the [Pipeline](#pipeline) section for detailed steps.
