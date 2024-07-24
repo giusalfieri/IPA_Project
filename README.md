@@ -51,7 +51,7 @@ The aim of this project is to develop an automated system for detecting aircraft
 
 ## <a name="features">⚙️ Features</a>
 
-- **Straight airplanes Extraction:** Extract straightened airplanes images from the training dataset images.
+- **Straight airplanes Extraction:** Extract straightened airplanes from the training dataset images.
 - **Clustering:** Perform K-Means clustering based on size and intensity on the airplanes previously extracted.
 - **Image Resizing:** Resize images within each cluster to uniform dimensions.
 - **Eigenplanes Generation:** Generate eigenplanes for the clustered images.
@@ -116,7 +116,7 @@ Ensure you have the above installed on your machine:
     ```sh
     ./aircraft_detection_project [step1] [step2] ...
     ```
-    For example, to run the entire pipeline, see the [example command](#example-command) below.
+    For example, to run the entire pipeline, see the [Usage](#usage) below.
    
 </details>
 
@@ -154,26 +154,32 @@ Ensure you have the above installed on your machine:
     - In Visual Studio, set the startup project to `aircraft_detection_project`.
     - Configure the project properties if needed to include any command-line arguments.
     - Start debugging or run the project without debugging as needed.
-    - For an example of the command-line arguments to run the entire pipeline, see the [example command](#example-command) below.
+    - For an example of the command-line arguments to run the entire pipeline, see the [Usage](#usage) below.
  
 </details>
 
-### Example Command
 
-To run the entire pipeline, use the following command:
+
+
+## <a name="usage">🚀 Usage</a>
+
+To run the *entire* pipeline, use the following command in the directory where the executable is located:
 
 ```sh
 ./aircraft_detection_project extractTemplates KMeansBySize KMeansByIntensity resizeImagesInClusters generateEigenplanes extract_SVM_Training_Data Performance_evaluation
 ```
 
----
-
-## <a name="usage">🚀 Usage</a>
-![](./docs/render1721142899171.gif)
-
 Or you can run individual steps as needed. See the [Pipeline](#pipeline) section for detailed steps.
 
+> [!NOTE]
+> It is **strongly suggested** to execute the steps **one by one**, as some of them are computationally intensive. For example, `extract_SVM_Training_Data` involves *template matching* for numerous images, each with many airplane templates.
+
+
+---
+
 ## <a name="pipeline">➡️ ✅ ➡️ ✅ Pipeline</a>
+
+![](./docs/render1721142899171.gif)
 > [!NOTE]
 > In the following lines, workflow steps instructions are given and explained.
 > After each phase is concluded, meaning that each command given has terminated execution, a corresponding file with a .done extension is created in /src/steps_completed folder.
