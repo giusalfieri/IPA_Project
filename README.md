@@ -37,7 +37,7 @@ For a detailed reference of all functions and classes, please refer to the [API 
 - 📦[Dependencies](#dependencies)
 - 🔨[Installation](#installation)
 - 🚀[Usage](#usage)
-- ➡️ ✅ ➡️ ✅[Pipeline](#pipeline)
+- ➡️ ✅ ➡️[Pipeline](#pipeline)
 - 👥[Contributors](#contributors)
 - 📜[License](#license)
 
@@ -158,8 +158,7 @@ Ensure you have the above installed on your machine:
  
 </details>
 
-
-
+---
 
 ## <a name="usage">🚀 Usage</a>
 
@@ -169,7 +168,7 @@ To run the *entire* pipeline, use the following command in the directory where t
 ./aircraft_detection_project extractTemplates KMeansBySize KMeansByIntensity resizeImagesInClusters generateEigenplanes extract_SVM_Training_Data Performance_evaluation
 ```
 
-Or you can run individual steps as needed. See the [Pipeline](#pipeline) section for detailed steps.
+Or you can run individual steps as needed. See the [Pipeline](#pipeline) section for the *exact order* in which the steps should be executed.
 
 > [!NOTE]
 > It is **strongly suggested** to execute the steps **one by one**, as some of them are computationally intensive. For example, `extract_SVM_Training_Data` involves *template matching* for numerous images, each with many airplane templates.
@@ -177,13 +176,27 @@ Or you can run individual steps as needed. See the [Pipeline](#pipeline) section
 
 ---
 
-## <a name="pipeline">➡️ ✅ ➡️ ✅ Pipeline</a>
+## <a name="pipeline">➡️ ✅ ➡️ Pipeline</a>
 
-![](./docs/render1721142899171.gif)
+
+The steps in the pipeline must be executed in the following order to ensure the correct functioning of the process:
+
+1. `extractStraightAirplanes`
+2. `KMeansBySize`
+3. `KMeansByIntensity`
+4. `resizeImagesInClusters`
+5. `generateEigenplanes`
+6. `extract_SVM_Training_Data`
+7. `Performance_evaluation`
+
+Make sure to follow this precise order when running the steps.
+
 > [!NOTE]
-> In the following lines, workflow steps instructions are given and explained.
-> After each phase is concluded, meaning that each command given has terminated execution, a corresponding file with a .done extension is created in /src/steps_completed folder.
-> While given a command, the program checks if the previous step has been done, checking the existance of the corresponding file in /src/steps_completed folder; if not, a warning message indicating the missing step is printed out.
+> After each phase is concluded, meaning that each command given has terminated execution, a corresponding file with a .done extension is created in the /src/steps_completed folder.
+> While given a command, the program checks if the previous step has been done by checking the existence of the corresponding file in the `/src/steps_completed` folder; if not, a warning message indicating the missing step is printed out.
+
+> [!NOTE]
+> The step `extractStraightAirplanes` has already been completed by us, and its `.done` file is already present inside `/src/steps_completed` folder. 
 
 ### 1. Training Phase
 Initiate the training phase for an SVM model by extracting data from a CSV file.
@@ -245,6 +258,8 @@ Evaluate the performance of detection done in the previous step by running a Pyt
 ```sh
 ./aircraft_detection_project Performance_evaluation
 ```
+![](./docs/render1721142899171.gif)
+
 ---
 ## <a name="contributors">👥 Contributors</a>
 
