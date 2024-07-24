@@ -102,10 +102,10 @@ Ensure you have the above installed on your machine:
 
 ## Usage
 
+<details>
+<summary>### Command Line Instructions</summary>
 
-### Command Line Instructions
-
-1. **Clone the repository:**
+ 1. **Clone the repository:**
     ```sh
     git clone https://github.com/giusalfieri/IPA_Project.git
     cd IPA_Project
@@ -136,6 +136,8 @@ Ensure you have the above installed on your machine:
     ./aircraft_detection_project training_phase extractTemplates KMeansBySize KMeansByIntensity resizeImagesInClusters generateEigenplanes extract_SVM_Training_Data Performance_evaluation
     ```
     Or you can run individual steps as needed. See the [Pipeline](#pipeline) section for detailed steps.
+   
+</details>
 
 ![](./docs/render1721142899171.gif)
 
