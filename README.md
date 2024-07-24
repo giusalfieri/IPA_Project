@@ -162,15 +162,15 @@ Ensure you have the above installed on your machine:
  
 </details>
 
-For example, to run the entire pipeline, you can set the command-line arguments in the project properties as:
+### Example Command
+
+To run the entire pipeline, use the following command:
 
 ```sh
-./aircraft_detection_project training_phase extractTemplates KMeansBySize KMeansByIntensity resizeImagesInClusters generateEigenplanes extract_SVM_Training_Data Performance_evaluation
+./aircraft_detection_project extractTemplates KMeansBySize KMeansByIntensity resizeImagesInClusters generateEigenplanes extract_SVM_Training_Data Performance_evaluation
 ```
 
 ## Usage
-
-
 ![](./docs/render1721142899171.gif)
 
 Or you can run individual steps as needed. See the [Pipeline](#pipeline) section for detailed steps.
