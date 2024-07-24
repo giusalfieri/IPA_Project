@@ -26,7 +26,7 @@ This project focuses on detecting aircraft in satellite images using various Com
 
 ## <a name="api-documentation">📖 API Documentation</a>
 
-For a detailed reference of all functions and classes, please refer to the [API Documentation](https://giusalfieri.github.io/IPA_Project/).
+For a detailed reference of all functions, please refer to the [API Documentation](https://giusalfieri.github.io/IPA_Project/).
 
 ---
 
