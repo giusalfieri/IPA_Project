@@ -165,7 +165,7 @@ Ensure you have the above installed on your machine:
 To run the *entire* pipeline, use the following command in the directory where the executable is located:
 
 ```sh
-./aircraft_detection_project extractTemplates KMeansBySize KMeansByIntensity resizeImagesInClusters generateEigenplanes extract_SVM_Training_Data Performance_evaluation
+./aircraft_detection_project extractStraightAirplanes KMeansBySize KMeansByIntensity resizeImagesInClusters generateEigenplanes extract_SVM_Training_Data Performance_evaluation
 ```
 
 Or you can run individual steps as needed. See the [Pipeline](#pipeline) section for the *exact order* in which the steps should be executed.
