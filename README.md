@@ -103,7 +103,7 @@ Ensure you have the above installed on your machine:
 ## Usage
 
 <details>
-<summary>### Command Line Instructions</summary>
+<summary>***Command Line Instructions***</summary>
 
  1. **Clone the repository:**
     ```sh
@@ -141,8 +141,10 @@ Ensure you have the above installed on your machine:
 
 ![](./docs/render1721142899171.gif)
 
-### CMake GUI and Visual Studio Instructions
 
+<details>
+<summary>***CMake GUI and Visual Studio Instructions***</summary>
+  
 1. **Clone the repository:**
     ```sh
     git clone https://github.com/giusalfieri/IPA_Project.git
@@ -173,6 +175,8 @@ Ensure you have the above installed on your machine:
     - In Visual Studio, set the startup project to `aircraft_detection_project`.
     - Configure the project properties if needed to include any command-line arguments.
     - Start debugging or run the project without debugging as needed.
+ 
+</details>
 
 For example, to run the entire pipeline, you can set the command-line arguments in the project properties as:
 
