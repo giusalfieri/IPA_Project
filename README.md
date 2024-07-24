@@ -191,15 +191,15 @@ The steps in the pipeline must be executed in the following order to ensure the 
 
 Make sure to follow this precise order when running the steps.
 
-> [!NOTE]
+> [!IMPORTANT]
 > After each phase completes, a .done file is created in the `/src/steps_completed folder`. When a command is issued, the program verifies the previous step's completion by checking for the corresponding `.done` file. If the file is missing, a warning message indicates the unmet prerequisite.
 
-> [!IMPORTANT]
+> [!NOTE]
 > The step `extractStraightAirplanes` has already been completed by us, and its `.done` file is already present inside `/src/steps_completed` folder. 
 > Furthermore, the straight airplanes extracted by us, must be downloaded from a Google Drive folder: see this [README.md](./src/straight_airplanes/README.md). 
 
 > [!IMPORTANT]
-> Please ensure that the folders `/src/dataset_training`and `/src/dataset_for_straight_airplanes_extraction` are populated as specified in their respective README files: 
+> Please ensure that the folders `/src/dataset_training`and `/src/dataset_for_straight_airplanes_extraction` are populated as specified in their respective README files: [dataset_training README](./src/dataset_training/README.md) and [dataset_for_straight_airplanes_extraction README](./src/dataset_for_straight_airplanes_extraction/README.md).
 
 ### 1. Training Phase
 Initiate the training phase for an SVM model by extracting data from a CSV file.
