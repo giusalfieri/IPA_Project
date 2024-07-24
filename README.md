@@ -200,6 +200,9 @@ Make sure to follow this precise order when running the steps.
 
 > [!IMPORTANT]
 > Please ensure that the folders `/src/dataset_training`and `/src/dataset_for_straight_airplanes_extraction` are populated as specified in their respective README files: [dataset_training README](./src/dataset_training/README.md) and [dataset_for_straight_airplanes_extraction README](./src/dataset_for_straight_airplanes_extraction/README.md).
+>
+> The output of the SVM in cross-validation mode are two `.sco` files. Rename them  `.sco` and false positives, respectively. Each .sco file contains rows with two columns: sample ID and associated score.
+> These .sco files should be placed in the `/src/svm_cv_outputs` directory.
 
 ### 1. Training Phase
 Initiate the training phase for an SVM model by extracting data from a CSV file.
