@@ -88,20 +88,6 @@ Ensure you have the above installed on your machine:
 
 ## <a name="installation">🔨 Installation</a>
 
-1. **Clone the repository:**
-    ```sh
-    git clone https://github.com/giusalfieri/IPA_Project.git
-    cd aircraft-detection-satellite-images
-    ```
-
-2. **Install dependencies:**
-    Ensure you have OpenCV, CMake, and other necessary libraries installed. You can install the required Python packages using:
-    ```sh
-    pip install -r requirements.txt
-    ```
-
-## Usage
-
 <details>
 <summary>**Command Line Instructions**</summary>
 
@@ -138,8 +124,6 @@ Ensure you have the above installed on your machine:
     Or you can run individual steps as needed. See the [Pipeline](#pipeline) section for detailed steps.
    
 </details>
-
-![](./docs/render1721142899171.gif)
 
 
 <details>
@@ -183,6 +167,11 @@ For example, to run the entire pipeline, you can set the command-line arguments 
 ```sh
 ./aircraft_detection_project training_phase extractTemplates KMeansBySize KMeansByIntensity resizeImagesInClusters generateEigenplanes extract_SVM_Training_Data Performance_evaluation
 ```
+
+## Usage
+
+
+![](./docs/render1721142899171.gif)
 
 Or you can run individual steps as needed. See the [Pipeline](#pipeline) section for detailed steps.
 
