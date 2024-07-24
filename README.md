@@ -79,7 +79,7 @@ Ensure you have the above installed on your machine:
 > [!IMPORTANT]  
 > Make sure Python is installed system wide (e.g., on Windows, Python must be added to the system `PATH`).
 > 
-> For detailed instructions on ho
+> FFor detailed instructions on how to install OpenCV on your machine, please refer to this [guide](./docs/README.txt).
 
 > [!TIP]  
 > Click the badges to visit their official websites.
