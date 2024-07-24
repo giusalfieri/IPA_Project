@@ -28,14 +28,14 @@ Procedure:
 2. In "Where is the source code", insert  the folder  containing the
    source code (this folder)
    *** WARNING ***: the folder path should NOT contain spaces or sp-
-   ecial characters (like 'à', 'è', etc.).
+   ecial characters (like 'Ã ', 'Ã¨', etc.).
    
 3. In "Where to build the binaries", insert the folder where the pro-
    ject files for your platform will be generated. This folder MUST
    be different from the source folder specified at step 2.
    
    *** WARNING ***: the folder path should not contain spaces or sp-
-   ecial characters (like 'à', 'è', etc.).
+   ecial characters (like 'Ã ', 'Ã¨', etc.).
 
 4. Press "Configure" and select the right generator for your platform.
    In this example, we select "Visual Studio 1* 20**".
