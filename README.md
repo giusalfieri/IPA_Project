@@ -32,8 +32,8 @@ For a detailed reference of all functions and classes, please refer to the [API 
 
 ## 📚 Table of Contents 
 
-- [Introduction](#introduction)
-- [Features](#features)
+- 📖[Introduction](#introduction)
+- ⚙️[Features](#features)
 - 📦[Dependencies](#dependencies)
 - 🔨[Installation](#installation)
 - 🚀[Usage](#usage)
@@ -43,7 +43,7 @@ For a detailed reference of all functions and classes, please refer to the [API 
 
 ---
 
-## Introduction
+##  📖 Introduction
 
 The aim of this project is to develop an automated system for detecting aircraft in satellite imagery. The project utilizes a combination of image processing techniques, feature extraction methods, and machine learning algorithms to achieve high accuracy in aircraft detection.
 
@@ -79,7 +79,7 @@ Ensure you have the above installed on your machine:
 > [!IMPORTANT]  
 > Make sure Python is installed system wide (e.g., on Windows, Python must be added to the system `PATH`).
 > 
-> FFor detailed instructions on how to install OpenCV on your machine, please refer to this [guide](./docs/README.txt).
+> For detailed instructions on how to install OpenCV on your machine, please refer to this [guide](./docs/README.txt).
 
 > [!TIP]  
 > Click the badges to visit their official websites.
