@@ -51,11 +51,11 @@ The aim of this project is to develop an automated system for detecting aircraft
 
 ## <a name="features">⚙️ Features</a>
 
-- **Template Extraction:** Extract templates from the training dataset.
-- **Clustering:** Perform K-Means clustering based on size and intensity.
+- **Straight airplanes Extraction:** Extract straightened airplanes images from the training dataset images.
+- **Clustering:** Perform K-Means clustering based on size and intensity on the airplanes previously extracted.
 - **Image Resizing:** Resize images within each cluster to uniform dimensions.
 - **Eigenplanes Generation:** Generate eigenplanes for the clustered images.
-- **SVM Cross Validation:** Extract data from CSV for SVM training..
+- **SVM Training Data Extraction:** Extract data from CSV for SVM training..
 - **Performance Evaluation:** Evaluate the performance of the classifier.
 
 > [!NOTE]  
