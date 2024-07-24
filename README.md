@@ -112,16 +112,11 @@ Ensure you have the above installed on your machine:
     ```sh
     make
     ```
-
 5. **Run the project:**
     ```sh
     ./aircraft_detection_project [step1] [step2] ...
     ```
-    For example, to run the entire pipeline:
-    ```sh
-    ./aircraft_detection_project training_phase extractTemplates KMeansBySize KMeansByIntensity resizeImagesInClusters generateEigenplanes extract_SVM_Training_Data Performance_evaluation
-    ```
-    Or you can run individual steps as needed. See the [Pipeline](#pipeline) section for detailed steps.
+    For example, to run the entire pipeline, see the [example command](#example-command) below.
    
 </details>
 
@@ -159,6 +154,7 @@ Ensure you have the above installed on your machine:
     - In Visual Studio, set the startup project to `aircraft_detection_project`.
     - Configure the project properties if needed to include any command-line arguments.
     - Start debugging or run the project without debugging as needed.
+    - For an example of the command-line arguments to run the entire pipeline, see the [example command](#example-command) below.
  
 </details>
 
