@@ -103,7 +103,7 @@ Ensure you have the above installed on your machine:
 ## Usage
 
 <details>
-<summary>***Command Line Instructions***</summary>
+<summary>**Command Line Instructions**</summary>
 
  1. **Clone the repository:**
     ```sh
@@ -143,7 +143,7 @@ Ensure you have the above installed on your machine:
 
 
 <details>
-<summary>***CMake GUI and Visual Studio Instructions***</summary>
+<summary>**CMake GUI and Visual Studio Instructions**</summary>
   
 1. **Clone the repository:**
     ```sh
