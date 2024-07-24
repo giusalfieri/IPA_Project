@@ -204,8 +204,9 @@ Make sure to follow this precise order when running the steps.
 > [!IMPORTANT]
 > The output of the SVM in cross-validation mode are two `.sco` files. Rename them  `positive.sco` and `negative.sco` and put them inside `/src/svm_cv_outputs` directory.
 
+A detailde description of each step can be found calling the executable with the `--help` option:
 
-![](./docs/render1721142899171.gif)
+![](./docs/program_help_demo.gif)
 
 ---
 ## <a name="contributors">👥 Contributors</a>
