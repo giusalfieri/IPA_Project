@@ -32,7 +32,7 @@ For a detailed reference of all functions and classes, please refer to the [API 
 
 ## 📚 Table of Contents 
 
-- 📖[Introduction](#introduction)
+- [Introduction](#introduction)
 - ⚙️[Features](#features)
 - 📦[Dependencies](#dependencies)
 - 🔨[Installation](#installation)
@@ -43,7 +43,7 @@ For a detailed reference of all functions and classes, please refer to the [API 
 
 ---
 
-##  📖 Introduction
+## Introduction
 
 The aim of this project is to develop an automated system for detecting aircraft in satellite imagery. The project utilizes a combination of image processing techniques, feature extraction methods, and machine learning algorithms to achieve high accuracy in aircraft detection.
 
