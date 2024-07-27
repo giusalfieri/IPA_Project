@@ -139,7 +139,7 @@ Ensure you have the above installed on your machine.
 3. **Configure the project:**
     - Click on the "Configure" button.
     - Select your version of Visual Studio (e.g., Visual Studio 2022) and the appropriate platform (e.g., x64).
-    - Click "Finish" to start the configuration process.
+    - Click "Finish" to complete the configuration process.
     - If there are any missing dependencies, resolve them and click "Configure" again.
 
 4. **Generate the project files:**
