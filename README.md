@@ -154,7 +154,6 @@ Ensure you have the above installed on your machine.
 
 7. **Run the project:**
     - In Visual Studio, set the startup project to `aircraft_detection_project`.
-    - Configure the project properties if needed to include any command-line arguments.
     - Start debugging or run the project without debugging as needed.
     - For an example of the command-line arguments to run the entire pipeline, see the [Usage](#usage) below.
  
