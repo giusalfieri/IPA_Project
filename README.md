@@ -55,7 +55,7 @@ The aim of this project is to develop an automated system for detecting aircraft
 - **Clustering:** Perform K-Means clustering based on size and intensity on the airplanes previously extracted.
 - **Image Resizing:** Resize images within each cluster to uniform dimensions.
 - **Eigenplanes Generation:** Generate eigenplanes for the clustered images.
-- **SVM Training Data Extraction:** Extract data from CSV for SVM training..
+- **SVM Training Data Extraction:** Extract data from CSV for SVM training.
 - **Performance Evaluation:** Evaluate the performance of the classifier.
 
 > [!NOTE]  
