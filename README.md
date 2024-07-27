@@ -107,7 +107,7 @@ Ensure you have the above installed on your machine.
 
 3. **Configure the project using CMake:**
     ```sh
-    cmake ..
+    cmake ../src
     ```
 
 4. **Compile the project:**
