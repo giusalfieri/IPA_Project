@@ -193,7 +193,7 @@ The steps in the pipeline must be executed in the following order to ensure the 
 Make sure to follow this precise order when running the steps.
 
 > [!IMPORTANT]
-> After each phase completes, a `.done` file is created in the `/src/steps_completed folder`. When a command is issued, the program verifies the previous step's completion by checking for the corresponding `.done` file. If the file is missing, a warning message indicates the unmet prerequisite.
+> After each phase completes, a `.done` file is created in the `/src/steps_completed` folder. When a command is issued, the program verifies the previous step's completion by checking for the corresponding `.done` file. If the file is missing, a warning message indicates the unmet prerequisite.
 
 > [!NOTE]
 > The step `extractStraightAirplanes` has already been completed by us, and its `.done` file is already present inside `/src/steps_completed` folder. 
