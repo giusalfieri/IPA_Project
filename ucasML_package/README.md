@@ -53,7 +53,7 @@ Follow the steps below to ensure all dependencies are met and the program runs s
 
 
 > [!WARNING]
-> Despite all the following commands have been alredy tested, everything you do is "**at your own risk**".
+> Despite all the following commands have been already tested, everything you do is "**at your own risk**".
 
 
 ➡️  **Clone the Repository** ⬅️
