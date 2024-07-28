@@ -51,7 +51,7 @@ cv::Mat eigenPlanes(const std::vector<cv::Mat>& vec, cv::Size img_dims)
     {
         cv::Mat img_64f;
         img.convertTo(img_64f, CV_64F);
-        vec64f.push_back(img_64f.reshape(1, 1));
+        vec64f.push_back(img_64f.reshape(1, 1)); // N.B Delete reshape here: vec64f.push_back(img_64f)
     }
     cv::Mat data = createDataMatrix(vec64f);
 
