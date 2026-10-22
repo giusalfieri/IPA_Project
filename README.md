@@ -5,7 +5,6 @@
 <p align="center" style="margin-top: 40px;">
     <img src="https://img.shields.io/github/stars/giusalfieri/IPA_Project?style=plastic&color=00bfff&labelColor=655ff0" alt="GitHub stars">
     <img src="https://img.shields.io/github/contributors/giusalfieri/IPA_Project?style=plastic&color=00bfff&labelColor=655ff0" alt="GitHub contributors">
-    <img src="https://img.shields.io/github/repo-size/giusalfieri/IPA_Project?style=plastic&color=00bfff&labelColor=655ff0" alt="GitHub repo size">
     <img src="https://img.shields.io/github/license/giusalfieri/IPA_Project?style=plastic&color=00bfff&labelColor=655ff0" alt="GitHub License">
 </p>
 
